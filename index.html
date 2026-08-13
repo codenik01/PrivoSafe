@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     * {
       margin: 0;
@@ -838,7 +839,7 @@
       margin: 0 auto;
     }
 
-    /* founders – 3 highlighted + extra team text */
+    /* founders – with photos and LinkedIn */
     .founder-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -852,6 +853,7 @@
       border-radius: var(--radius);
       padding: 28px 24px;
       transition: all 0.4s ease;
+      text-align: center;
     }
 
     .founder-card:hover {
@@ -860,27 +862,21 @@
       box-shadow: var(--shadow);
     }
 
-    .avatar {
-      width: 56px;
-      height: 56px;
+    .founder-photo {
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--bg);
-      margin-bottom: 16px;
-      transition: transform 0.3s ease;
+      object-fit: cover;
+      margin: 0 auto 16px;
+      display: block;
+      border: 2px solid var(--border);
+      transition: border-color 0.3s ease;
+      background: var(--surface-2);
     }
 
-    .founder-card:hover .avatar {
-      transform: scale(1.05);
+    .founder-card:hover .founder-photo {
+      border-color: var(--text);
     }
-
-    .avatar-1 { background: var(--text); }
-    .avatar-2 { background: #4a4f6b; }
-    .avatar-3 { background: #5f6b7a; }
 
     .founder-card h3 {
       font-size: 1.2rem;
@@ -901,6 +897,8 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
+      margin-bottom: 16px;
+      text-align: left;
     }
 
     .founder-card ul li {
@@ -915,6 +913,30 @@
       content: '—';
       color: #4a4f6b;
       opacity: 0.4;
+    }
+
+    .linkedin-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: #0a66c2;
+      color: #fff;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+
+    .linkedin-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(10, 102, 194, 0.3);
+      background: #004182;
+    }
+
+    .linkedin-btn i {
+      font-size: 1rem;
     }
 
     .team-extra {
@@ -1287,7 +1309,7 @@
         </div>
         <div class="core-visual-mini">
           <div class="glyph-box">
-            <p>fdsfas</p>
+            <img src="/assets/rhino.png" alt="PrivoSafe" class="mini-logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'position:relative;z-index:2;font-weight:700;font-size:1.2rem;color:#fff;\'>PS</span>';">
           </div>
           <h3 style="font-weight:600; margin-bottom:6px;">Privacy Core</h3>
           <p>The shared foundation that unifies every PrivoSafe product — and protects your rights.</p>
@@ -1295,41 +1317,47 @@
       </div>
     </section>
 
-    <!-- team section – 3 highlighted + extra team text -->
+    <!-- team section – with photos and LinkedIn -->
+    <!-- team section – with photos and LinkedIn -->
     <section id="team">
       <div class="section-label">Team</div>
       <h2 class="section-title">Three founders, one mission</h2>
       <p class="section-sub">We're a small team with a big purpose: to make privacy the standard, not the exception.</p>
       <div class="founder-grid">
         <div class="founder-card">
-          <div class="avatar avatar-1">F</div>
-          <h3>Founder Name</h3>
+          <img src="/assets/nikhil-chavan.png" alt="Founder" class="founder-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23eef1f4%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 font-family=%22Inter%22 font-size=%2232%22 fill=%22%235f6b7a%22%3EF%3C/text%3E%3C/svg%3E';">
+          <h3>Nikhil Chavan</h3>
           <span class="founder-role">Founder &amp; CEO</span>
           <ul>
             <li>Vision &amp; business</li>
             <li>Strategy &amp; product</li>
             <li>Company coordination</li>
           </ul>
+          <a href="https://www.linkedin.com/in/codenik/" class="linkedin-btn" target="_blank"><i class="fab fa-linkedin"></i> Connect</a>
         </div>
+
         <div class="founder-card">
-          <div class="avatar avatar-2">C</div>
-          <h3>Co-founder Name</h3>
+          <img src="/assets/harsh-gautam.jpeg" alt="Co-founder" class="founder-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23eef1f4%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 font-family=%22Inter%22 font-size=%2232%22 fill=%22%235f6b7a%22%3EC%3C/text%3E%3C/svg%3E';">
+          <h3>Harsh Gautam</h3>
           <span class="founder-role">Co-founder &amp; CTO</span>
           <ul>
             <li>Engineering &amp; architecture</li>
             <li>Infrastructure &amp; security</li>
             <li>Technical team</li>
           </ul>
+          <a href="https://www.linkedin.com/in/harshgautamdev/" class="linkedin-btn" target="_blank"><i class="fab fa-linkedin"></i> Connect</a>
         </div>
+
         <div class="founder-card">
-          <div class="avatar avatar-3">C</div>
-          <h3>Co-founder Name</h3>
+          <img src="/assets/harsh-chandra.jpeg" alt="Co-founder" class="founder-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23eef1f4%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 font-family=%22Inter%22 font-size=%2232%22 fill=%22%235f6b7a%22%3EC%3C/text%3E%3C/svg%3E';">
+          <h3>Harsh Chandra</h3>
           <span class="founder-role">Co-founder &amp; COO/CMO</span>
           <ul>
             <li>Operations &amp; marketing</li>
             <li>Partnerships &amp; growth</li>
             <li>Team coordination</li>
           </ul>
+          <a href="https://www.linkedin.com/in/harsh-chandra-2707a8393/" class="linkedin-btn" target="_blank"><i class="fab fa-linkedin"></i> Connect</a>
         </div>
       </div>
       <div class="team-extra">
@@ -1340,7 +1368,6 @@
         </p>
       </div>
     </section>
-
     <!-- business model – free for everyone -->
     <section id="model">
       <div class="section-label">Business model</div>
