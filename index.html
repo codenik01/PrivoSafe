@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PrivoSafe · privacy is a right</title>
+  <meta name="description" content="PrivoSafe – we respect and manage your privacy. Privacy is the right of every single user." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #ffffff;
+      --surface: #f6f8fa;
+      --surface-2: #eef1f4;
+      --border: #e2e6ec;
+      --text: #0f1117;
+      --text-muted: #5f6b7a;
+      --accent: #1a1f2b;
+      --radius: 16px;
+      --shadow: 0 20px 40px -12px rgba(0,0,0,0.08);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding: 0 24px;
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 0 64px;
+    }
+
+    /* header */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0 28px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 16px;
+      animation: slideDown 0.6s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-marker {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--bg);
+      transition: transform 0.3s ease;
+    }
+
+    .brand:hover .brand-marker {
+      transform: rotate(-10deg) scale(1.05);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--text);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      background: var(--text);
+      color: var(--bg);
+      padding: 8px 24px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -8px rgba(0,0,0,0.2);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      width: 28px;
+      height: 2.5px;
+      background: var(--text);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      padding: 20px 0 12px;
+      border-top: 1px solid var(--border);
+      margin-top: 8px;
+      animation: slideDown 0.3s ease;
+    }
+
+    .mobile-nav.open {
+      display: flex;
+    }
+
+    .mobile-nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 1.05rem;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+
+    .mobile-nav a:hover {
+      color: var(--text-muted);
+    }
+
+    /* hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 80px;
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-content .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 6px 14px;
+      border-radius: 60px;
+      margin-bottom: 20px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--text);
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse-dot 2.4s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.2; transform: scale(0.7); }
+    }
+
+    .hero h1 {
+      font-size: 3.4rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(120deg, var(--text), #4a4f6b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero .big-quote {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--text);
+      margin: 20px 0 12px;
+      padding: 16px 0 12px;
+      border-top: 2px solid var(--border);
+      border-bottom: 2px solid var(--border);
+      max-width: 520px;
+    }
+
+    .hero .big-quote em {
+      font-style: italic;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px -10px rgba(0,0,0,0.2);
+    }
+
+    .btn-outline {
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--text);
+      transform: translateY(-3px);
+    }
+
+    /* hero visual */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .orbit-scene {
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 1/1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .core-sphere {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 25%, var(--text), #2a2f3a);
+      box-shadow: 0 0 60px rgba(0,0,0,0.06), 0 0 100px rgba(74, 79, 107, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      transition: transform 0.6s ease;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .core-sphere::after {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      background: var(--bg);
+      opacity: 0.1;
+      filter: blur(2px);
+    }
+
+    .core-sphere span {
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: 0.08em;
+      color: var(--bg);
+      z-index: 3;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 6px 16px;
+      border-radius: 40px;
+      backdrop-filter: blur(2px);
+    }
+
+    .orbit-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      opacity: 0.5;
+    }
+
+    .ring-1 {
+      width: 250px;
+      height: 250px;
+      animation: spin-slow 30s linear infinite;
+    }
+
+    .ring-2 {
+      width: 330px;
+      height: 330px;
+      border-color: rgba(74, 79, 107, 0.12);
+      animation: spin-reverse 38s linear infinite;
+    }
+
+    .ring-3 {
+      width: 390px;
+      height: 390px;
+      border-color: rgba(26, 31, 43, 0.06);
+      border-style: dashed;
+      animation: spin-slow 46s linear infinite;
+    }
+
+    @keyframes spin-slow {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes spin-reverse {
+      to { transform: rotate(-360deg); }
+    }
+
+    .node {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      box-shadow: 0 0 16px rgba(0,0,0,0.03);
+      transition: all 0.3s ease;
+      z-index: 3;
+      cursor: default;
+    }
+
+    .node:hover {
+      transform: scale(1.3);
+      border-color: var(--text);
+      color: var(--text);
+      box-shadow: 0 0 24px rgba(0,0,0,0.06);
+    }
+
+    .node-1 { top: 14%; left: 14%; }
+    .node-2 { top: 4%; right: 18%; }
+    .node-3 { bottom: 14%; right: 8%; }
+    .node-4 { bottom: 26%; left: 2%; }
+    .node-5 { top: 42%; right: 0%; }
+    .node-6 { bottom: 4%; left: 42%; }
+
+    .node .label {
+      position: absolute;
+      top: calc(100% + 8px);
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      white-space: nowrap;
+      background: var(--bg);
+      padding: 2px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+    }
+
+    .node:hover .label {
+      opacity: 1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--text);
+      border-radius: 50%;
+      opacity: 0.1;
+      filter: blur(0.5px);
+      animation: float-particle 10s infinite alternate ease-in-out;
+    }
+
+    .particle-1 { top: 10%; left: 72%; animation-duration: 14s; }
+    .particle-2 { bottom: 22%; right: 68%; animation-duration: 11s; animation-delay: 2s; }
+    .particle-3 { top: 60%; left: 8%; animation-duration: 15s; animation-delay: 3s; }
+    .particle-4 { bottom: 8%; left: 52%; animation-duration: 9s; animation-delay: 1s; }
+
+    @keyframes float-particle {
+      0% { transform: translate(0, 0) scale(1); opacity: 0.06; }
+      100% { transform: translate(18px, -28px) scale(1.8); opacity: 0.25; }
+    }
+
+    .pulse-ring {
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.05);
+      animation: pulse-ring 3.2s ease-out infinite;
+      z-index: 1;
+    }
+
+    .pulse-ring:nth-child(2) {
+      animation-delay: 1.8s;
+      width: 200px;
+      height: 200px;
+    }
+
+    @keyframes pulse-ring {
+      0% { transform: scale(0.9); opacity: 0.6; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    /* product bay – 1 live + 3 coming soon */
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 16px;
+      margin: 72px 0 80px;
+    }
+
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px 24px 24px;
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      min-height: 260px;
+      animation: fadeUp 0.6s ease both;
+      animation-delay: calc(0.1s * var(--i, 1));
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--text);
+      box-shadow: var(--shadow);
+    }
+
+    .card-live {
+      background: var(--surface-2);
+      border-color: var(--text);
+      justify-content: space-between;
+    }
+
+    .live-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background: var(--text);
+      color: var(--bg);
+      padding: 4px 14px;
+      border-radius: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+    }
+
+    .live-tag .pulse {
+      width: 6px;
+      height: 6px;
+      background: var(--bg);
+      border-radius: 50%;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .product-icon {
+      font-size: 2rem;
+      margin: 18px 0 12px;
+    }
+
+    .product-card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .product-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .product-card .btn-sm {
+      align-self: flex-start;
+      padding: 8px 22px;
+      font-size: 0.85rem;
+      background: var(--text);
+      color: var(--bg);
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .product-card .btn-sm:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px -6px rgba(0,0,0,0.15);
+    }
+
+    .card-coming {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .card-coming .coming-icon {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+      opacity: 0.3;
+    }
+
+    .card-coming h4 {
+      font-weight: 500;
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .card-coming p {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 4px;
+    }
+
+    /* philosophy section */
+    .philosophy {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 60px 48px;
+      margin: 80px 0;
+      text-align: center;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .philosophy .big-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    .philosophy h2 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .philosophy .phil-quote {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text);
+      max-width: 720px;
+      margin: 0 auto 16px;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .philosophy .phil-quote strong {
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    .philosophy p {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    .philosophy .divider-line {
+      width: 60px;
+      height: 2px;
+      background: var(--text);
+      margin: 24px auto;
+      opacity: 0.2;
+    }
+
+    /* sections */
+    section {
+      margin: 80px 0;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--text);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 600px;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-top: 32px;
+    }
+
+    .core-principles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .principle {
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      transition: background 0.3s ease;
+    }
+
+    .principle:hover {
+      background: var(--surface-2);
+    }
+
+    .principle:nth-child(odd) {
+      border-right: 1px solid var(--border);
+    }
+
+    .principle:nth-last-child(-n+2) {
+      border-bottom: 0;
+    }
+
+    .principle .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .principle h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 6px 0 4px;
+    }
+
+    .principle p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .core-visual-mini {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px;
+      text-align: center;
+      transition: all 0.4s ease;
+    }
+
+    .core-visual-mini:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .core-visual-mini .glyph-box {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--text), #4a4f6b, var(--text));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      position: relative;
+      animation: spin-slow 20s linear infinite;
+    }
+
+    .core-visual-mini .glyph-box::after {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      background: var(--bg);
+    }
+
+    .core-visual-mini .glyph-box span {
+      position: relative;
+      z-index: 2;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--bg);
+    }
+
+    .core-visual-mini p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      max-width: 260px;
+      margin: 0 auto;
+    }
+
+    /* founders – 3 highlighted + extra team text */
+    .founder-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .founder-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: all 0.4s ease;
+    }
+
+    .founder-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--text);
+      box-shadow: var(--shadow);
+    }
+
+    .avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--bg);
+      margin-bottom: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .founder-card:hover .avatar {
+      transform: scale(1.05);
+    }
+
+    .avatar-1 { background: var(--text); }
+    .avatar-2 { background: #4a4f6b; }
+    .avatar-3 { background: #5f6b7a; }
+
+    .founder-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .founder-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      display: inline-block;
+    }
+
+    .founder-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .founder-card ul li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .founder-card ul li::before {
+      content: '—';
+      color: #4a4f6b;
+      opacity: 0.4;
+    }
+
+    .team-extra {
+      margin-top: 32px;
+      text-align: center;
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .team-extra p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .team-extra strong {
+      color: var(--text);
+    }
+
+    /* business model – simplified: free for everyone */
+    .model-simple {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 48px 40px;
+      text-align: center;
+      margin-top: 28px;
+      transition: all 0.4s ease;
+    }
+
+    .model-simple:hover {
+      border-color: var(--text);
+      box-shadow: var(--shadow);
+    }
+
+    .model-simple .big-free {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .model-simple .big-free .highlight {
+      background: linear-gradient(120deg, var(--text), #4a4f6b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .model-simple p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .model-simple .sub-line {
+      margin-top: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .model-simple .sub-line strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* cta */
+    .cta-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 64px 40px;
+      text-align: center;
+      transition: all 0.4s ease;
+    }
+
+    .cta-block:hover {
+      border-color: var(--text);
+      box-shadow: var(--shadow);
+    }
+
+    .cta-block h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .cta-block p {
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto 32px;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0 32px;
+      margin-top: 60px;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .footer-tag {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 8px;
+      max-width: 280px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .footer-col h5 {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .footer-col a {
+      display: block;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      opacity: 0.6;
+      transition: all 0.2s;
+    }
+
+    .footer-col a:hover {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-bottom .rights {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* responsive */
+    @media (max-width: 1024px) {
+      .product-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .product-grid .card-live { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; }
+      .grid-2col { grid-template-columns: 1fr; }
+      .founder-grid { grid-template-columns: 1fr 1fr; }
+      .core-principles { grid-template-columns: 1fr; }
+      .principle:nth-child(odd) { border-right: 0; }
+      .principle:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+      .principle:last-child { border-bottom: 0; }
+      .hero h1 { font-size: 2.6rem; }
+      .philosophy { padding: 40px 24px; }
+      .philosophy .phil-quote { font-size: 1.2rem; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .hero h1 { font-size: 2.2rem; }
+      .orbit-scene { max-width: 320px; }
+      .core-sphere { width: 110px; height: 110px; }
+      .ring-1 { width: 200px; height: 200px; }
+      .ring-2 { width: 260px; height: 260px; }
+      .ring-3 { width: 300px; height: 300px; }
+      .node { width: 16px; height: 16px; font-size: 0.5rem; }
+      .node .label { display: none; }
+      .product-grid { grid-template-columns: 1fr 1fr; }
+      .product-grid .card-live { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 640px) {
+      .navbar { flex-direction: row; flex-wrap: wrap; }
+      .founder-grid { grid-template-columns: 1fr; }
+      .footer-grid { flex-direction: column; }
+      .footer-links { gap: 28px; }
+      .cta-block { padding: 40px 24px; }
+      .hero h1 { font-size: 2rem; }
+      .hero .big-quote { font-size: 1.05rem; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .btn { text-align: center; justify-content: center; }
+      .philosophy .phil-quote { font-size: 1rem; }
+      .product-grid { grid-template-columns: 1fr; }
+      .model-simple { padding: 32px 20px; }
+      .model-simple .big-free { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- header -->
+    <header class="navbar">
+      <div class="brand">
+        <span class="brand-marker">PS</span>
+        PrivoSafe
+      </div>
+      <div class="nav-links">
+        <a href="#product">Product</a>
+        <a href="#core">Privacy Core</a>
+        <a href="#team">Team</a>
+        <a href="#model">Model</a>
+      </div>
+      <a href="#product" class="nav-cta">Try Clozzy</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <!-- mobile nav -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#product">Product</a>
+      <a href="#core">Privacy Core</a>
+      <a href="#team">Team</a>
+      <a href="#model">Business Model</a>
+      <a href="#product" style="border-bottom: none; color: var(--bg); background: var(--text); padding: 10px 20px; border-radius: 60px; text-align: center; margin-top: 8px;">Try Clozzy</a>
+    </div>
+
+    <!-- hero -->
+    <div class="hero">
+      <div class="hero-content">
+        <div class="badge"><span class="badge-dot"></span> Privacy is a right</div>
+        <h1>We respect and manage <span class="highlight">your privacy.</span></h1>
+        <div class="big-quote">
+          “Privacy is not an option, it’s a fundamental right. <em>We exist to protect it.</em>”
+        </div>
+        <p>PrivoSafe is built on one core belief: your data belongs to you. We give you the tools to take back control — simple, secure, and transparent.</p>
+        <div class="hero-actions">
+          <a href="#product" class="btn btn-primary">Try Clozzy →</a>
+          <a href="#core" class="btn btn-outline">Our philosophy</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="orbit-scene">
+          <div class="pulse-ring"></div>
+          <div class="pulse-ring"></div>
+          <div class="orbit-ring ring-1"></div>
+          <div class="orbit-ring ring-2"></div>
+          <div class="orbit-ring ring-3"></div>
+          <div class="particle particle-1"></div>
+          <div class="particle particle-2"></div>
+          <div class="particle particle-3"></div>
+          <div class="particle particle-4"></div>
+          <div class="node node-1">R<span class="label">Right</span></div>
+          <div class="node node-2">T<span class="label">Trust</span></div>
+          <div class="node node-3">C<span class="label">Control</span></div>
+          <div class="node node-4">S<span class="label">Security</span></div>
+          <div class="node node-5">E<span class="label">Encrypt</span></div>
+          <div class="node node-6">K<span class="label">Keys</span></div>
+          <div class="core-sphere"><span>PS</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- philosophy section -->
+    <div class="philosophy">
+      <div class="big-icon">🛡️</div>
+      <h2>Privacy is the right of every single user</h2>
+      <div class="phil-quote">
+        “<strong>Your digital life, your rules.</strong> We don't collect what we don't need, we don't store what we don't protect, and we never sell what's yours.”
+      </div>
+      <div class="divider-line"></div>
+      <p>We believe that privacy is the foundation of freedom. That's why every product we build starts with respect for you — and ends with control in your hands.</p>
+    </div>
+
+    <!-- product bay – 1 live + 3 coming soon -->
+    <div id="product" class="product-grid">
+      <div class="product-card card-live" style="--i:1">
+        <div>
+          <span class="live-tag"><span class="pulse"></span> Live now</span>
+          <div class="product-icon">💬</div>
+          <h3>Clozzy</h3>
+          <p>Private communication &amp; relationships — conversations that stay yours. Built for trust, designed for privacy.</p>
+        </div>
+        <a href="#" class="btn-sm">Try Clozzy</a>
+      </div>
+
+      <div class="product-card card-coming" style="--i:2">
+        <div class="coming-icon">⏳</div>
+        <h4>Coming soon</h4>
+        <p>More privacy tools on the way.</p>
+      </div>
+
+      <div class="product-card card-coming" style="--i:3">
+        <div class="coming-icon">⏳</div>
+        <h4>Coming soon</h4>
+        <p>Expanding the ecosystem.</p>
+      </div>
+
+      <div class="product-card card-coming" style="--i:4">
+        <div class="coming-icon">⏳</div>
+        <h4>Coming soon</h4>
+        <p>Stay tuned for updates.</p>
+      </div>
+    </div>
+
+    <!-- privacy core -->
+    <section id="core">
+      <div class="section-label">Foundation</div>
+      <h2 class="section-title">Privacy Core – shared security language</h2>
+      <p class="section-sub">Every product speaks the same encryption, identity, and trust model. One set of keys, one set of rules — all built for you.</p>
+      <div class="grid-2col">
+        <div class="core-principles">
+          <div class="principle"><span class="num">01</span><h4>Identity</h4><p>One trusted identity across every product.</p></div>
+          <div class="principle"><span class="num">02</span><h4>Encryption</h4><p>End-to-end by default, everywhere.</p></div>
+          <div class="principle"><span class="num">03</span><h4>Key management</h4><p>You hold the keys — not a server.</p></div>
+          <div class="principle"><span class="num">04</span><h4>Device trust</h4><p>Only verified devices stay connected.</p></div>
+          <div class="principle"><span class="num">05</span><h4>Permissions</h4><p>Clear, granular control over what's shared.</p></div>
+          <div class="principle"><span class="num">06</span><h4>Recovery</h4><p>Safe recovery without weakening security.</p></div>
+        </div>
+        <div class="core-visual-mini">
+          <div class="glyph-box"><span>PS</span></div>
+          <h3 style="font-weight:600; margin-bottom:6px;">Privacy Core</h3>
+          <p>The shared foundation that unifies every PrivoSafe product — and protects your rights.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- team section – 3 highlighted + extra team text -->
+    <section id="team">
+      <div class="section-label">Team</div>
+      <h2 class="section-title">Three founders, one mission</h2>
+      <p class="section-sub">We're a small team with a big purpose: to make privacy the standard, not the exception.</p>
+      <div class="founder-grid">
+        <div class="founder-card">
+          <div class="avatar avatar-1">F</div>
+          <h3>Founder Name</h3>
+          <span class="founder-role">Founder &amp; CEO</span>
+          <ul>
+            <li>Vision &amp; business</li>
+            <li>Strategy &amp; product</li>
+            <li>Company coordination</li>
+          </ul>
+        </div>
+        <div class="founder-card">
+          <div class="avatar avatar-2">C</div>
+          <h3>Co-founder Name</h3>
+          <span class="founder-role">Co-founder &amp; CTO</span>
+          <ul>
+            <li>Engineering &amp; architecture</li>
+            <li>Infrastructure &amp; security</li>
+            <li>Technical team</li>
+          </ul>
+        </div>
+        <div class="founder-card">
+          <div class="avatar avatar-3">C</div>
+          <h3>Co-founder Name</h3>
+          <span class="founder-role">Co-founder &amp; COO/CMO</span>
+          <ul>
+            <li>Operations &amp; marketing</li>
+            <li>Partnerships &amp; growth</li>
+            <li>Team coordination</li>
+          </ul>
+        </div>
+      </div>
+      <div class="team-extra">
+        <p>
+          <strong>We are PrivoSafe.</strong> A team of privacy advocates, engineers, and designers who believe that <strong>privacy is a fundamental right</strong>. We're building a future where your data stays yours — always.
+          <br><br>
+          <span style="color: var(--text-muted); font-size: 0.95rem;">— and we're just getting started.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- business model – free for everyone -->
+    <section id="model">
+      <div class="section-label">Business model</div>
+      <h2 class="section-title">Privacy shouldn't cost a thing</h2>
+      <p class="section-sub">We believe that privacy is a right, not a premium feature. That's why PrivoSafe is free for everyone.</p>
+      <div class="model-simple">
+        <div class="big-free"><span class="highlight">Free</span> for everyone</div>
+        <p>We are building PrivoSafe to protect your privacy — because it's your right. No hidden fees, no data selling, no fine print.</p>
+        <div class="sub-line"><strong>We work for your privacy.</strong> Not for profit.</div>
+      </div>
+    </section>
+
+    <!-- cta -->
+    <div class="cta-block">
+      <h2>Your privacy is our priority</h2>
+      <p>Start with Clozzy today — and join us in building a future where privacy is a right, not a privilege.</p>
+      <div class="cta-actions">
+        <a href="#" class="btn btn-primary">Try Clozzy now</a>
+        <a href="#" class="btn btn-outline">Learn more</a>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand"><span class="brand-marker" style="width:28px;height:28px;font-size:0.7rem;">PS</span> PrivoSafe</div>
+          <p class="footer-tag">We respect and manage your privacy. Because privacy is the right of every single user.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h5>Product</h5>
+            <a href="#">Clozzy</a>
+            <a href="#">Coming soon</a>
+          </div>
+          <div class="footer-col">
+            <h5>Company</h5>
+            <a href="#team">Team</a>
+            <a href="#core">Privacy Core</a>
+            <a href="#model">Business Model</a>
+          </div>
+          <div class="footer-col">
+            <h5>Trust</h5>
+            <a href="#">Security Transparency</a>
+            <a href="#">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 PrivoSafe. All rights reserved.</span>
+        <span class="rights">Privacy is a right — we protect it.</span>
+        <span class="mono" style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;">Privacy Core v1</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+    });
+
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
