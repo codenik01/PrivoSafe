@@ -79,12 +79,18 @@
       letter-spacing: -0.02em;
     }
 
+    .brand-logo {
+      height: 68px;
+      width: auto;
+      display: block;
+    }
+
     .brand-marker {
       width: 34px;
       height: 34px;
       border-radius: 10px;
       background: var(--text);
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       font-weight: 700;
@@ -374,16 +380,12 @@
       filter: blur(2px);
     }
 
-    .core-sphere span {
-      font-weight: 700;
-      font-size: 1.3rem;
-      letter-spacing: 0.08em;
-      color: var(--bg);
+    .core-sphere .logo-in-core {
+      height: 56px;
+      width: auto;
+      filter: brightness(0) invert(1);
       z-index: 3;
-      background: rgba(255, 255, 255, 0.08);
-      padding: 6px 16px;
-      border-radius: 40px;
-      backdrop-filter: blur(2px);
+      position: relative;
     }
 
     .orbit-ring {
@@ -648,10 +650,11 @@
       animation: fadeUp 0.6s ease both;
     }
 
-    .philosophy .big-icon {
-      font-size: 3rem;
-      margin-bottom: 16px;
-      opacity: 0.5;
+    .philosophy .phil-logo {
+      height: 72px;
+      width: auto;
+      margin-bottom: 20px;
+      opacity: 0.7;
     }
 
     .philosophy h2 {
@@ -820,12 +823,12 @@
       background: var(--bg);
     }
 
-    .core-visual-mini .glyph-box span {
+    .core-visual-mini .glyph-box .mini-logo {
+      height: 40px;
+      width: auto;
       position: relative;
       z-index: 2;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--bg);
+      filter: brightness(0) invert(1);
     }
 
     .core-visual-mini p {
@@ -1041,6 +1044,11 @@
       font-size: 1.1rem;
     }
 
+    .footer-brand .footer-logo {
+      height: 30px;
+      width: auto;
+    }
+
     .footer-tag {
       color: var(--text-muted);
       font-size: 0.9rem;
@@ -1119,6 +1127,7 @@
       .hero h1 { font-size: 2.2rem; }
       .orbit-scene { max-width: 320px; }
       .core-sphere { width: 110px; height: 110px; }
+      .core-sphere .logo-in-core { height: 40px; }
       .ring-1 { width: 200px; height: 200px; }
       .ring-2 { width: 260px; height: 260px; }
       .ring-3 { width: 300px; height: 300px; }
@@ -1126,6 +1135,7 @@
       .node .label { display: none; }
       .product-grid { grid-template-columns: 1fr 1fr; }
       .product-grid .card-live { grid-column: 1 / -1; }
+      .brand-logo { height: 30px; }
     }
 
     @media (max-width: 640px) {
@@ -1142,6 +1152,8 @@
       .product-grid { grid-template-columns: 1fr; }
       .model-simple { padding: 32px 20px; }
       .model-simple .big-free { font-size: 2.5rem; }
+      .philosophy .phil-logo { height: 50px; }
+      .brand-logo { height: 26px; }
     }
   </style>
 </head>
@@ -1151,6 +1163,7 @@
     <!-- header -->
     <header class="navbar">
       <div class="brand">
+        <img src="/assets/logo1.png" alt="PrivoSafe" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'; ">
         <span class="brand-marker">PS</span>
         PrivoSafe
       </div>
@@ -1209,14 +1222,16 @@
           <div class="node node-4">S<span class="label">Security</span></div>
           <div class="node node-5">E<span class="label">Encrypt</span></div>
           <div class="node node-6">K<span class="label">Keys</span></div>
-          <div class="core-sphere"><span>PS</span></div>
+          <div class="core-sphere">
+            <img src="/assets/logo1.png" alt="PrivoSafe" class="logo-in-core" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'color:#fff;font-weight:700;font-size:1.3rem;z-index:3;\'>PS</span>';">
+          </div>
         </div>
       </div>
     </div>
 
     <!-- philosophy section -->
     <div class="philosophy">
-      <div class="big-icon">🛡️</div>
+      <img src="/assets/logo5.png" alt="PrivoSafe" class="phil-logo" onerror="this.style.display='none';">
       <h2>Privacy is the right of every single user</h2>
       <div class="phil-quote">
         “<strong>Your digital life, your rules.</strong> We don't collect what we don't need, we don't store what we don't protect, and we never sell what's yours.”
@@ -1271,7 +1286,9 @@
           <div class="principle"><span class="num">06</span><h4>Recovery</h4><p>Safe recovery without weakening security.</p></div>
         </div>
         <div class="core-visual-mini">
-          <div class="glyph-box"><span>PS</span></div>
+          <div class="glyph-box">
+            <p>fdsfas</p>
+          </div>
           <h3 style="font-weight:600; margin-bottom:6px;">Privacy Core</h3>
           <p>The shared foundation that unifies every PrivoSafe product — and protects your rights.</p>
         </div>
@@ -1350,7 +1367,11 @@
     <footer>
       <div class="footer-grid">
         <div>
-          <div class="footer-brand"><span class="brand-marker" style="width:28px;height:28px;font-size:0.7rem;">PS</span> PrivoSafe</div>
+          <div class="footer-brand">
+            <img src="/assets/logo.png" alt="PrivoSafe" class="footer-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span class="brand-marker" style="display:none;width:28px;height:28px;font-size:0.7rem;">PS</span>
+            PrivoSafe
+          </div>
           <p class="footer-tag">We respect and manage your privacy. Because privacy is the right of every single user.</p>
         </div>
         <div class="footer-links">
