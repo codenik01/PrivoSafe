@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vaultrix · secure vault for your digital life</title>
+  <meta name="description" content="Vaultrix – the most private vault for your files, passwords, and identity. Zero-knowledge, open-source, and built for you." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0b0d11;
+      --surface: #14181f;
+      --surface-2: #1e2430;
+      --border: #2a3344;
+      --text: #f0f2f5;
+      --text-muted: #8b97b0;
+      --accent: #6c7cf0;
+      --accent-glow: rgba(108, 124, 240, 0.25);
+      --radius: 20px;
+      --shadow: 0 20px 48px -16px rgba(0,0,0,0.6);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 0 24px;
+      opacity: 0;
+      animation: fadeIn 0.9s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+
+    /* ===== HEADER ===== */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+      gap: 16px;
+      animation: slideDown 0.6s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .brand-icon {
+      font-size: 2rem;
+      color: var(--accent);
+      filter: drop-shadow(0 0 12px var(--accent-glow));
+    }
+
+    .brand span {
+      background: linear-gradient(135deg, #8b9cf7, #6c7cf0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.25s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 28px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 0 36px var(--accent-glow);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      width: 28px;
+      height: 2.5px;
+      background: var(--text);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      padding: 20px 0 12px;
+      border-top: 1px solid var(--border);
+      margin-top: 8px;
+      animation: slideDown 0.3s ease;
+    }
+
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 1.05rem;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--accent); }
+
+    /* ===== HERO ===== */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      margin-bottom: 80px;
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 6px 16px;
+      border-radius: 60px;
+      margin-bottom: 20px;
+    }
+
+    .hero-badge i { font-size: 0.6rem; }
+
+    .hero h1 {
+      font-size: 3.6rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, #8b9cf7, #6c7cf0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 32px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 28px var(--accent-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 0 48px var(--accent-glow);
+    }
+
+    .btn-outline {
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      background: var(--surface);
+    }
+
+    /* hero visual */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .vault-glyph {
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--surface-2), var(--bg));
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 0 80px rgba(108, 124, 240, 0.08);
+      transition: all 0.6s ease;
+    }
+
+    .vault-glyph:hover {
+      box-shadow: 0 0 120px rgba(108, 124, 240, 0.15);
+      border-color: var(--accent);
+    }
+
+    .vault-glyph .icon-big {
+      font-size: 8rem;
+      color: var(--accent);
+      filter: drop-shadow(0 0 40px var(--accent-glow));
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .vault-glyph .ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      opacity: 0.3;
+    }
+    .vault-glyph .ring-1 { width: 280px; height: 280px; animation: spin-slow 28s linear infinite; }
+    .vault-glyph .ring-2 { width: 340px; height: 340px; border-color: var(--accent); opacity: 0.12; animation: spin-reverse 36s linear infinite; }
+    @keyframes spin-slow { to { transform: rotate(360deg); } }
+    @keyframes spin-reverse { to { transform: rotate(-360deg); } }
+
+    /* ===== FEATURES ===== */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 72px 0 80px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      transition: all 0.4s ease;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 40px -12px rgba(0,0,0,0.5);
+    }
+
+    .feature-card .icon {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+      color: var(--accent);
+    }
+
+    .feature-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    /* ===== PRIVACY PLEDGE ===== */
+    .privacy-pledge {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 56px 48px;
+      margin: 80px 0;
+      text-align: center;
+      transition: all 0.4s ease;
+    }
+
+    .privacy-pledge:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 60px rgba(108, 124, 240, 0.04);
+    }
+
+    .privacy-pledge h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .privacy-pledge h2 i {
+      color: var(--accent);
+      margin-right: 12px;
+    }
+
+    .privacy-pledge p {
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 8px;
+      font-size: 1.05rem;
+    }
+
+    .privacy-pledge .badge-list {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .privacy-pledge .badge-list span {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: 6px 20px;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .privacy-pledge .badge-list span i {
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0 28px;
+      margin-top: 60px;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 32px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .footer-brand i {
+      font-size: 1.6rem;
+      color: var(--accent);
+    }
+
+    .footer-tag {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 6px;
+      max-width: 280px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .footer-col h5 {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .footer-col a {
+      display: block;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      opacity: 0.6;
+      transition: all 0.25s;
+    }
+
+    .footer-col a:hover {
+      opacity: 1;
+      transform: translateX(4px);
+      color: var(--accent);
+    }
+
+    .footer-col a i {
+      margin-right: 6px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      opacity: 0.6;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom .rights {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .footer-bottom a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--accent);
+    }
+
+    /* ===== PRIVACY MODAL (popup) ===== */
+    .privacy-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .privacy-modal.open {
+      display: flex;
+    }
+
+    .privacy-modal-content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      max-width: 660px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 40px 44px;
+      position: relative;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      animation: slideUp 0.35s ease;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .privacy-modal-content .close-btn {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 1.6rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+
+    .privacy-modal-content .close-btn:hover {
+      color: var(--text);
+    }
+
+    .privacy-modal-content h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .privacy-modal-content h2 i {
+      color: var(--accent);
+    }
+
+    .privacy-modal-content p {
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .privacy-modal-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 20px;
+    }
+
+    .privacy-modal-content ul li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 12px;
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    .privacy-modal-content ul li i {
+      color: var(--accent);
+      font-size: 1.1rem;
+      width: 24px;
+      margin-top: 2px;
+    }
+
+    .privacy-modal-content .highlight-box {
+      background: var(--surface-2);
+      border-left: 3px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin: 20px 0 8px;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .privacy-modal-content .highlight-box strong {
+      color: var(--text);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .features { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .privacy-pledge { padding: 40px 24px; }
+      .vault-glyph { max-width: 300px; }
+      .vault-glyph .icon-big { font-size: 5rem; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .hero h1 { font-size: 2.6rem; }
+      .features { grid-template-columns: 1fr; }
+      .footer-grid { flex-direction: column; }
+      .footer-links { gap: 28px; }
+      .privacy-modal-content { padding: 28px 20px; }
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2rem; }
+      .privacy-pledge .badge-list { flex-direction: column; align-items: center; }
+      .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <header class="navbar">
+      <div class="brand">
+        <i class="fas fa-shield-halved brand-icon"></i>
+        <span>Vaultrix</span>
+      </div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#pledge">Privacy</a>
+        <a href="#download">Download</a>
+      </div>
+      <a href="#download" class="nav-cta"><i class="fas fa-download"></i> Get Vaultrix</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <!-- mobile nav -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#features">Features</a>
+      <a href="#pledge">Privacy</a>
+      <a href="#download">Download</a>
+      <a href="#download" style="border-bottom:none; color:#fff; background:var(--accent); padding:10px 20px; border-radius:60px; text-align:center; margin-top:8px;"><i class="fas fa-download"></i> Get Vaultrix</a>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-circle" style="color:var(--accent);font-size:0.5rem;"></i> zero-knowledge · open source</div>
+        <h1>The vault that <span class="highlight">respects</span> your privacy.</h1>
+        <p>Vaultrix is a secure, encrypted vault for your files, passwords, and identity. Built with zero-knowledge architecture — we never see your data.</p>
+        <div class="hero-actions">
+          <a href="#download" class="btn btn-primary"><i class="fas fa-lock"></i> Start protecting</a>
+          <a href="#features" class="btn btn-outline">Explore</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="vault-glyph">
+          <div class="ring ring-1"></div>
+          <div class="ring ring-2"></div>
+          <i class="fas fa-fingerprint icon-big"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== FEATURES ===== -->
+    <div id="features" class="features">
+      <div class="feature-card" style="animation-delay:0.1s;">
+        <div class="icon"><i class="fas fa-shield-halved"></i></div>
+        <h3>Zero-knowledge encryption</h3>
+        <p>All data is encrypted locally before it ever touches our servers. We hold zero keys — only you can unlock your vault.</p>
+      </div>
+      <div class="feature-card" style="animation-delay:0.2s;">
+        <div class="icon"><i class="fas fa-key"></i></div>
+        <h3>Your keys, your control</h3>
+        <p>Recovery phrases, biometrics, and hardware key support. You decide how to secure your vault — we never have access.</p>
+      </div>
+      <div class="feature-card" style="animation-delay:0.3s;">
+        <div class="icon"><i class="fas fa-code-branch"></i></div>
+        <h3>Open source &amp; audited</h3>
+        <p>Our code is open for anyone to inspect. Regular third-party audits ensure that your privacy is never compromised.</p>
+      </div>
+    </div>
+
+    <!-- ===== PRIVACY PLEDGE ===== -->
+    <div id="pledge" class="privacy-pledge">
+      <h2><i class="fas fa-eye-slash"></i> Privacy is our foundation</h2>
+      <p>We don't collect what we don't need. We don't store what we don't protect. And we never sell what's yours.</p>
+      <div class="badge-list">
+        <span><i class="fas fa-check-circle"></i> Zero-knowledge</span>
+        <span><i class="fas fa-check-circle"></i> End-to-end encrypted</span>
+        <span><i class="fas fa-check-circle"></i> No tracking</span>
+        <span><i class="fas fa-check-circle"></i> Open source</span>
+      </div>
+    </div>
+
+    <!-- ===== DOWNLOAD CTA ===== -->
+    <div id="download" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:56px 40px;text-align:center;margin:40px 0 20px;">
+      <h2 style="font-size:1.8rem;font-weight:700;margin-bottom:8px;">Ready to take control?</h2>
+      <p style="color:var(--text-muted);max-width:480px;margin:0 auto 28px;">Download Vaultrix today and start protecting what matters most — your digital life.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="#" class="btn btn-primary"><i class="fab fa-android"></i> Android</a>
+        <a href="#" class="btn btn-primary"><i class="fab fa-apple"></i> Mac<p style="font-size: 0.8rem; margin: 0; color: #26ff00;">coming soon</p></a>
+        <a href="#" class="btn btn-primary"><i class="fab fa-windows"></i> Windows <P style="font-size: 0.8rem; margin: 0; color: #26ff00;">coming soon </P></a>
+        <a href="#" class="btn btn-primary"><i class="fab fa-linux"></i> Linux <p style="font-size: 0.8rem; margin: 0; color: #26ff00;">coming soon</p></a>
+
+      </div>
+    </div>
+
+    <!-- ===== FOOTER with PRIVACY LINK ===== -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <i class="fas fa-shield-halved"></i>
+            Vaultrix
+          </div>
+          <p class="footer-tag">The vault that respects your privacy. Zero-knowledge, open-source, and built for you.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h5>Product</h5>
+            <a href="#features">Features</a>
+            <a href="#download">Download</a>
+            <a href="#">Changelog</a>
+          </div>
+          <div class="footer-col">
+            <h5>Company</h5>
+            <a href="#">About</a>
+            <a href="#">Team</a>
+            <a href="#">Contact</a>
+          </div>
+          <div class="footer-col">
+            <h5>Trust</h5>
+            <!-- PRIVACY LINK — opens modal -->
+            <a href="privacy.html" class="fas fa-lock"></i> Privacy Policy</a>
+            <a href="#">Security</a>
+            <a href="#">Audits</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Vaultrix. All rights reserved.</span>
+        <span class="rights"><i class="fas fa-shield-halved" style="color:var(--accent);margin-right:6px;"></i> Your privacy matters.</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-muted);">v2.4.0</span>
+      </div>
+    </footer>
+
+  </div>
+
+
+
+  <script>
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+    });
+
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+      });
+    });
+
+    // ---- PRIVACY MODAL ----
+    const privacyLink = document.getElementById('privacyLink');
+    const modal = document.getElementById('privacyModal');
+    const closeBtn = document.getElementById('closeModal');
+
+    function openModal(e) {
+      e.preventDefault();
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModalFn() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    privacyLink.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModalFn);
+
+    // click outside to close
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModalFn();
+    });
+
+    // ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeModalFn();
+    });
+  </script>
+</body>
+</html>

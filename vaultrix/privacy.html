@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy · Vaultrix</title>
+  <meta name="description" content="Vaultrix Privacy Policy — a privacy-first, local-first vault operated by PrivoSafe." />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0b0d11;
+      --surface: #14181f;
+      --surface-2: #1e2430;
+      --border: #2a3344;
+      --text: #f0f2f5;
+      --text-muted: #9aa6ba;
+      --accent: #6c7cf0;
+      --accent-soft: rgba(108, 124, 240, 0.12);
+      --accent-glow: rgba(108, 124, 240, 0.25);
+      --success: #8fd3a8;
+      --warning: #e4bd78;
+      --radius: 20px;
+      --shadow: 0 20px 48px -16px rgba(0,0,0,0.6);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 15% 0%, rgba(108,124,240,.10), transparent 30rem),
+        radial-gradient(circle at 90% 20%, rgba(108,124,240,.06), transparent 28rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      padding: 0 24px;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 32px 0 60px;
+    }
+
+    .header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0 28px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 42px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(108,124,240,.25);
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .brand span {
+      background: linear-gradient(135deg, #9aa8ff, #6c7cf0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+    }
+
+    .back-link:hover {
+      color: var(--accent);
+    }
+
+    .privacy-content h1 {
+      font-size: clamp(2rem, 5vw, 2.7rem);
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -.025em;
+      margin-bottom: 8px;
+    }
+
+    .privacy-content .last-updated {
+      color: var(--text-muted);
+      font-size: .85rem;
+      display: block;
+      margin-bottom: 34px;
+    }
+
+    .lead {
+      font-size: 1.08rem !important;
+      color: #c5ccda !important;
+    }
+
+    .privacy-content h2 {
+      font-size: 1.35rem;
+      line-height: 1.35;
+      font-weight: 650;
+      margin: 40px 0 13px;
+      padding-top: 4px;
+    }
+
+    .privacy-content h3 {
+      font-size: 1.05rem;
+      margin: 24px 0 9px;
+      color: var(--text);
+    }
+
+    .privacy-content p {
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      font-size: .98rem;
+    }
+
+    .privacy-content strong {
+      color: var(--text);
+    }
+
+    .privacy-content ul,
+    .privacy-content ol {
+      margin: 14px 0 22px;
+      padding-left: 22px;
+      color: var(--text-muted);
+    }
+
+    .privacy-content li {
+      margin: 9px 0;
+      padding-left: 5px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      margin: 24px 0 34px;
+    }
+
+    .summary-card {
+      background: rgba(20,24,31,.82);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .summary-card .icon {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .summary-card strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .summary-card span {
+      color: var(--text-muted);
+      font-size: .9rem;
+    }
+
+    .highlight-box {
+      background: var(--surface-2);
+      border: 1px solid rgba(108,124,240,.20);
+      border-left: 4px solid var(--accent);
+      padding: 20px 22px;
+      border-radius: 12px;
+      margin: 24px 0 28px;
+      color: var(--text-muted);
+    }
+
+    .highlight-box strong {
+      color: var(--text);
+    }
+
+    .warning-box {
+      background: rgba(228,189,120,.07);
+      border: 1px solid rgba(228,189,120,.18);
+      border-left: 4px solid var(--warning);
+      padding: 20px 22px;
+      border-radius: 12px;
+      margin: 24px 0 28px;
+      color: var(--text-muted);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 20px 0 28px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--text);
+      background: var(--surface);
+      font-size: .9rem;
+    }
+
+    td {
+      color: var(--text-muted);
+      font-size: .9rem;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .toc {
+      background: rgba(20,24,31,.7);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin: 26px 0 36px;
+    }
+
+    .toc strong {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .toc a {
+      display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 4px 0;
+      font-size: .9rem;
+    }
+
+    .toc a:hover {
+      color: var(--accent);
+    }
+
+    .contact-box {
+      background: linear-gradient(180deg, rgba(30,36,48,.9), rgba(20,24,31,.9));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px 32px;
+      text-align: center;
+      margin-top: 36px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .contact-box p {
+      margin-bottom: 8px;
+    }
+
+    .contact-box .email {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .contact-box .email:hover {
+      text-decoration: underline;
+    }
+
+    .divider {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 42px 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0 10px;
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: .8rem;
+      color: var(--text-muted);
+    }
+
+    footer strong {
+      color: var(--text);
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 0 16px;
+      }
+
+      .container {
+        padding-top: 18px;
+      }
+
+      .header-bar {
+        align-items: flex-start;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-box {
+        padding: 24px 18px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <header class="header-bar">
+      <a href="./vaultrix.html" class="brand" aria-label="Vaultrix home">
+        <span class="brand-mark" aria-hidden="true">◆</span>
+        <span>Vaultrix</span>
+      </a>
+
+      <a href="./vaultrix.html" class="back-link">← Back to Vaultrix</a>
+    </header>
+
+    <main class="privacy-content">
+
+      <h1>Privacy Policy</h1>
+      <span class="last-updated">
+        Last updated: August 2026
+      </span>
+
+      <p class="lead">
+        <strong>Your privacy is the foundation of Vaultrix.</strong>
+        Vaultrix is a privacy-first, local-first vault application operated by
+        <strong>PrivoSafe</strong>. This Privacy Policy explains what
+        information Vaultrix accesses, how information is handled on your
+        device, what information PrivoSafe does not receive, and your choices
+        regarding your data.
+      </p>
+
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="icon">1</div>
+          <strong>Local-first</strong>
+          <span>Your vault content is designed to remain on your device.</span>
+        </div>
+
+        <div class="summary-card">
+          <div class="icon">2</div>
+          <strong>Encryption</strong>
+          <span>Private vault content is protected using the app's encryption architecture.</span>
+        </div>
+
+        <div class="summary-card">
+          <div class="icon">3</div>
+          <strong>No advertising</strong>
+          <span>Your private vault content is not used for targeted advertising.</span>
+        </div>
+
+        <div class="summary-card">
+          <div class="icon">4</div>
+          <strong>User control</strong>
+          <span>You control the content stored in your vault and can delete it from your device.</span>
+        </div>
+      </div>
+
+      <nav class="toc" aria-label="Table of contents">
+        <strong>Contents</strong>
+        <a href="#scope">1. Scope and Application</a>
+        <a href="#operator">2. Who Operates Vaultrix</a>
+        <a href="#architecture">3. Privacy Architecture</a>
+        <a href="#access">4. Information Vaultrix Accesses</a>
+        <a href="#stored">5. Information Stored on Your Device</a>
+        <a href="#files">6. Files, Photos and Documents</a>
+        <a href="#biometrics">7. Biometric Authentication</a>
+        <a href="#keys">8. Passwords, Keys and Recovery Information</a>
+        <a href="#network">9. Network and Internet Access</a>
+        <a href="#analytics">10. Analytics, Advertising and Tracking</a>
+        <a href="#thirdparty">11. Third-Party Components and Services</a>
+        <a href="#sharing">12. Data Sharing and Disclosure</a>
+        <a href="#retention">13. Data Retention</a>
+        <a href="#deletion">14. Data Deletion</a>
+        <a href="#security">15. Security</a>
+        <a href="#children">16. Children's Privacy</a>
+        <a href="#rights">17. Your Rights and Choices</a>
+        <a href="#changes">18. Changes to This Policy</a>
+        <a href="#contact">19. Contact Us</a>
+      </nav>
+
+      <section id="scope">
+        <h2>1. Scope and Application</h2>
+
+        <p>
+          This Privacy Policy applies specifically to the <strong>Vaultrix
+          mobile application</strong> and describes the privacy practices
+          associated with the current version of Vaultrix.
+        </p>
+
+        <p>
+          Other products, websites, or services operated by PrivoSafe may have
+          separate privacy policies because their functionality and data
+          practices may be different.
+        </p>
+      </section>
+
+      <section id="operator">
+        <h2>2. Who Operates Vaultrix</h2>
+
+        <p>
+          Vaultrix is a product operated by <strong>PrivoSafe</strong>.
+          References to "PrivoSafe", "we", "us", or "our" in this policy refer
+          to the operator of Vaultrix.
+        </p>
+      </section>
+
+      <section id="architecture">
+        <h2>3. Privacy Architecture</h2>
+
+        <p>
+          Vaultrix is designed as a <strong>local-first, serverless vault
+          application</strong>. The core vault experience is designed to work
+          without requiring a PrivoSafe-operated backend to store the contents
+          of your vault.
+        </p>
+
+        <p>
+          Your private files, photos, documents, and other vault content are
+          processed and stored locally on your device. PrivoSafe does not
+          receive a routine server-side copy of that private vault content.
+        </p>
+
+        <div class="highlight-box">
+          <strong>Privacy principle:</strong>
+          Vaultrix is designed so that the operator does not need access to
+          your private vault content in order for the core vault to function.
+        </div>
+      </section>
+
+      <section id="access">
+        <h2>4. Information Vaultrix Accesses</h2>
+
+        <p>
+          Vaultrix may request access to device resources when necessary for
+          features that you explicitly use. Depending on your operating system
+          and the features enabled in the app, this may include:
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Resource</th>
+                <th>Why it may be used</th>
+                <th>How Vaultrix handles it</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Photos / media</td>
+                <td>Importing or displaying content you choose to place in the vault.</td>
+                <td>Processed for the requested vault operation on the device.</td>
+              </tr>
+              <tr>
+                <td>Files / documents</td>
+                <td>Selecting files that you choose to protect in the vault.</td>
+                <td>Used for the requested vault operation.</td>
+              </tr>
+              <tr>
+                <td>Biometric authentication</td>
+                <td>Unlocking or protecting the vault when you enable biometric unlock.</td>
+                <td>Authentication is handled by the device operating system.</td>
+              </tr>
+              <tr>
+                <td>Device storage</td>
+                <td>Persisting the local encrypted vault and app configuration.</td>
+                <td>Stored locally as required by the application.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Permissions are used only for the functionality for which they are
+          requested. Vaultrix does not intentionally use these permissions to
+          collect unrelated personal information.
+        </p>
+      </section>
+
+      <section id="stored">
+        <h2>5. Information Stored on Your Device</h2>
+
+        <p>
+          Depending on how you use Vaultrix, the application may store
+          information locally on your device, including:
+        </p>
+
+        <ul>
+          <li>Encrypted files, photos, documents, and other content that you intentionally add to the vault.</li>
+          <li>Vault configuration and application preferences.</li>
+          <li>Security information necessary for the vault to operate.</li>
+          <li>Local metadata required to organize and display your vault.</li>
+          <li>Information required to support authentication features you enable.</li>
+        </ul>
+
+        <p>
+          The exact information stored locally can vary depending on the
+          features and version of Vaultrix you use.
+        </p>
+      </section>
+
+      <section id="files">
+        <h2>6. Files, Photos and Documents</h2>
+
+        <p>
+          Vaultrix allows you to select personal files, photos, documents, and
+          other content for storage in your vault.
+        </p>
+
+        <p>
+          This content is intended to remain under your control on your device.
+          Vaultrix does not intentionally use your private vault content for
+          advertising, profiling, data mining, or unrelated product research.
+        </p>
+
+        <p>
+          If you export, share, move, or otherwise transfer content using an
+          operating-system feature or another application, that action may
+          cause the selected content to leave Vaultrix. The receiving
+          application or service then handles the information under its own
+          privacy practices.
+        </p>
+      </section>
+
+      <section id="biometrics">
+        <h2>7. Biometric Authentication</h2>
+
+        <p>
+          Vaultrix may support biometric authentication such as fingerprint
+          or face authentication when supported by your device.
+        </p>
+
+        <p>
+          Vaultrix does <strong>not</strong> receive your fingerprint image,
+          face image, or biometric template. Biometric matching is performed
+          by the device's operating system or supported secure authentication
+          framework. Vaultrix receives an authentication result needed to
+          continue or deny the requested action.
+        </p>
+      </section>
+
+      <section id="keys">
+        <h2>8. Passwords, Keys and Recovery Information</h2>
+
+        <p>
+          Your vault may be protected using passwords, keys, recovery
+          information, or other security mechanisms depending on the version
+          and configuration of Vaultrix.
+        </p>
+
+        <p>
+          PrivoSafe does not ask you to send your vault password or private
+          encryption keys to us for routine vault operation.
+        </p>
+
+        <div class="warning-box">
+          <strong>Important:</strong>
+          If you lose the credentials or recovery information required to
+          unlock your vault, access to encrypted content may be permanently
+          lost. A privacy architecture that prevents the operator from
+          possessing your private keys can also prevent the operator from
+          recovering your data.
+        </div>
+      </section>
+
+      <section id="network">
+        <h2>9. Network and Internet Access</h2>
+
+        <p>
+          The core local vault is designed to operate without requiring a
+          PrivoSafe cloud backend to store your private vault content.
+        </p>
+
+        <p>
+          The application or operating system may nevertheless use network
+          connectivity for platform functionality, application distribution,
+          updates, or other features that may be introduced in future
+          versions. Where a feature sends information over a network, the
+          relevant behavior will be described in the applicable documentation
+          or privacy policy update.
+        </p>
+
+        <p>
+          Vaultrix does not intentionally transmit your private vault content
+          to PrivoSafe merely because the content exists in your vault.
+        </p>
+      </section>
+
+      <section id="analytics">
+        <h2>10. Analytics, Advertising and Tracking</h2>
+
+        <p>
+          Vaultrix is designed without advertising as part of its core
+          privacy model. Your private vault content is not used to select or
+          personalize advertisements.
+        </p>
+
+        <p>
+          Vaultrix does not intentionally use tracking technologies to build
+          an advertising profile from your private vault content.
+        </p>
+
+        <p>
+          If a future version introduces analytics, diagnostics, advertising,
+          or another data-processing technology that materially changes the
+          information handled by Vaultrix, this policy will be updated and the
+          relevant disclosures will be provided.
+        </p>
+      </section>
+
+      <section id="thirdparty">
+        <h2>11. Third-Party Components and Services</h2>
+
+        <p>
+          Vaultrix may include software libraries or components supplied by
+          third parties. These components can be used to provide functionality
+          such as platform integration, authentication, media handling,
+          encryption, or other application features.
+        </p>
+
+        <p>
+          Third-party components are not automatically given access to the
+          contents of your vault. Any data processing performed by a third
+          party is limited by the functionality of the component and the
+          permissions available to it.
+        </p>
+
+        <p>
+          If a future third-party service is introduced that collects or
+          processes personal information, this policy and the applicable
+          disclosures will be updated accordingly.
+        </p>
+      </section>
+
+      <section id="sharing">
+        <h2>12. Data Sharing and Disclosure</h2>
+
+        <p>
+          PrivoSafe does not sell or rent your private vault content.
+        </p>
+
+        <p>
+          Because Vaultrix is designed as a local-first application, PrivoSafe
+          does not routinely receive your private vault files for storage,
+          analysis, advertising, or profiling.
+        </p>
+
+        <p>
+          Information may be disclosed when disclosure is required by
+          applicable law, regulation, court order, or other valid legal
+          process. Nothing in this policy is intended to prevent disclosures
+          that we are legally required to make.
+        </p>
+
+        <p>
+          If you intentionally share or export content from Vaultrix to
+          another application, platform, cloud provider, or person, that
+          recipient may process the information independently of Vaultrix.
+        </p>
+      </section>
+
+      <section id="retention">
+        <h2>13. Data Retention</h2>
+
+        <p>
+          Vault content stored locally by Vaultrix remains on your device until
+          you delete it, remove the vault, clear the application's local data,
+          uninstall the application, or otherwise cause the relevant local
+          storage to be removed.
+        </p>
+
+        <p>
+          Because the core vault is designed without a PrivoSafe-operated
+          cloud copy of your private vault content, PrivoSafe cannot remotely
+          retrieve or remotely delete content that exists only on your device.
+        </p>
+      </section>
+
+      <section id="deletion">
+        <h2>14. Data Deletion</h2>
+
+        <p>
+          You can delete content from Vaultrix using the deletion functionality
+          provided by the application. You can also remove local application
+          data using your device's operating-system controls.
+        </p>
+
+        <p>
+          Deletion of encrypted vault content may be permanent. Before deleting
+          a vault or clearing application data, make sure you have any recovery
+          information or supported backup you may need.
+        </p>
+
+        <p>
+          Since PrivoSafe does not maintain a routine remote copy of your
+          local vault content, there may be no server-side copy for PrivoSafe
+          to delete.
+        </p>
+      </section>
+
+      <section id="security">
+        <h2>15. Security</h2>
+
+        <p>
+          We design Vaultrix to protect private information using encryption,
+          device security, and access controls appropriate to the application's
+          architecture.
+        </p>
+
+        <p>
+          However, no application, operating system, device, or storage method
+          can be guaranteed to be completely secure.
+        </p>
+
+        <p>
+          You are responsible for protecting your device, authentication
+          credentials, recovery information, and any other secrets used to
+          protect your vault.
+        </p>
+
+        <div class="highlight-box">
+          <strong>Our commitment:</strong>
+          We do not intentionally ask you to provide us with your vault
+          password or private encryption keys for routine access to your vault.
+          The purpose of Vaultrix is to keep control of private vault data with
+          the person using the vault.
+        </div>
+      </section>
+
+      <section id="children">
+        <h2>16. Children's Privacy</h2>
+
+        <p>
+          Vaultrix is not designed to knowingly collect personal information
+          from children. We do not intentionally request children's personal
+          information for advertising or profiling.
+        </p>
+
+        <p>
+          If you believe that personal information has been provided to
+          PrivoSafe in connection with Vaultrix in a manner that should not
+          have occurred, please contact us using the details below.
+        </p>
+      </section>
+
+      <section id="rights">
+        <h2>17. Your Rights and Choices</h2>
+
+        <p>
+          You control the private content that you place in your Vaultrix
+          vault. Depending on applicable law, you may also have rights relating
+          to personal information processed by a service provider, such as
+          rights to request access, correction, deletion, or information about
+          processing.
+        </p>
+
+        <p>
+          For information that exists only locally inside your vault, the
+          primary way to access, modify, export, or delete that information is
+          through Vaultrix and your device.
+        </p>
+
+        <p>
+          If you have a privacy request that cannot be handled through the
+          application, contact us using the privacy contact information below.
+        </p>
+      </section>
+
+      <section id="changes">
+        <h2>18. Changes to This Policy</h2>
+
+        <p>
+          We may update this Privacy Policy when Vaultrix changes, when new
+          features are introduced, or when legal or platform requirements
+          change.
+        </p>
+
+        <p>
+          When we make a material change, we will update the
+          <strong>Last updated</strong> date at the top of this page. Continued
+          use of Vaultrix after an updated policy becomes effective means the
+          updated policy applies to your use of the application to the extent
+          permitted by applicable law.
+        </p>
+      </section>
+
+      <section id="contact">
+        <h2>19. Contact Us</h2>
+
+        <p>
+          Vaultrix is operated by <strong>PrivoSafe</strong>.
+        </p>
+
+        <div class="contact-box">
+          <h3>Privacy Questions or Requests?</h3>
+
+          <p>
+            For privacy-related questions, concerns, or requests, contact:
+          </p>
+
+          <p>
+            <a href="mailto:privacy@vaultrix.com" class="email">
+              hello@privosafe.com
+            </a>
+          </p>
+
+          <p style="font-size:.85rem;margin-top:12px;">
+            Please include enough information for us to understand and respond
+            to your request. Do not send your vault password, private key,
+            recovery phrase, or the private contents of your vault by email.
+          </p>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <p style="font-size:.84rem;color:var(--text-muted);">
+        <strong>Product-specific policy:</strong>
+        This Privacy Policy applies to Vaultrix. Other PrivoSafe products may
+        have separate privacy policies because their functionality and data
+        practices may differ.
+      </p>
+
+    </main>
+
+    <footer>
+      <span>© 2026 <strong>PrivoSafe</strong>. Vaultrix is a PrivoSafe product.</span>
+      <span>Your privacy matters.</span>
+    </footer>
+
+  </div>
+</body>
+</html>
