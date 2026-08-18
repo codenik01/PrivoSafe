@@ -53,7 +53,7 @@
       padding: 28px 0 64px;
     }
 
-    /* header */
+    /* ===== HEADER ===== */
     .navbar {
       display: flex;
       align-items: center;
@@ -84,24 +84,11 @@
       height: 68px;
       width: auto;
       display: block;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .brand-marker {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: var(--text);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--bg);
-      transition: transform 0.3s ease;
-    }
-
-    .brand:hover .brand-marker {
-      transform: rotate(-10deg) scale(1.05);
+    .brand:hover .brand-logo {
+      transform: rotate(360deg) scale(1.1);
     }
 
     .nav-links {
@@ -115,7 +102,7 @@
     .nav-links a {
       text-decoration: none;
       color: inherit;
-      transition: color 0.2s;
+      transition: all 0.3s ease;
       position: relative;
     }
 
@@ -127,7 +114,7 @@
       width: 0;
       height: 2px;
       background: var(--text);
-      transition: width 0.3s ease;
+      transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .nav-links a:hover::after {
@@ -136,6 +123,7 @@
 
     .nav-links a:hover {
       color: var(--text);
+      transform: translateY(-2px);
     }
 
     .nav-cta {
@@ -146,12 +134,12 @@
       font-weight: 600;
       font-size: 0.9rem;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .nav-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px -8px rgba(0,0,0,0.2);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 30px -8px rgba(0,0,0,0.25);
     }
 
     .hamburger {
@@ -169,7 +157,7 @@
       height: 2.5px;
       background: var(--text);
       border-radius: 4px;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .hamburger.active span:nth-child(1) {
@@ -177,6 +165,7 @@
     }
     .hamburger.active span:nth-child(2) {
       opacity: 0;
+      transform: scaleX(0);
     }
     .hamburger.active span:nth-child(3) {
       transform: rotate(-45deg) translate(5px, -5px);
@@ -189,7 +178,7 @@
       padding: 20px 0 12px;
       border-top: 1px solid var(--border);
       margin-top: 8px;
-      animation: slideDown 0.3s ease;
+      animation: slideDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .mobile-nav.open {
@@ -203,14 +192,15 @@
       font-size: 1.05rem;
       padding: 6px 0;
       border-bottom: 1px solid var(--border);
-      transition: color 0.2s;
+      transition: all 0.3s ease;
     }
 
     .mobile-nav a:hover {
       color: var(--text-muted);
+      transform: translateX(8px);
     }
 
-    /* hero */
+    /* ===== HERO ===== */
     .hero {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -221,7 +211,7 @@
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
+      from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -239,6 +229,12 @@
       padding: 6px 14px;
       border-radius: 60px;
       margin-bottom: 20px;
+      transition: all 0.4s ease;
+    }
+
+    .hero-content .badge:hover {
+      transform: scale(1.05);
+      border-color: var(--text);
     }
 
     .badge-dot {
@@ -252,7 +248,7 @@
 
     @keyframes pulse-dot {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.2; transform: scale(0.7); }
+      50% { opacity: 0.2; transform: scale(0.5); }
     }
 
     .hero h1 {
@@ -261,13 +257,26 @@
       letter-spacing: -0.03em;
       line-height: 1.05;
       margin-bottom: 16px;
+      animation: textGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes textGlow {
+      0%, 100% { text-shadow: 0 0 0px rgba(0,0,0,0); }
+      50% { text-shadow: 0 0 30px rgba(0,0,0,0.03); }
     }
 
     .hero h1 .highlight {
-      background: linear-gradient(120deg, var(--text), #4a4f6b);
+      background: linear-gradient(120deg, var(--text), #4a4f6b, var(--text));
+      background-size: 200% 200%;
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      animation: gradientShift 4s ease-in-out infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
 
     .hero .big-quote {
@@ -279,12 +288,22 @@
       border-top: 2px solid var(--border);
       border-bottom: 2px solid var(--border);
       max-width: 520px;
+      transition: all 0.4s ease;
+    }
+
+    .hero .big-quote:hover {
+      border-color: var(--text);
     }
 
     .hero .big-quote em {
       font-style: italic;
       color: var(--text-muted);
       font-weight: 400;
+      transition: all 0.3s ease;
+    }
+
+    .hero .big-quote:hover em {
+      color: var(--text);
     }
 
     .hero p {
@@ -292,6 +311,11 @@
       color: var(--text-muted);
       max-width: 480px;
       margin-bottom: 28px;
+      transition: all 0.4s ease;
+    }
+
+    .hero p:hover {
+      color: var(--text);
     }
 
     .hero-actions {
@@ -309,7 +333,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       border: 1px solid transparent;
       cursor: pointer;
     }
@@ -320,8 +344,8 @@
     }
 
     .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px -10px rgba(0,0,0,0.2);
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 16px 40px -12px rgba(0,0,0,0.3);
     }
 
     .btn-outline {
@@ -331,10 +355,11 @@
 
     .btn-outline:hover {
       border-color: var(--text);
-      transform: translateY(-3px);
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 16px 40px -12px rgba(0,0,0,0.1);
     }
 
-    /* hero visual */
+    /* ===== ORBIT SCENE ===== */
     .hero-visual {
       display: flex;
       justify-content: center;
@@ -362,13 +387,19 @@
       justify-content: center;
       position: relative;
       z-index: 2;
-      transition: transform 0.6s ease;
-      animation: float 6s ease-in-out infinite;
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .core-sphere:hover {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 0 80px rgba(0,0,0,0.12);
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-12px) rotate(2deg); }
+      66% { transform: translateY(6px) rotate(-2deg); }
     }
 
     .core-sphere::after {
@@ -379,14 +410,12 @@
       background: var(--bg);
       opacity: 0.1;
       filter: blur(2px);
+      animation: pulseRing 3s ease-in-out infinite;
     }
 
-    .core-sphere .logo-in-core {
-      height: 56px;
-      width: auto;
-      filter: brightness(0) invert(1);
-      z-index: 3;
-      position: relative;
+    @keyframes pulseRing {
+      0%, 100% { transform: scale(1); opacity: 0.1; }
+      50% { transform: scale(1.3); opacity: 0.2; }
     }
 
     .orbit-ring {
@@ -394,19 +423,24 @@
       border-radius: 50%;
       border: 1px solid var(--border);
       opacity: 0.5;
+      transition: all 0.6s ease;
+    }
+
+    .orbit-scene:hover .orbit-ring {
+      opacity: 0.8;
     }
 
     .ring-1 {
       width: 250px;
       height: 250px;
-      animation: spin-slow 30s linear infinite;
+      animation: spin-fast 12s linear infinite;
     }
 
     .ring-2 {
       width: 330px;
       height: 330px;
       border-color: rgba(74, 79, 107, 0.12);
-      animation: spin-reverse 38s linear infinite;
+      animation: spin-reverse-fast 16s linear infinite;
     }
 
     .ring-3 {
@@ -414,13 +448,13 @@
       height: 390px;
       border-color: rgba(26, 31, 43, 0.06);
       border-style: dashed;
-      animation: spin-slow 46s linear infinite;
+      animation: spin-fast 20s linear infinite;
     }
 
-    @keyframes spin-slow {
+    @keyframes spin-fast {
       to { transform: rotate(360deg); }
     }
-    @keyframes spin-reverse {
+    @keyframes spin-reverse-fast {
       to { transform: rotate(-360deg); }
     }
 
@@ -438,24 +472,32 @@
       font-weight: 600;
       color: var(--text-muted);
       box-shadow: 0 0 16px rgba(0,0,0,0.03);
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       z-index: 3;
       cursor: default;
     }
 
     .node:hover {
-      transform: scale(1.3);
+      transform: scale(1.5) rotate(360deg);
       border-color: var(--text);
       color: var(--text);
-      box-shadow: 0 0 24px rgba(0,0,0,0.06);
+      box-shadow: 0 0 30px rgba(0,0,0,0.1);
+      background: var(--bg);
     }
 
-    .node-1 { top: 14%; left: 14%; }
-    .node-2 { top: 4%; right: 18%; }
-    .node-3 { bottom: 14%; right: 8%; }
-    .node-4 { bottom: 26%; left: 2%; }
-    .node-5 { top: 42%; right: 0%; }
-    .node-6 { bottom: 4%; left: 42%; }
+    .node-1 { top: 14%; left: 14%; animation: nodeFloat1 4s ease-in-out infinite; }
+    .node-2 { top: 4%; right: 18%; animation: nodeFloat2 4.5s ease-in-out infinite; }
+    .node-3 { bottom: 14%; right: 8%; animation: nodeFloat3 5s ease-in-out infinite; }
+    .node-4 { bottom: 26%; left: 2%; animation: nodeFloat4 4.2s ease-in-out infinite; }
+    .node-5 { top: 42%; right: 0%; animation: nodeFloat5 4.8s ease-in-out infinite; }
+    .node-6 { bottom: 4%; left: 42%; animation: nodeFloat6 4.3s ease-in-out infinite; }
+
+    @keyframes nodeFloat1 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-6px, -10px); } }
+    @keyframes nodeFloat2 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(8px, -8px); } }
+    @keyframes nodeFloat3 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-10px, 6px); } }
+    @keyframes nodeFloat4 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(12px, 8px); } }
+    @keyframes nodeFloat5 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-8px, 12px); } }
+    @keyframes nodeFloat6 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(6px, -12px); } }
 
     .node .label {
       position: absolute;
@@ -469,12 +511,13 @@
       border-radius: 12px;
       border: 1px solid var(--border);
       opacity: 0;
-      transition: opacity 0.2s;
+      transition: all 0.3s ease;
       pointer-events: none;
     }
 
     .node:hover .label {
       opacity: 1;
+      transform: translateY(-4px);
     }
 
     .particle {
@@ -488,14 +531,14 @@
       animation: float-particle 10s infinite alternate ease-in-out;
     }
 
-    .particle-1 { top: 10%; left: 72%; animation-duration: 14s; }
-    .particle-2 { bottom: 22%; right: 68%; animation-duration: 11s; animation-delay: 2s; }
-    .particle-3 { top: 60%; left: 8%; animation-duration: 15s; animation-delay: 3s; }
-    .particle-4 { bottom: 8%; left: 52%; animation-duration: 9s; animation-delay: 1s; }
+    .particle-1 { top: 10%; left: 72%; animation-duration: 8s; }
+    .particle-2 { bottom: 22%; right: 68%; animation-duration: 6s; animation-delay: 2s; }
+    .particle-3 { top: 60%; left: 8%; animation-duration: 9s; animation-delay: 3s; }
+    .particle-4 { bottom: 8%; left: 52%; animation-duration: 7s; animation-delay: 1s; }
 
     @keyframes float-particle {
       0% { transform: translate(0, 0) scale(1); opacity: 0.06; }
-      100% { transform: translate(18px, -28px) scale(1.8); opacity: 0.25; }
+      100% { transform: translate(30px, -40px) scale(2.5); opacity: 0.3; }
     }
 
     .pulse-ring {
@@ -504,22 +547,22 @@
       height: 170px;
       border-radius: 50%;
       border: 1px solid rgba(0,0,0,0.05);
-      animation: pulse-ring 3.2s ease-out infinite;
+      animation: pulse-ring 2.5s ease-out infinite;
       z-index: 1;
     }
 
     .pulse-ring:nth-child(2) {
-      animation-delay: 1.8s;
+      animation-delay: 1.5s;
       width: 200px;
       height: 200px;
     }
 
     @keyframes pulse-ring {
-      0% { transform: scale(0.9); opacity: 0.6; }
-      100% { transform: scale(1.5); opacity: 0; }
+      0% { transform: scale(0.8); opacity: 0.6; }
+      100% { transform: scale(1.6); opacity: 0; }
     }
 
-    /* product bay – 1 live + 3 coming soon */
+    /* ===== PRODUCT GRID ===== */
     .product-grid {
       display: grid;
       grid-template-columns: 1.4fr 1fr 1fr 1fr;
@@ -532,16 +575,17 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 26px 24px 24px;
-      transition: all 0.4s ease;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
       display: flex;
       flex-direction: column;
       min-height: 260px;
       animation: fadeUp 0.6s ease both;
       animation-delay: calc(0.1s * var(--i, 1));
+      cursor: default;
     }
 
     .product-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-10px) scale(1.02);
       border-color: var(--text);
       box-shadow: var(--shadow);
     }
@@ -550,6 +594,11 @@
       background: var(--surface-2);
       border-color: var(--text);
       justify-content: space-between;
+    }
+
+    .card-live:hover {
+      border-color: var(--text);
+      box-shadow: 0 20px 60px -16px rgba(0,0,0,0.2);
     }
 
     .live-tag {
@@ -565,6 +614,12 @@
       align-items: center;
       gap: 6px;
       width: fit-content;
+      transition: all 0.3s ease;
+    }
+
+    .card-live:hover .live-tag {
+      transform: scale(1.05);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     }
 
     .live-tag .pulse {
@@ -572,17 +627,22 @@
       height: 6px;
       background: var(--bg);
       border-radius: 50%;
-      animation: pulse 1.8s infinite;
+      animation: pulse 1.4s infinite;
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.2; transform: scale(0.5); }
     }
 
     .product-icon {
       font-size: 2rem;
       margin: 18px 0 12px;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .product-card:hover .product-icon {
+      transform: scale(1.2) rotate(-10deg);
     }
 
     .product-card h3 {
@@ -590,6 +650,11 @@
       font-weight: 600;
       letter-spacing: -0.02em;
       margin-bottom: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .product-card:hover h3 {
+      transform: translateX(4px);
     }
 
     .product-card p {
@@ -597,6 +662,11 @@
       font-size: 0.9rem;
       margin-bottom: 20px;
       flex: 1;
+      transition: all 0.3s ease;
+    }
+
+    .product-card:hover p {
+      color: var(--text);
     }
 
     .product-card .btn-sm {
@@ -608,12 +678,12 @@
       border-radius: 40px;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .product-card .btn-sm:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px -6px rgba(0,0,0,0.15);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 24px -8px rgba(0,0,0,0.25);
     }
 
     .card-coming {
@@ -626,12 +696,23 @@
       font-size: 2.4rem;
       margin-bottom: 12px;
       opacity: 0.3;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .card-coming:hover .coming-icon {
+      opacity: 0.8;
+      transform: rotate(360deg) scale(1.2);
     }
 
     .card-coming h4 {
       font-weight: 500;
       color: var(--text-muted);
       font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .card-coming:hover h4 {
+      color: var(--text);
     }
 
     .card-coming p {
@@ -640,7 +721,7 @@
       margin-top: 4px;
     }
 
-    /* philosophy section */
+    /* ===== PHILOSOPHY ===== */
     .philosophy {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -649,13 +730,13 @@
       margin: 80px 0;
       text-align: center;
       animation: fadeUp 0.6s ease both;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .philosophy .phil-logo {
-      height: 72px;
-      width: auto;
-      margin-bottom: 20px;
-      opacity: 0.7;
+    .philosophy:hover {
+      transform: translateY(-4px);
+      border-color: var(--text);
+      box-shadow: var(--shadow);
     }
 
     .philosophy h2 {
@@ -663,6 +744,11 @@
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .philosophy:hover h2 {
+      transform: scale(1.02);
     }
 
     .philosophy .phil-quote {
@@ -673,6 +759,11 @@
       margin: 0 auto 16px;
       font-style: italic;
       line-height: 1.4;
+      transition: all 0.4s ease;
+    }
+
+    .philosophy:hover .phil-quote {
+      transform: scale(1.02);
     }
 
     .philosophy .phil-quote strong {
@@ -685,6 +776,11 @@
       max-width: 600px;
       margin: 0 auto;
       font-size: 1.05rem;
+      transition: all 0.3s ease;
+    }
+
+    .philosophy:hover p {
+      color: var(--text);
     }
 
     .philosophy .divider-line {
@@ -693,9 +789,15 @@
       background: var(--text);
       margin: 24px auto;
       opacity: 0.2;
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    /* sections */
+    .philosophy:hover .divider-line {
+      width: 120px;
+      opacity: 0.6;
+    }
+
+    /* ===== SECTIONS ===== */
     section {
       margin: 80px 0;
       animation: fadeUp 0.6s ease both;
@@ -711,6 +813,12 @@
       align-items: center;
       gap: 8px;
       margin-bottom: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .section-label:hover {
+      color: var(--text);
+      transform: translateX(4px);
     }
 
     .section-label::before {
@@ -720,6 +828,11 @@
       background: var(--text);
       border-radius: 50%;
       display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .section-label:hover::before {
+      transform: scale(1.5);
     }
 
     .section-title {
@@ -727,14 +840,25 @@
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .section-title:hover {
+      transform: translateX(4px);
     }
 
     .section-sub {
       color: var(--text-muted);
       font-size: 1.05rem;
       max-width: 600px;
+      transition: all 0.3s ease;
     }
 
+    .section-sub:hover {
+      color: var(--text);
+    }
+
+    /* ===== CORE PRINCIPLES ===== */
     .grid-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -750,17 +874,27 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .core-principles:hover {
+      border-color: var(--text);
+      box-shadow: var(--shadow);
     }
 
     .principle {
       padding: 22px 24px;
       border-bottom: 1px solid var(--border);
       background: var(--surface);
-      transition: background 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: default;
     }
 
     .principle:hover {
       background: var(--surface-2);
+      transform: scale(1.02);
+      box-shadow: inset 0 0 0 1px var(--text);
+      z-index: 2;
     }
 
     .principle:nth-child(odd) {
@@ -776,17 +910,34 @@
       font-size: 0.7rem;
       color: var(--text-muted);
       font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .principle:hover .num {
+      color: var(--text);
+      transform: scale(1.2);
+      display: inline-block;
     }
 
     .principle h4 {
       font-size: 1rem;
       font-weight: 600;
       margin: 6px 0 4px;
+      transition: all 0.3s ease;
+    }
+
+    .principle:hover h4 {
+      transform: translateX(4px);
     }
 
     .principle p {
       color: var(--text-muted);
       font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+
+    .principle:hover p {
+      color: var(--text);
     }
 
     .core-visual-mini {
@@ -795,11 +946,12 @@
       border-radius: var(--radius);
       padding: 36px;
       text-align: center;
-      transition: all 0.4s ease;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .core-visual-mini:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px) scale(1.02);
+      border-color: var(--text);
       box-shadow: var(--shadow);
     }
 
@@ -813,7 +965,13 @@
       justify-content: center;
       margin: 0 auto 20px;
       position: relative;
-      animation: spin-slow 20s linear infinite;
+      animation: spin-fast 8s linear infinite;
+      transition: all 0.6s ease;
+    }
+
+    .core-visual-mini:hover .glyph-box {
+      animation-duration: 3s;
+      transform: scale(1.1);
     }
 
     .core-visual-mini .glyph-box::after {
@@ -837,14 +995,131 @@
       font-size: 0.9rem;
       max-width: 260px;
       margin: 0 auto;
+      transition: all 0.3s ease;
     }
 
-    /* founders – with photos and LinkedIn */
+    .core-visual-mini:hover p {
+      color: var(--text);
+    }
+
+    /* ===== TEAM SECTION ===== */
+    #team {
+      position: relative;
+      overflow: visible;
+    }
+
+    #team.flip-active .founder-grid .founder-card:not(.active-flip) {
+      opacity: 0;
+      transform: scale(0.3) rotateY(180deg);
+      pointer-events: none;
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    #team.flip-active .section-label,
+    #team.flip-active .section-title,
+    #team.flip-active .section-sub,
+    #team.flip-active .team-extra {
+      filter: blur(12px);
+      opacity: 0.2;
+      pointer-events: none;
+      user-select: none;
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    #team.flip-active .founder-card.active-flip {
+      filter: blur(0px) !important;
+      opacity: 1 !important;
+      pointer-events: auto;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1.2);
+      width: 420px;
+      max-width: 92vw;
+      z-index: 99999;
+      box-shadow: 0 60px 120px rgba(0,0,0,0.3);
+      border-color: var(--text);
+      background: var(--bg);
+      animation: flipInSuper 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      transition: all 0.3s ease;
+    }
+
+    @keyframes flipInSuper {
+      0% {
+        transform: translate(-50%, -50%) scale(0.05) rotateY(1080deg);
+        opacity: 0;
+      }
+      30% {
+        transform: translate(-50%, -50%) scale(1.5) rotateY(360deg);
+        opacity: 0.9;
+      }
+      60% {
+        transform: translate(-50%, -50%) scale(0.95) rotateY(720deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1.2) rotateY(720deg);
+        opacity: 1;
+      }
+    }
+
+    .founder-card .close-flip {
+      display: none;
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 1.6rem;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--text-muted);
+      background: var(--surface);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 10;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .founder-card .close-flip:hover {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+      transform: rotate(90deg) scale(1.1);
+    }
+
+    .founder-card.active-flip .close-flip {
+      display: flex;
+    }
+
+    #team .team-particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--text);
+      border-radius: 50%;
+      opacity: 0.08;
+      pointer-events: none;
+      animation: floatParticle 12s infinite alternate ease-in-out;
+      z-index: 0;
+    }
+
+    @keyframes floatParticle {
+      0% { transform: translate(0, 0) scale(1); opacity: 0.04; }
+      100% { transform: translate(80px, -80px) scale(3); opacity: 0.2; }
+    }
+
     .founder-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       margin-top: 32px;
+      position: relative;
+      z-index: 1;
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .founder-card {
@@ -852,14 +1127,27 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 28px 24px;
-      transition: all 0.4s ease;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
       text-align: center;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      transform-style: preserve-3d;
+      perspective: 800px;
     }
 
     .founder-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-10px) scale(1.04) rotateX(2deg);
       border-color: var(--text);
       box-shadow: var(--shadow);
+    }
+
+    .founder-card.active-flip {
+      cursor: default;
+    }
+
+    .founder-card.active-flip:hover {
+      transform: translate(-50%, -50%) scale(1.2);
     }
 
     .founder-photo {
@@ -870,18 +1158,24 @@
       margin: 0 auto 16px;
       display: block;
       border: 2px solid var(--border);
-      transition: border-color 0.3s ease;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
       background: var(--surface-2);
     }
 
     .founder-card:hover .founder-photo {
       border-color: var(--text);
+      transform: rotate(360deg) scale(1.05);
     }
 
     .founder-card h3 {
       font-size: 1.2rem;
       font-weight: 600;
       margin-bottom: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .founder-card:hover h3 {
+      transform: translateY(-2px);
     }
 
     .founder-role {
@@ -890,6 +1184,11 @@
       color: var(--text-muted);
       margin-bottom: 14px;
       display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .founder-card:hover .founder-role {
+      color: var(--text);
     }
 
     .founder-card ul {
@@ -907,12 +1206,23 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .founder-card:hover ul li {
+      color: var(--text);
+      transform: translateX(4px);
     }
 
     .founder-card ul li::before {
       content: '—';
       color: #4a4f6b;
       opacity: 0.4;
+      transition: all 0.3s ease;
+    }
+
+    .founder-card:hover ul li::before {
+      opacity: 0.8;
     }
 
     .linkedin-btn {
@@ -926,17 +1236,22 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 0.85rem;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .linkedin-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(10, 102, 194, 0.3);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 24px rgba(10, 102, 194, 0.4);
       background: #004182;
     }
 
     .linkedin-btn i {
       font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .linkedin-btn:hover i {
+      transform: rotate(10deg) scale(1.2);
     }
 
     .team-extra {
@@ -946,6 +1261,15 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .team-extra:hover {
+      transform: translateY(-4px);
+      border-color: var(--text);
+      box-shadow: var(--shadow);
     }
 
     .team-extra p {
@@ -953,13 +1277,18 @@
       font-size: 1rem;
       max-width: 680px;
       margin: 0 auto;
+      transition: all 0.3s ease;
+    }
+
+    .team-extra:hover p {
+      color: var(--text);
     }
 
     .team-extra strong {
       color: var(--text);
     }
 
-    /* business model – simplified: free for everyone */
+    /* ===== BUSINESS MODEL ===== */
     .model-simple {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -967,10 +1296,11 @@
       padding: 48px 40px;
       text-align: center;
       margin-top: 28px;
-      transition: all 0.4s ease;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .model-simple:hover {
+      transform: translateY(-6px) scale(1.02);
       border-color: var(--text);
       box-shadow: var(--shadow);
     }
@@ -980,6 +1310,11 @@
       font-weight: 700;
       letter-spacing: -0.03em;
       margin-bottom: 8px;
+      transition: all 0.4s ease;
+    }
+
+    .model-simple:hover .big-free {
+      transform: scale(1.05);
     }
 
     .model-simple .big-free .highlight {
@@ -987,6 +1322,8 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      background-size: 200% 200%;
+      animation: gradientShift 3s ease-in-out infinite;
     }
 
     .model-simple p {
@@ -994,6 +1331,11 @@
       font-size: 1.1rem;
       max-width: 580px;
       margin: 0 auto;
+      transition: all 0.3s ease;
+    }
+
+    .model-simple:hover p {
+      color: var(--text);
     }
 
     .model-simple .sub-line {
@@ -1001,6 +1343,11 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.9rem;
       color: var(--text-muted);
+      transition: all 0.3s ease;
+    }
+
+    .model-simple:hover .sub-line {
+      color: var(--text);
     }
 
     .model-simple .sub-line strong {
@@ -1008,17 +1355,18 @@
       font-weight: 500;
     }
 
-    /* cta */
+    /* ===== CTA ===== */
     .cta-block {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 64px 40px;
       text-align: center;
-      transition: all 0.4s ease;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .cta-block:hover {
+      transform: translateY(-4px) scale(1.01);
       border-color: var(--text);
       box-shadow: var(--shadow);
     }
@@ -1028,12 +1376,22 @@
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .cta-block:hover h2 {
+      transform: scale(1.02);
     }
 
     .cta-block p {
       color: var(--text-muted);
       max-width: 480px;
       margin: 0 auto 32px;
+      transition: all 0.3s ease;
+    }
+
+    .cta-block:hover p {
+      color: var(--text);
     }
 
     .cta-actions {
@@ -1043,7 +1401,7 @@
       flex-wrap: wrap;
     }
 
-    /* footer */
+    /* ===== FOOTER ===== */
     footer {
       border-top: 1px solid var(--border);
       padding: 48px 0 32px;
@@ -1066,16 +1424,16 @@
       font-size: 1.1rem;
     }
 
-    .footer-brand .footer-logo {
-      height: 30px;
-      width: auto;
-    }
-
     .footer-tag {
       color: var(--text-muted);
       font-size: 0.9rem;
       margin-top: 8px;
       max-width: 280px;
+      transition: all 0.3s ease;
+    }
+
+    .footer-tag:hover {
+      color: var(--text);
     }
 
     .footer-links {
@@ -1091,6 +1449,11 @@
       color: var(--text-muted);
       margin-bottom: 14px;
       font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .footer-col:hover h5 {
+      color: var(--text);
     }
 
     .footer-col a {
@@ -1100,12 +1463,12 @@
       font-size: 0.9rem;
       margin-bottom: 10px;
       opacity: 0.6;
-      transition: all 0.2s;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .footer-col a:hover {
       opacity: 1;
-      transform: translateX(4px);
+      transform: translateX(8px);
     }
 
     .footer-bottom {
@@ -1122,9 +1485,14 @@
     .footer-bottom .rights {
       font-weight: 500;
       color: var(--text);
+      transition: all 0.3s ease;
     }
 
-    /* responsive */
+    .footer-bottom .rights:hover {
+      transform: scale(1.05);
+    }
+
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .product-grid { grid-template-columns: 1fr 1fr 1fr; }
       .product-grid .card-live { grid-column: 1 / -1; }
@@ -1141,6 +1509,10 @@
       .hero h1 { font-size: 2.6rem; }
       .philosophy { padding: 40px 24px; }
       .philosophy .phil-quote { font-size: 1.2rem; }
+      #team.flip-active .founder-card.active-flip {
+        width: 90vw;
+        transform: translate(-50%, -50%) scale(1.05);
+      }
     }
 
     @media (max-width: 768px) {
@@ -1158,6 +1530,16 @@
       .product-grid { grid-template-columns: 1fr 1fr; }
       .product-grid .card-live { grid-column: 1 / -1; }
       .brand-logo { height: 30px; }
+      #team.flip-active .founder-card.active-flip {
+        width: 92vw;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      @keyframes flipInSuper {
+        0% { transform: translate(-50%, -50%) scale(0.05) rotateY(1080deg); opacity: 0; }
+        30% { transform: translate(-50%, -50%) scale(1.3) rotateY(360deg); opacity: 0.9; }
+        60% { transform: translate(-50%, -50%) scale(0.95) rotateY(720deg); opacity: 1; }
+        100% { transform: translate(-50%, -50%) scale(1) rotateY(720deg); opacity: 1; }
+      }
     }
 
     @media (max-width: 640px) {
@@ -1174,15 +1556,25 @@
       .product-grid { grid-template-columns: 1fr; }
       .model-simple { padding: 32px 20px; }
       .model-simple .big-free { font-size: 2.5rem; }
-      .philosophy .phil-logo { height: 50px; }
       .brand-logo { height: 26px; }
+      #team.flip-active .founder-card.active-flip {
+        width: 95vw;
+        transform: translate(-50%, -50%) scale(1);
+        padding: 20px 16px;
+      }
+      @keyframes flipInSuper {
+        0% { transform: translate(-50%, -50%) scale(0.05) rotateY(1080deg); opacity: 0; }
+        30% { transform: translate(-50%, -50%) scale(1.2) rotateY(360deg); opacity: 0.9; }
+        60% { transform: translate(-50%, -50%) scale(0.95) rotateY(720deg); opacity: 1; }
+        100% { transform: translate(-50%, -50%) scale(1) rotateY(720deg); opacity: 1; }
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
 
-    <!-- header -->
+    <!-- HEADER -->
     <header class="navbar">
       <div class="brand">
         <img src="./assets/logo.png" alt="PrivoSafe logo" class="brand-logo">
@@ -1202,7 +1594,7 @@
       </button>
     </header>
 
-    <!-- mobile nav -->
+    <!-- MOBILE NAV -->
     <div class="mobile-nav" id="mobileNav">
       <a href="#product">Product</a>
       <a href="#core">Privacy Core</a>
@@ -1211,7 +1603,7 @@
       <a href="#product" style="border-bottom: none; color: var(--bg); background: var(--text); padding: 10px 20px; border-radius: 60px; text-align: center; margin-top: 8px;">Try Clozzy</a>
     </div>
 
-    <!-- hero -->
+    <!-- HERO -->
     <div class="hero">
       <div class="hero-content">
         <div class="badge"><span class="badge-dot"></span> Privacy is a right</div>
@@ -1250,9 +1642,9 @@
       </div>
     </div>
 
-    <!-- philosophy section -->
+    <!-- PHILOSOPHY -->
     <div class="philosophy">
-      <div style="font-size:3.2rem;margin-bottom:8px;opacity:0.6;">🛡️</div>
+      <div style="font-size:3.2rem;margin-bottom:8px;opacity:0.6;transition:all 0.5s cubic-bezier(0.34,1.56,0.64,1);">🛡️</div>
       <h2>Privacy is the right of every single user</h2>
       <div class="phil-quote">
         “<strong>Your digital life, your rules.</strong> We don't collect what we don't need, we don't store what we don't protect, and we never sell what's yours.”
@@ -1261,7 +1653,7 @@
       <p>We believe that privacy is the foundation of freedom. That's why every product we build starts with respect for you — and ends with control in your hands.</p>
     </div>
 
-    <!-- product bay – 1 live + 3 coming soon -->
+    <!-- PRODUCT GRID -->
     <div id="product" class="product-grid">
       <div class="product-card card-live" style="--i:1">
         <div>
@@ -1284,7 +1676,6 @@
         <div class="coming-icon">⏳</div>
         <h4>Coming soon</h4>
         <p>Expanding the ecosystem.</p>
-        
       </div>
 
       <div class="product-card card-coming" style="--i:4">
@@ -1294,7 +1685,7 @@
       </div>
     </div>
 
-    <!-- privacy core -->
+    <!-- PRIVACY CORE -->
     <section id="core">
       <div class="section-label">Foundation</div>
       <h2 class="section-title">Privacy Core – shared security language</h2>
@@ -1318,15 +1709,15 @@
       </div>
     </section>
 
-    <!-- team section -->
-  <section id="team">
+    <!-- TEAM SECTION -->
+    <section id="team">
       <div class="section-label">Team</div>
       <h2 class="section-title">Three founders, one mission</h2>
       <p class="section-sub">We're a small team with a big purpose: to make privacy the standard, not the exception.</p>
       <div class="founder-grid">
-        <div class="founder-card">
-        
-          <h3>Founder Name</h3>
+        <!-- Card 1 -->
+        <div class="founder-card" data-name="nikhil">
+          <span class="close-flip" onclick="closeFlip(event)">✕</span>
           <img src="/assets/nikhil-chavan.png" alt="Founder" class="founder-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23eef1f4%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 font-family=%22Inter%22 font-size=%2232%22 fill=%22%235f6b7a%22%3EF%3C/text%3E%3C/svg%3E';">
           <h3>Nikhil Chavan</h3>
           <span class="founder-role">Founder &amp; CEO</span>
@@ -1337,10 +1728,9 @@
           </ul>
           <a href="https://www.linkedin.com/in/codenik/" class="linkedin-btn" target="_blank"><i class="fab fa-linkedin"></i> Connect</a>
         </div>
-
-        <div class="founder-card">
-         
-          <h3>Co-founder Name</h3>
+        <!-- Card 2 -->
+        <div class="founder-card" data-name="harsh-gautam">
+          <span class="close-flip" onclick="closeFlip(event)">✕</span>
           <img src="/assets/harsh-gautam.jpeg" alt="Co-founder" class="founder-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23eef1f4%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 font-family=%22Inter%22 font-size=%2232%22 fill=%22%235f6b7a%22%3EC%3C/text%3E%3C/svg%3E';">
           <h3>Harsh Gautam</h3>
           <span class="founder-role">Co-founder &amp; CTO</span>
@@ -1351,10 +1741,9 @@
           </ul>
           <a href="https://www.linkedin.com/in/harshgautamdev/" class="linkedin-btn" target="_blank"><i class="fab fa-linkedin"></i> Connect</a>
         </div>
-
-        <div class="founder-card">
-         
-          <h3>Co-founder Name</h3>
+        <!-- Card 3 -->
+        <div class="founder-card" data-name="harsh-chandra">
+          <span class="close-flip" onclick="closeFlip(event)">✕</span>
           <img src="/assets/harsh-chandra.jpeg" alt="Co-founder" class="founder-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23eef1f4%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 font-family=%22Inter%22 font-size=%2232%22 fill=%22%235f6b7a%22%3EC%3C/text%3E%3C/svg%3E';">
           <h3>Harsh Chandra</h3>
           <span class="founder-role">Co-founder &amp; COO/CMO</span>
@@ -1367,13 +1756,19 @@
         </div>
       </div>
       <div class="team-extra">
-
-        </p>
+        <p><strong>We are PrivoSafe.</strong> We don't just build products — we build trust. Every line of code, every design decision, every partnership starts with your privacy.</p>
       </div>
+
+      <!-- Floating particles -->
+      <div class="team-particle" style="top:10%;left:5%;animation-delay:0s;"></div>
+      <div class="team-particle" style="top:20%;right:8%;animation-delay:2s;width:10px;height:10px;"></div>
+      <div class="team-particle" style="bottom:15%;left:12%;animation-delay:4s;"></div>
+      <div class="team-particle" style="bottom:25%;right:5%;animation-delay:1s;width:8px;height:8px;"></div>
+      <div class="team-particle" style="top:50%;left:2%;animation-delay:3s;width:12px;height:12px;"></div>
+      <div class="team-particle" style="top:60%;right:2%;animation-delay:5s;"></div>
     </section>
 
-
-    <!-- business model -->
+    <!-- BUSINESS MODEL -->
     <section id="model">
       <div class="section-label">Business model</div>
       <h2 class="section-title">Privacy shouldn't cost a thing</h2>
@@ -1385,7 +1780,7 @@
       </div>
     </section>
 
-    <!-- cta -->
+    <!-- CTA -->
     <div class="cta-block">
       <h2>Your privacy is our priority</h2>
       <p>Start with Clozzy today — and join us in building a future where privacy is a right, not a privilege.</p>
@@ -1395,7 +1790,7 @@
       </div>
     </div>
 
-    <!-- footer -->
+    <!-- FOOTER -->
     <footer>
       <div class="footer-grid">
         <div>
@@ -1434,6 +1829,7 @@
   </div>
 
   <script>
+    // Hamburger
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobileNav');
 
@@ -1448,6 +1844,130 @@
         mobileNav.classList.remove('open');
       });
     });
+
+    // ===== TEAM CARD FLIP =====
+    const teamSection = document.getElementById('team');
+    const founderCards = document.querySelectorAll('.founder-card');
+
+    function closeFlip(e) {
+      e.stopPropagation();
+      const card = e.currentTarget.closest('.founder-card');
+      if (card) {
+        card.classList.remove('active-flip');
+        teamSection.classList.remove('flip-active');
+        card.style.position = '';
+        card.style.top = '';
+        card.style.left = '';
+        card.style.transform = '';
+        card.style.width = '';
+        card.style.maxWidth = '';
+        card.style.zIndex = '';
+        card.style.boxShadow = '';
+        card.style.background = '';
+        card.querySelector('.close-flip').style.display = 'none';
+      }
+    }
+
+    founderCards.forEach(card => {
+      card.removeEventListener('click', card._flipHandler);
+      
+      const handler = function(e) {
+        if (e.target.closest('.close-flip') || e.target.closest('.linkedin-btn')) return;
+        
+        if (card.classList.contains('active-flip')) {
+          card.classList.remove('active-flip');
+          teamSection.classList.remove('flip-active');
+          card.style.position = '';
+          card.style.top = '';
+          card.style.left = '';
+          card.style.transform = '';
+          card.style.width = '';
+          card.style.maxWidth = '';
+          card.style.zIndex = '';
+          card.style.boxShadow = '';
+          card.style.background = '';
+          card.querySelector('.close-flip').style.display = 'none';
+          return;
+        }
+
+        document.querySelectorAll('.founder-card.active-flip').forEach(c => {
+          c.classList.remove('active-flip');
+          c.style.position = '';
+          c.style.top = '';
+          c.style.left = '';
+          c.style.transform = '';
+          c.style.width = '';
+          c.style.maxWidth = '';
+          c.style.zIndex = '';
+          c.style.boxShadow = '';
+          c.style.background = '';
+          c.querySelector('.close-flip').style.display = 'none';
+        });
+
+        teamSection.classList.add('flip-active');
+        card.classList.add('active-flip');
+        card.querySelector('.close-flip').style.display = 'flex';
+      };
+      
+      card._flipHandler = handler;
+      card.addEventListener('click', handler);
+      
+      document.addEventListener('keydown', function escClose(e) {
+        if (e.key === 'Escape') {
+          const active = document.querySelector('.founder-card.active-flip');
+          if (active) {
+            active.classList.remove('active-flip');
+            teamSection.classList.remove('flip-active');
+            active.style.position = '';
+            active.style.top = '';
+            active.style.left = '';
+            active.style.transform = '';
+            active.style.width = '';
+            active.style.maxWidth = '';
+            active.style.zIndex = '';
+            active.style.boxShadow = '';
+            active.style.background = '';
+            active.querySelector('.close-flip').style.display = 'none';
+          }
+        }
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      const active = document.querySelector('.founder-card.active-flip');
+      if (active && !active.contains(e.target) && !e.target.closest('.founder-card') && !e.target.closest('.close-flip')) {
+        active.classList.remove('active-flip');
+        teamSection.classList.remove('flip-active');
+        active.style.position = '';
+        active.style.top = '';
+        active.style.left = '';
+        active.style.transform = '';
+        active.style.width = '';
+        active.style.maxWidth = '';
+        active.style.zIndex = '';
+        active.style.boxShadow = '';
+        active.style.background = '';
+        active.querySelector('.close-flip').style.display = 'none';
+      }
+    });
+
+    // Extra floating particles
+    (function addExtraParticles() {
+      const container = document.getElementById('team');
+      for (let i = 0; i < 16; i++) {
+        const p = document.createElement('div');
+        p.className = 'team-particle';
+        const size = 4 + Math.random() * 12;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.top = (Math.random() * 90 + 5) + '%';
+        p.style.left = (Math.random() * 90 + 5) + '%';
+        p.style.animationDuration = (8 + Math.random() * 18) + 's';
+        p.style.animationDelay = (Math.random() * 10) + 's';
+        p.style.opacity = 0.03 + Math.random() * 0.15;
+        container.appendChild(p);
+      }
+    })();
   </script>
 </body>
 </html>
