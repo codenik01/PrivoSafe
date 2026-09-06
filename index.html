@@ -1,1973 +1,1966 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PrivoSafe · privacy is a right</title>
-  <meta name="description" content="PrivoSafe – we respect and manage your privacy. Privacy is the right of every single user." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg: #ffffff;
-      --surface: #f6f8fa;
-      --surface-2: #eef1f4;
-      --border: #e2e6ec;
-      --text: #0f1117;
-      --text-muted: #5f6b7a;
-      --accent: #1a1f2b;
-      --radius: 16px;
-      --shadow: 0 20px 40px -12px rgba(0,0,0,0.08);
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      padding: 0 24px;
-      opacity: 0;
-      animation: fadeIn 0.8s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 28px 0 64px;
-    }
-
-    /* ===== HEADER ===== */
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 0 28px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 48px;
-      flex-wrap: wrap;
-      gap: 16px;
-      animation: slideDown 0.6s ease;
-    }
-
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      letter-spacing: -0.02em;
-    }
-
-    .brand-logo {
-      height: 68px;
-      width: auto;
-      display: block;
-      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .brand:hover .brand-logo {
-      transform: rotate(360deg) scale(1.1);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--text-muted);
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--text);
-      transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-      transform: translateY(-2px);
-    }
-
-    .nav-cta {
-      background: var(--text);
-      color: var(--bg);
-      padding: 8px 24px;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .nav-cta:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 12px 30px -8px rgba(0,0,0,0.25);
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-      background: none;
-      border: none;
-    }
-
-    .hamburger span {
-      width: 28px;
-      height: 2.5px;
-      background: var(--text);
-      border-radius: 4px;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-      transform: scaleX(0);
-    }
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
-
-    .mobile-nav {
-      display: none;
-      flex-direction: column;
-      gap: 16px;
-      padding: 20px 0 12px;
-      border-top: 1px solid var(--border);
-      margin-top: 8px;
-      animation: slideDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .mobile-nav.open {
-      display: flex;
-    }
-
-    .mobile-nav a {
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 500;
-      font-size: 1.05rem;
-      padding: 6px 0;
-      border-bottom: 1px solid var(--border);
-      transition: all 0.3s ease;
-    }
-
-    .mobile-nav a:hover {
-      color: var(--text-muted);
-      transform: translateX(8px);
-    }
-
-    /* ===== HERO ===== */
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center;
-      margin-bottom: 80px;
-      animation: fadeUp 0.8s ease 0.2s both;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-content .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      border: 1px solid var(--border);
-      background: var(--surface);
-      padding: 6px 14px;
-      border-radius: 60px;
-      margin-bottom: 20px;
-      transition: all 0.4s ease;
-    }
-
-    .hero-content .badge:hover {
-      transform: scale(1.05);
-      border-color: var(--text);
-    }
-
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--text);
-      border-radius: 50%;
-      display: inline-block;
-      animation: pulse-dot 2.4s infinite;
-    }
-
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.2; transform: scale(0.5); }
-    }
-
-    .hero h1 {
-      font-size: 3.4rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      margin-bottom: 16px;
-      animation: textGlow 3s ease-in-out infinite;
-    }
-
-    @keyframes textGlow {
-      0%, 100% { text-shadow: 0 0 0px rgba(0,0,0,0); }
-      50% { text-shadow: 0 0 30px rgba(0,0,0,0.03); }
-    }
-
-    .hero h1 .highlight {
-      background: linear-gradient(120deg, var(--text), #4a4f6b, var(--text));
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: gradientShift 4s ease-in-out infinite;
-    }
-
-    @keyframes gradientShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    .hero .big-quote {
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: var(--text);
-      margin: 20px 0 12px;
-      padding: 16px 0 12px;
-      border-top: 2px solid var(--border);
-      border-bottom: 2px solid var(--border);
-      max-width: 520px;
-      transition: all 0.4s ease;
-    }
-
-    .hero .big-quote:hover {
-      border-color: var(--text);
-    }
-
-    .hero .big-quote em {
-      font-style: italic;
-      color: var(--text-muted);
-      font-weight: 400;
-      transition: all 0.3s ease;
-    }
-
-    .hero .big-quote:hover em {
-      color: var(--text);
-    }
-
-    .hero p {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      max-width: 480px;
-      margin-bottom: 28px;
-      transition: all 0.4s ease;
-    }
-
-    .hero p:hover {
-      color: var(--text);
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 12px 28px;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      border: 1px solid transparent;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--text);
-      color: var(--bg);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 16px 40px -12px rgba(0,0,0,0.3);
-    }
-
-    .btn-outline {
-      border-color: var(--border);
-      color: var(--text);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--text);
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 16px 40px -12px rgba(0,0,0,0.1);
-    }
-
-    /* ===== ORBIT SCENE ===== */
-    .hero-visual {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .orbit-scene {
-      width: 100%;
-      max-width: 420px;
-      aspect-ratio: 1/1;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .core-sphere {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 25%, var(--text), #2a2f3a);
-      box-shadow: 0 0 60px rgba(0,0,0,0.06), 0 0 100px rgba(74, 79, 107, 0.04);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 2;
-      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-      animation: float 4s ease-in-out infinite;
-    }
-
-    .core-sphere:hover {
-      transform: scale(1.1) rotate(10deg);
-      box-shadow: 0 0 80px rgba(0,0,0,0.12);
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      33% { transform: translateY(-12px) rotate(2deg); }
-      66% { transform: translateY(6px) rotate(-2deg); }
-    }
-
-    .core-sphere::after {
-      content: '';
-      position: absolute;
-      inset: 8px;
-      border-radius: 50%;
-      background: var(--bg);
-      opacity: 0.1;
-      filter: blur(2px);
-      animation: pulseRing 3s ease-in-out infinite;
-    }
-
-    @keyframes pulseRing {
-      0%, 100% { transform: scale(1); opacity: 0.1; }
-      50% { transform: scale(1.3); opacity: 0.2; }
-    }
-
-    .orbit-ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      opacity: 0.5;
-      transition: all 0.6s ease;
-    }
-
-    .orbit-scene:hover .orbit-ring {
-      opacity: 0.8;
-    }
-
-    .ring-1 {
-      width: 250px;
-      height: 250px;
-      animation: spin-fast 12s linear infinite;
-    }
-
-    .ring-2 {
-      width: 330px;
-      height: 330px;
-      border-color: rgba(74, 79, 107, 0.12);
-      animation: spin-reverse-fast 16s linear infinite;
-    }
-
-    .ring-3 {
-      width: 390px;
-      height: 390px;
-      border-color: rgba(26, 31, 43, 0.06);
-      border-style: dashed;
-      animation: spin-fast 20s linear infinite;
-    }
-
-    @keyframes spin-fast {
-      to { transform: rotate(360deg); }
-    }
-    @keyframes spin-reverse-fast {
-      to { transform: rotate(-360deg); }
-    }
-
-    .node {
-      position: absolute;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.6rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      box-shadow: 0 0 16px rgba(0,0,0,0.03);
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      z-index: 3;
-      cursor: default;
-    }
-
-    .node:hover {
-      transform: scale(1.5) rotate(360deg);
-      border-color: var(--text);
-      color: var(--text);
-      box-shadow: 0 0 30px rgba(0,0,0,0.1);
-      background: var(--bg);
-    }
-
-    .node-1 { top: 14%; left: 14%; animation: nodeFloat1 4s ease-in-out infinite; }
-    .node-2 { top: 4%; right: 18%; animation: nodeFloat2 4.5s ease-in-out infinite; }
-    .node-3 { bottom: 14%; right: 8%; animation: nodeFloat3 5s ease-in-out infinite; }
-    .node-4 { bottom: 26%; left: 2%; animation: nodeFloat4 4.2s ease-in-out infinite; }
-    .node-5 { top: 42%; right: 0%; animation: nodeFloat5 4.8s ease-in-out infinite; }
-    .node-6 { bottom: 4%; left: 42%; animation: nodeFloat6 4.3s ease-in-out infinite; }
-
-    @keyframes nodeFloat1 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-6px, -10px); } }
-    @keyframes nodeFloat2 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(8px, -8px); } }
-    @keyframes nodeFloat3 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-10px, 6px); } }
-    @keyframes nodeFloat4 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(12px, 8px); } }
-    @keyframes nodeFloat5 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-8px, 12px); } }
-    @keyframes nodeFloat6 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(6px, -12px); } }
-
-    .node .label {
-      position: absolute;
-      top: calc(100% + 8px);
-      font-size: 0.6rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      white-space: nowrap;
-      background: var(--bg);
-      padding: 2px 10px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      opacity: 0;
-      transition: all 0.3s ease;
-      pointer-events: none;
-    }
-
-    .node:hover .label {
-      opacity: 1;
-      transform: translateY(-4px);
-    }
-
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: var(--text);
-      border-radius: 50%;
-      opacity: 0.1;
-      filter: blur(0.5px);
-      animation: float-particle 10s infinite alternate ease-in-out;
-    }
-
-    .particle-1 { top: 10%; left: 72%; animation-duration: 8s; }
-    .particle-2 { bottom: 22%; right: 68%; animation-duration: 6s; animation-delay: 2s; }
-    .particle-3 { top: 60%; left: 8%; animation-duration: 9s; animation-delay: 3s; }
-    .particle-4 { bottom: 8%; left: 52%; animation-duration: 7s; animation-delay: 1s; }
-
-    @keyframes float-particle {
-      0% { transform: translate(0, 0) scale(1); opacity: 0.06; }
-      100% { transform: translate(30px, -40px) scale(2.5); opacity: 0.3; }
-    }
-
-    .pulse-ring {
-      position: absolute;
-      width: 170px;
-      height: 170px;
-      border-radius: 50%;
-      border: 1px solid rgba(0,0,0,0.05);
-      animation: pulse-ring 2.5s ease-out infinite;
-      z-index: 1;
-    }
-
-    .pulse-ring:nth-child(2) {
-      animation-delay: 1.5s;
-      width: 200px;
-      height: 200px;
-    }
-
-    @keyframes pulse-ring {
-      0% { transform: scale(0.8); opacity: 0.6; }
-      100% { transform: scale(1.6); opacity: 0; }
-    }
-
-    /* ===== PRODUCT GRID ===== */
-    .product-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr 1fr;
-      gap: 16px;
-      margin: 72px 0 80px;
-    }
-
-    .product-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 26px 24px 24px;
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      display: flex;
-      flex-direction: column;
-      min-height: 260px;
-      animation: fadeUp 0.6s ease both;
-      animation-delay: calc(0.1s * var(--i, 1));
-      cursor: default;
-    }
-
-    .product-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      border-color: var(--text);
-      box-shadow: var(--shadow);
-    }
-
-    .card-live {
-      background: var(--surface-2);
-      border-color: var(--text);
-      justify-content: space-between;
-    }
-
-    .card-live:hover {
-      border-color: var(--text);
-      box-shadow: 0 20px 60px -16px rgba(0,0,0,0.2);
-    }
-
-    .live-tag {
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      background: var(--text);
-      color: var(--bg);
-      padding: 4px 14px;
-      border-radius: 40px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      width: fit-content;
-      transition: all 0.3s ease;
-    }
-
-    .card-live:hover .live-tag {
-      transform: scale(1.05);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    }
-
-    .live-tag .pulse {
-      width: 6px;
-      height: 6px;
-      background: var(--bg);
-      border-radius: 50%;
-      animation: pulse 1.4s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.2; transform: scale(0.5); }
-    }
-
-    .product-icon {
-      font-size: 2rem;
-      margin: 18px 0 12px;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .product-card:hover .product-icon {
-      transform: scale(1.2) rotate(-10deg);
-    }
-
-    .product-card h3 {
-      font-size: 1.4rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-bottom: 6px;
-      transition: all 0.3s ease;
-    }
-
-    .product-card:hover h3 {
-      transform: translateX(4px);
-    }
-
-    .product-card p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 20px;
-      flex: 1;
-      transition: all 0.3s ease;
-    }
-
-    .product-card:hover p {
-      color: var(--text);
-    }
-
-    .product-card .btn-sm {
-      align-self: flex-start;
-      padding: 8px 22px;
-      font-size: 0.85rem;
-      background: var(--text);
-      color: var(--bg);
-      border-radius: 40px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .product-card .btn-sm:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 8px 24px -8px rgba(0,0,0,0.25);
-    }
-
-    .card-coming {
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .card-coming .coming-icon {
-      font-size: 2.4rem;
-      margin-bottom: 12px;
-      opacity: 0.3;
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .card-coming:hover .coming-icon {
-      opacity: 0.8;
-      transform: rotate(360deg) scale(1.2);
-    }
-
-    .card-coming h4 {
-      font-weight: 500;
-      color: var(--text-muted);
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-
-    .card-coming:hover h4 {
-      color: var(--text);
-    }
-
-    .card-coming p {
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      margin-top: 4px;
-    }
-
-    /* ===== PHILOSOPHY ===== */
-    .philosophy {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 60px 48px;
-      margin: 80px 0;
-      text-align: center;
-      animation: fadeUp 0.6s ease both;
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .philosophy:hover {
-      transform: translateY(-4px);
-      border-color: var(--text);
-      box-shadow: var(--shadow);
-    }
-
-    .philosophy h2 {
-      font-size: 2.4rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 16px;
-      transition: all 0.3s ease;
-    }
-
-    .philosophy:hover h2 {
-      transform: scale(1.02);
-    }
-
-    .philosophy .phil-quote {
-      font-size: 1.5rem;
-      font-weight: 400;
-      color: var(--text);
-      max-width: 720px;
-      margin: 0 auto 16px;
-      font-style: italic;
-      line-height: 1.4;
-      transition: all 0.4s ease;
-    }
-
-    .philosophy:hover .phil-quote {
-      transform: scale(1.02);
-    }
-
-    .philosophy .phil-quote strong {
-      font-weight: 700;
-      font-style: normal;
-    }
-
-    .philosophy p {
-      color: var(--text-muted);
-      max-width: 600px;
-      margin: 0 auto;
-      font-size: 1.05rem;
-      transition: all 0.3s ease;
-    }
-
-    .philosophy:hover p {
-      color: var(--text);
-    }
-
-    .philosophy .divider-line {
-      width: 60px;
-      height: 2px;
-      background: var(--text);
-      margin: 24px auto;
-      opacity: 0.2;
-      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .philosophy:hover .divider-line {
-      width: 120px;
-      opacity: 0.6;
-    }
-
-    /* ===== SECTIONS ===== */
-    section {
-      margin: 80px 0;
-      animation: fadeUp 0.6s ease both;
-    }
-
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-      transition: all 0.3s ease;
-    }
-
-    .section-label:hover {
-      color: var(--text);
-      transform: translateX(4px);
-    }
-
-    .section-label::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: var(--text);
-      border-radius: 50%;
-      display: inline-block;
-      transition: all 0.3s ease;
-    }
-
-    .section-label:hover::before {
-      transform: scale(1.5);
-    }
-
-    .section-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 16px;
-      transition: all 0.3s ease;
-    }
-
-    .section-title:hover {
-      transform: translateX(4px);
-    }
-
-    .section-sub {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 600px;
-      transition: all 0.3s ease;
-    }
-
-    .section-sub:hover {
-      color: var(--text);
-    }
-
-    /* ===== CORE PRINCIPLES ===== */
-    .grid-2col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-      margin-top: 32px;
-    }
-
-    .core-principles {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .core-principles:hover {
-      border-color: var(--text);
-      box-shadow: var(--shadow);
-    }
-
-    .principle {
-      padding: 22px 24px;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      cursor: default;
-    }
-
-    .principle:hover {
-      background: var(--surface-2);
-      transform: scale(1.02);
-      box-shadow: inset 0 0 0 1px var(--text);
-      z-index: 2;
-    }
-
-    .principle:nth-child(odd) {
-      border-right: 1px solid var(--border);
-    }
-
-    .principle:nth-last-child(-n+2) {
-      border-bottom: 0;
-    }
-
-    .principle .num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-
-    .principle:hover .num {
-      color: var(--text);
-      transform: scale(1.2);
-      display: inline-block;
-    }
-
-    .principle h4 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 6px 0 4px;
-      transition: all 0.3s ease;
-    }
-
-    .principle:hover h4 {
-      transform: translateX(4px);
-    }
-
-    .principle p {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      transition: all 0.3s ease;
-    }
-
-    .principle:hover p {
-      color: var(--text);
-    }
-
-    .core-visual-mini {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 36px;
-      text-align: center;
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .core-visual-mini:hover {
-      transform: translateY(-6px) scale(1.02);
-      border-color: var(--text);
-      box-shadow: var(--shadow);
-    }
-
-    .core-visual-mini .glyph-box {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: conic-gradient(from 0deg, var(--text), #4a4f6b, var(--text));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      position: relative;
-      animation: spin-fast 8s linear infinite;
-      transition: all 0.6s ease;
-    }
-
-    .core-visual-mini:hover .glyph-box {
-      animation-duration: 3s;
-      transform: scale(1.1);
-    }
-
-    .core-visual-mini .glyph-box::after {
-      content: '';
-      position: absolute;
-      inset: 6px;
-      border-radius: 50%;
-      background: var(--bg);
-    }
-
-    .core-visual-mini .glyph-box .mini-logo {
-      height: 40px;
-      width: auto;
-      position: relative;
-      z-index: 2;
-      filter: brightness(0) invert(1);
-    }
-
-    .core-visual-mini p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      max-width: 260px;
-      margin: 0 auto;
-      transition: all 0.3s ease;
-    }
-
-    .core-visual-mini:hover p {
-      color: var(--text);
-    }
-
-    /* ===== TEAM SECTION ===== */
-    #team {
-      position: relative;
-      overflow: visible;
-    }
-
-    #team.flip-active .founder-grid .founder-card:not(.active-flip) {
-      opacity: 0;
-      transform: scale(0.3) rotateY(180deg);
-      pointer-events: none;
-      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    #team.flip-active .section-label,
-    #team.flip-active .section-title,
-    #team.flip-active .section-sub,
-    #team.flip-active .team-extra {
-      filter: blur(12px);
-      opacity: 0.2;
-      pointer-events: none;
-      user-select: none;
-      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    #team.flip-active .founder-card.active-flip {
-      filter: blur(0px) !important;
-      opacity: 1 !important;
-      pointer-events: auto;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(1.2);
-      width: 420px;
-      max-width: 92vw;
-      z-index: 99999;
-      box-shadow: 0 60px 120px rgba(0,0,0,0.3);
-      border-color: var(--text);
-      background: var(--bg);
-      animation: flipInSuper 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-      transition: all 0.3s ease;
-    }
-
-    @keyframes flipInSuper {
-      0% {
-        transform: translate(-50%, -50%) scale(0.05) rotateY(1080deg);
+  <head>
+    <!-- ═══════════════════════════════════════════ BASIC SEO ═══════════════════════════════════════════ -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PrivoSafe | Privacy-First Infrastructure</title>
+    <meta
+      name="description"
+      content="PrivoSafe is a privacy-first infrastructure company founded by Nikhil Chavan. It builds a shared Privacy Core for identity, end-to-end encryption, and key management across its products."
+    />
+    <meta name="author" content="Nikhil Chavan" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta
+      name="googlebot"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="theme-color" content="#0c0d10" />
+    <!-- ═══════════════════════════════════════════ CANONICAL ═══════════════════════════════════════════ -->
+    <link rel="canonical" href="https://www.privosafe.com/" />
+    <!-- ═══════════════════════════════════════════ FAVICON ═══════════════════════════════════════════ -->
+    <link rel="icon" type="image/png" href="/privosafe.png" />
+    <link rel="apple-touch-icon" href="/privosafe.png" />
+    <!-- ═══════════════════════════════════════════ IDENTITY / RELATIONSHIPS ═══════════════════════════════════════════ -->
+    <link rel="me" href="https://www.nikhilchavan.in/" />
+    <link rel="me" href="https://www.linkedin.com/in/codenik/" />
+    <!-- ═══════════════════════════════════════════ OPEN GRAPH ═══════════════════════════════════════════ -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PrivoSafe" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://www.privosafe.com/" />
+    <meta
+      property="og:title"
+      content="PrivoSafe | Privacy-First Infrastructure"
+    />
+    <meta
+      property="og:description"
+      content="PrivoSafe builds privacy-first infrastructure and a shared Privacy Core for identity, end-to-end encryption, and key management."
+    />
+    <meta
+      property="og:image"
+      content="https://www.privosafe.com/privosafe.png"
+    />
+    <meta
+      property="og:image:alt"
+      content="PrivoSafe — Privacy-first infrastructure"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <!-- ═══════════════════════════════════════════ X / TWITTER ═══════════════════════════════════════════ -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="PrivoSafe | Privacy-First Infrastructure"
+    />
+    <meta
+      name="twitter:description"
+      content="PrivoSafe builds privacy-first infrastructure and a shared Privacy Core for identity, end-to-end encryption, and key management."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.privosafe.com/privosafe.png"
+    />
+    <!-- ═══════════════════════════════════════════ JSON-LD Organization + Founder + Website + Product ═══════════════════════════════════════════ -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://www.privosafe.com/#organization",
+            "name": "PrivoSafe",
+            "url": "https://www.privosafe.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "@id": "https://www.privosafe.com/#logo",
+              "url": "https://www.privosafe.com/privosafe.png",
+              "contentUrl": "https://www.privosafe.com/privosafe.png",
+              "width": 1200,
+              "height": 1200
+            },
+            "image": { "@id": "https://www.privosafe.com/#logo" },
+            "slogan": "Privacy is a right, not a feature.",
+            "description": "PrivoSafe is a privacy-first infrastructure company that builds a shared Privacy Core for identity, end-to-end encryption, and key management across its products.",
+            "foundingDate": "2025",
+            "founder": { "@id": "https://www.privosafe.com/#nikhil-chavan" },
+            "sameAs": [
+              "https://www.nikhilchavan.in/",
+              "https://www.linkedin.com/in/codenik/",
+              "https://play.google.com/store/apps/details?id=com.clozzy.app",
+              "https://www.instagram.com/clozzyapp/",
+              "https://www.producthunt.com/products/clozzy/"
+            ]
+          },
+          {
+            "@type": "Person",
+            "@id": "https://www.privosafe.com/#nikhil-chavan",
+            "name": "Nikhil Chavan",
+            "url": "https://www.nikhilchavan.in/",
+            "jobTitle": "Founder & CEO",
+            "worksFor": { "@id": "https://www.privosafe.com/#organization" },
+            "sameAs": [
+              "https://www.nikhilchavan.in/",
+              "https://www.linkedin.com/in/codenik/",
+              "https://github.com/codenik01",
+              "https://medium.com/@nikhilchavanresearch"
+            ],
+            "description": "Nikhil Chavan is the Founder & CEO of PrivoSafe and a cybersecurity researcher."
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.privosafe.com/#website",
+            "url": "https://www.privosafe.com/",
+            "name": "PrivoSafe",
+            "description": "The official website of PrivoSafe, a privacy-first infrastructure company.",
+            "publisher": { "@id": "https://www.privosafe.com/#organization" }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.privosafe.com/#webpage",
+            "url": "https://www.privosafe.com/",
+            "name": "PrivoSafe | Privacy-First Infrastructure",
+            "isPartOf": { "@id": "https://www.privosafe.com/#website" },
+            "about": { "@id": "https://www.privosafe.com/#organization" },
+            "author": { "@id": "https://www.privosafe.com/#nikhil-chavan" },
+            "publisher": { "@id": "https://www.privosafe.com/#organization" }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://www.privosafe.com/#clozzy",
+            "name": "Clozzy",
+            "applicationCategory": "SocialNetworkingApplication",
+            "operatingSystem": "Android",
+            "url": "https://play.google.com/store/apps/details?id=com.clozzy.app",
+            "description": "Clozzy is a private relationship app for couples built on PrivoSafe's Privacy Core.",
+            "author": { "@id": "https://www.privosafe.com/#organization" },
+            "publisher": { "@id": "https://www.privosafe.com/#organization" },
+            "sameAs": [
+              "https://play.google.com/store/apps/details?id=com.clozzy.app",
+              "https://www.instagram.com/clozzyapp/",
+              "https://www.producthunt.com/products/clozzy/"
+            ]
+          }
+        ]
+      }
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #eef0f3;
+        --paper: #f7f8fa;
+        --ink: #0c0d10;
+        --ink-soft: #4b4f58;
+        --ink-faint: #8a8e97;
+        --line: rgba(12, 13, 16, 0.09);
+        --line-strong: rgba(12, 13, 16, 0.18);
+        --glass: rgba(255, 255, 255, 0.55);
+        --glass-strong: rgba(255, 255, 255, 0.72);
+        --glass-border: rgba(255, 255, 255, 0.9);
+        --shadow-soft:
+          0 1px 1px rgba(12, 13, 16, 0.02),
+          0 8px 24px -10px rgba(12, 13, 16, 0.1);
+        --shadow-lift: 0 20px 48px -16px rgba(12, 13, 16, 0.22);
+        --radius: 22px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Manrope", system-ui, sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(
+            1100px 500px at 12% -8%,
+            rgba(255, 255, 255, 0.9),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 500px at 90% 8%,
+            rgba(255, 255, 255, 0.7),
+            transparent 55%
+          ),
+          linear-gradient(180deg, #eef0f3 0%, #e7e9ed 100%);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        position: relative;
+      }
+      ::selection {
+        background: var(--ink);
+        color: #fff;
+      }
+      .mono {
+        font-family: "IBM Plex Mono", monospace;
+      }
+
+      /* floating ambient orbs behind everything */
+      .ambient {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.55;
+      }
+      .orb-1 {
+        width: 520px;
+        height: 520px;
+        background: radial-gradient(circle, #ffffff, transparent 70%);
+        top: -180px;
+        left: -120px;
+        animation: drift1 22s ease-in-out infinite;
+      }
+      .orb-2 {
+        width: 460px;
+        height: 460px;
+        background: radial-gradient(circle, #dfe3e9, transparent 70%);
+        bottom: -160px;
+        right: -100px;
+        animation: drift2 26s ease-in-out infinite;
+      }
+      .orb-3 {
+        width: 380px;
+        height: 380px;
+        background: radial-gradient(circle, #ffffff, transparent 70%);
+        top: 40%;
+        left: 50%;
+        animation: drift3 30s ease-in-out infinite;
+      }
+      @keyframes drift1 {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(60px, 40px);
+        }
+      }
+      @keyframes drift2 {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(-50px, -30px);
+        }
+      }
+      @keyframes drift3 {
+        0%,
+        100% {
+          transform: translate(-50%, 0);
+        }
+        50% {
+          transform: translate(-50%, -60px);
+        }
+      }
+
+      .wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 32px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .glass {
+        background: var(--glass);
+        backdrop-filter: blur(18px) saturate(160%);
+        -webkit-backdrop-filter: blur(18px) saturate(160%);
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--shadow-soft);
+      }
+
+      /* ============ NAV ============ */
+      header.nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        padding: 18px 24px 0;
+      }
+      .nav-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 14px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 16px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        font-weight: 800;
+        font-size: 1.08rem;
+        letter-spacing: -0.015em;
+      }
+      .brand-mark {
+        width: 32px;
+        height: 32px;
+        flex-shrink: 0;
+        object-fit: contain;
+        border-radius: 8px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 8px;
+        font-size: 0.86rem;
+        color: var(--ink-soft);
+        font-weight: 600;
+      }
+      .nav-links a {
+        color: inherit;
+        text-decoration: none;
+        padding: 9px 16px;
+        border-radius: 10px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: inline-block;
+      }
+      .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.8);
+        color: var(--ink);
+        box-shadow: var(--shadow-soft);
+      }
+      .nav-cta {
+        font-size: 0.85rem;
+        font-weight: 700;
+        background: var(--ink);
+        color: #fff;
+        text-decoration: none;
+        padding: 11px 22px;
+        border-radius: 11px;
+        transition:
+          transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+          box-shadow 0.35s;
+        box-shadow: 0 10px 24px -10px rgba(12, 13, 16, 0.5);
+      }
+      .nav-cta:hover {
+        transform: translateY(-3px) scale(1.04);
+        box-shadow: 0 16px 34px -10px rgba(12, 13, 16, 0.55);
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      .hamburger span {
+        width: 22px;
+        height: 2px;
+        border-radius: 2px;
+        background: var(--ink);
+      }
+      .mobile-nav {
+        display: none;
+        flex-direction: column;
+        margin-top: 10px;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .mobile-nav.open {
+        display: flex;
+      }
+      .mobile-nav a {
+        padding: 16px 24px;
+        border-bottom: 1px solid var(--line);
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      /* ============ HERO ============ */
+      .hero {
+        padding: 90px 0 70px;
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 50px;
+        align-items: center;
+      }
+      .eyebrow {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--ink-soft);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 26px;
+        padding: 8px 16px;
+        border-radius: 100px;
+      }
+      .eyebrow .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #16a34a;
+        box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.15);
+        animation: blink 2.2s infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.35;
+        }
+      }
+      h1.display {
+        font-size: clamp(2.5rem, 4.6vw, 3.9rem);
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        line-height: 1.03;
+        margin-bottom: 24px;
+      }
+      h1.display .soft {
+        color: var(--ink-faint);
+      }
+      .hero-lede {
+        font-size: 1.08rem;
+        color: var(--ink-soft);
+        max-width: 480px;
+        margin-bottom: 34px;
+        font-weight: 500;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 34px;
+      }
+      .btn {
+        font-size: 0.9rem;
+        font-weight: 700;
+        padding: 15px 28px;
+        border-radius: 12px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .btn-fill {
+        background: var(--ink);
+        color: #fff;
+        box-shadow: 0 12px 26px -10px rgba(12, 13, 16, 0.45);
+      }
+      .btn-fill:hover {
+        transform: translateY(-4px) scale(1.03);
+        box-shadow: 0 20px 38px -12px rgba(12, 13, 16, 0.5);
+      }
+      .btn-glass {
+        color: var(--ink);
+      }
+      .btn-glass:hover {
+        transform: translateY(-4px) scale(1.03);
+      }
+      .hero-trust {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .trust-pill {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 100px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--ink-soft);
+      }
+      .trust-pill i {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--ink);
+      }
+
+      /* Hero glass card visual */
+      .hero-visual {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 1200px;
+      }
+      .glass-card {
+        width: 100%;
+        max-width: 400px;
+        aspect-ratio: 1/1.02;
+        border-radius: 32px;
+        position: relative;
+        padding: 34px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transform: rotateY(-8deg) rotateX(4deg);
+        transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
+        animation: cardfloat 7s ease-in-out infinite;
+      }
+      .hero-visual:hover .glass-card {
+        transform: rotateY(0deg) rotateX(0deg) scale(1.02);
+      }
+      @keyframes cardfloat {
+        0%,
+        100% {
+          transform: rotateY(-8deg) rotateX(4deg) translateY(0);
+        }
+        50% {
+          transform: rotateY(-8deg) rotateX(4deg) translateY(-14px);
+        }
+      }
+      .glass-card .card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .card-shield {
+        width: 54px;
+        height: 54px;
+        border-radius: 16px;
+        background: linear-gradient(145deg, #1a1c22, #0c0d10);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.35),
+          0 10px 20px -8px rgba(0, 0, 0, 0.4);
+      }
+      .lock-status {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--ink-soft);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 100px;
+        background: rgba(255, 255, 255, 0.7);
+      }
+      .lock-status .g {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #16a34a;
+      }
+      .card-mid {
+        text-align: left;
+      }
+      .card-mid .big-num {
+        font-size: 2.6rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1;
+      }
+      .card-mid .cap {
+        font-size: 0.78rem;
+        color: var(--ink-soft);
+        font-weight: 600;
+        margin-top: 6px;
+      }
+      .bars {
+        display: flex;
+        gap: 6px;
+        align-items: flex-end;
+        height: 46px;
+        margin: 20px 0;
+      }
+      .bars i {
+        flex: 1;
+        border-radius: 5px;
+        background: rgba(12, 13, 16, 0.12);
+      }
+      .bars i:nth-child(1) {
+        height: 40%;
+      }
+      .bars i:nth-child(2) {
+        height: 70%;
+        background: rgba(12, 13, 16, 0.85);
+      }
+      .bars i:nth-child(3) {
+        height: 55%;
+      }
+      .bars i:nth-child(4) {
+        height: 90%;
+        background: rgba(12, 13, 16, 0.85);
+      }
+      .bars i:nth-child(5) {
+        height: 35%;
+      }
+      .bars i:nth-child(6) {
+        height: 65%;
+      }
+      .card-rows {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .card-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--ink-soft);
+        padding: 10px 14px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.55);
+      }
+      .card-row .ok {
+        color: #16a34a;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.7rem;
+      }
+      .float-chip {
+        position: absolute;
+        padding: 10px 16px;
+        border-radius: 100px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        animation: chipfloat 5s ease-in-out infinite;
+      }
+      .chip-1 {
+        top: 6%;
+        right: -6%;
+        animation-delay: 0s;
+      }
+      .chip-2 {
+        bottom: 12%;
+        left: -10%;
+        animation-delay: 1.5s;
+      }
+      @keyframes chipfloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+
+      /* ============ STATS BAR ============ */
+      .stats-bar {
+        border-radius: 20px;
+        padding: 30px 40px;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+      .stat {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        min-width: 140px;
+      }
+      .stat-num {
+        font-size: 1.7rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .stat-label {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--ink-soft);
+      }
+      .stat-div {
+        width: 1px;
+        height: 36px;
+        background: var(--line-strong);
+      }
+      @media (max-width: 768px) {
+        .stat-div {
+          display: none;
+        }
+        .stats-bar {
+          padding: 26px;
+        }
+      }
+
+      /* ============ MARQUEE STRIP ============ */
+      .strip {
+        padding: 26px 0;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+      }
+      .strip-inner {
+        border-radius: 14px;
+        padding: 16px 0;
+        overflow: hidden;
+      }
+      .strip-track {
+        display: flex;
+        gap: 50px;
+        white-space: nowrap;
+        animation: scroll 24s linear infinite;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--ink-soft);
+      }
+      .strip-track span {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .strip-track span::before {
+        content: "●";
+        font-size: 0.5rem;
+        color: var(--ink-faint);
+      }
+      @keyframes scroll {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ============ SECTIONS ============ */
+      section {
+        padding: 100px 0;
+        position: relative;
+        z-index: 1;
+      }
+      .sec-num {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--ink-faint);
+        margin-bottom: 16px;
+        display: inline-block;
+        padding: 6px 14px;
+        border-radius: 100px;
+      }
+      .sec-title {
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        max-width: 620px;
+        margin-bottom: 16px;
+      }
+      .sec-sub {
+        color: var(--ink-soft);
+        max-width: 520px;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      /* ============ PHILOSOPHY ============ */
+      .philosophy {
+        border-radius: 36px;
+        padding: 80px 60px;
+        margin: 0 0 40px;
+      }
+      .phil-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 60px;
+        align-items: center;
+      }
+      .phil-quote {
+        font-size: clamp(1.5rem, 2.4vw, 2.05rem);
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        line-height: 1.32;
+      }
+      .phil-side p {
+        color: var(--ink-soft);
+        font-size: 0.98rem;
+        margin-bottom: 18px;
+        max-width: 440px;
+        font-weight: 500;
+      }
+      .shield-mini {
+        width: 64px;
+        height: 64px;
+        border-radius: 20px;
+        background: linear-gradient(145deg, #1a1c22, #0c0d10);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 26px;
+        box-shadow: 0 14px 28px -12px rgba(0, 0, 0, 0.45);
+      }
+
+      /* ============ PRODUCTS ============ */
+      .product-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 20px;
+        margin-top: 48px;
+      }
+      .p-card {
+        border-radius: 26px;
+        padding: 32px;
+        min-height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition:
+          transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1),
+          box-shadow 0.45s;
+      }
+      .p-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lift);
+      }
+      .p-live .tag {
+        font-size: 0.72rem;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 14px;
+        border-radius: 100px;
+        background: rgba(22, 163, 74, 0.12);
+        color: #15803d;
+        width: fit-content;
+      }
+      .p-live .tag .dot {
+        width: 6px;
+        height: 6px;
+        background: #16a34a;
+        border-radius: 50%;
+        animation: blink 1.6s infinite;
+      }
+      .p-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        background: linear-gradient(145deg, #1a1c22, #0c0d10);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0 14px;
+        box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.4);
+      }
+      .p-card h3 {
+        font-size: 1.4rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+      }
+      .p-card p {
+        color: var(--ink-soft);
+        font-size: 0.9rem;
+        font-weight: 500;
+        max-width: 340px;
+        margin-bottom: 22px;
+      }
+      .p-link {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--ink);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        width: fit-content;
+        padding: 10px 18px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.7);
+        transition: all 0.3s;
+      }
+      .p-link:hover {
+        background: var(--ink);
+        color: #fff;
+        transform: translateX(2px);
+      }
+      .p-soon .idx {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--ink-faint);
+      }
+      .p-soon h4 {
+        font-weight: 700;
+        color: var(--ink-soft);
+        margin-top: 14px;
+        font-size: 1.05rem;
+      }
+      .p-soon p {
+        color: var(--ink-faint);
+        font-size: 0.85rem;
+        margin-top: 6px;
+        font-weight: 500;
+      }
+      .idle-dot {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        background: rgba(12, 13, 16, 0.06);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+      }
+
+      /* ============ CORE PRINCIPLES ============ */
+      .core-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 48px;
+      }
+      .principle {
+        border-radius: 22px;
+        padding: 26px 28px;
+        transition:
+          transform 0.35s cubic-bezier(0.2, 0.7, 0.3, 1),
+          box-shadow 0.35s;
+      }
+      .principle:hover {
+        transform: translateY(-5px) scale(1.01);
+        box-shadow: var(--shadow-lift);
+      }
+      .principle .num {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--ink-faint);
+      }
+      .principle h4 {
+        font-size: 1.05rem;
+        font-weight: 800;
+        margin: 10px 0 6px;
+        letter-spacing: -0.015em;
+      }
+      .principle p {
+        color: var(--ink-soft);
+        font-size: 0.87rem;
+        font-weight: 500;
+      }
+
+      /* ============ TEAM ============ */
+      .founder-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 48px;
+      }
+      .founder-card {
+        border-radius: 26px;
+        padding: 32px 28px;
+        text-align: left;
+        transition:
+          transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1),
+          box-shadow 0.4s;
+      }
+      .founder-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lift);
+      }
+      .founder-photo {
+        width: 66px;
+        height: 66px;
+        border-radius: 20px;
+        object-fit: cover;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 20px -8px rgba(12, 13, 16, 0.3);
+      }
+      .founder-card h3 {
+        font-size: 1.12rem;
+        font-weight: 800;
+        margin-bottom: 3px;
+        letter-spacing: -0.015em;
+      }
+      .founder-role {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--ink-faint);
+        display: block;
+        margin-bottom: 18px;
+      }
+      .founder-card ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        margin-bottom: 22px;
+      }
+      .founder-card ul li {
+        font-size: 0.86rem;
+        color: var(--ink-soft);
+        font-weight: 500;
+        padding-left: 16px;
+        position: relative;
+      }
+      .founder-card ul li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        width: 7px;
+        height: 2px;
+        border-radius: 2px;
+        background: var(--ink-faint);
+      }
+      .linkedin-link {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--ink);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 16px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.7);
+        transition: all 0.3s;
+      }
+      .linkedin-link:hover {
+        background: #0a66c2;
+        color: #fff;
+        transform: translateX(2px);
+      }
+
+      /* ============ MODEL ============ */
+      .model-block {
+        border-radius: 32px;
+        margin-top: 48px;
+        padding: 70px 50px;
+        text-align: center;
+      }
+      .big-free {
+        font-size: clamp(2.4rem, 4.6vw, 3.6rem);
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        margin-bottom: 14px;
+      }
+      .model-block p {
+        color: var(--ink-soft);
+        max-width: 520px;
+        margin: 0 auto;
+        font-size: 1.02rem;
+        font-weight: 500;
+      }
+      .model-sub {
+        font-size: 0.84rem;
+        font-weight: 700;
+        color: var(--ink-faint);
+        margin-top: 22px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        display: inline-block;
+      }
+
+      /* ============ CTA ============ */
+      .cta-block {
+        border-radius: 36px;
+        padding: 90px 50px;
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      .cta-block h2 {
+        font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin-bottom: 16px;
+      }
+      .cta-block p {
+        color: var(--ink-soft);
+        max-width: 460px;
+        margin: 0 auto 36px;
+        font-weight: 500;
+      }
+      .cta-actions {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* ============ FOOTER ============ */
+      footer {
+        padding: 20px 0 40px;
+      }
+      .footer-glass {
+        border-radius: 32px;
+        padding: 48px 44px;
+      }
+      .footer-grid {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        font-size: 1.05rem;
+      }
+      .footer-tag {
+        color: var(--ink-soft);
+        font-size: 0.88rem;
+        margin-top: 10px;
+        max-width: 260px;
+        font-weight: 500;
+      }
+      .footer-links {
+        display: flex;
+        gap: 52px;
+        flex-wrap: wrap;
+      }
+      .footer-col h5 {
+        font-size: 0.72rem;
+        font-weight: 800;
+        color: var(--ink-faint);
+        margin-bottom: 14px;
+        letter-spacing: 0.02em;
+      }
+      .footer-col a {
+        display: block;
+        color: var(--ink-soft);
+        text-decoration: none;
+        font-size: 0.88rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        transition: color 0.25s;
+      }
+      .footer-col a:hover {
+        color: var(--ink);
+      }
+      .footer-bottom {
+        border-top: 1px solid var(--line);
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.76rem;
+        font-weight: 600;
+        color: var(--ink-faint);
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      /* ============ responsive ============ */
+      @media (max-width: 980px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .phil-grid {
+          grid-template-columns: 1fr;
+          gap: 34px;
+        }
+        .product-grid {
+          grid-template-columns: 1fr;
+        }
+        .core-wrap {
+          grid-template-columns: 1fr;
+        }
+        .founder-grid {
+          grid-template-columns: 1fr;
+        }
+        .philosophy,
+        .cta-block,
+        .footer-glass {
+          padding: 50px 28px;
+        }
+      }
+      @media (max-width: 768px) {
+        .nav-links,
+        .nav-cta {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .wrap {
+          padding: 0 18px;
+        }
+        header.nav {
+          padding: 14px 12px 0;
+        }
+        section {
+          padding: 70px 0;
+        }
+        .glass-card {
+          max-width: 320px;
+        }
+        .float-chip {
+          display: none;
+        }
+      }
+
+      [data-reveal] {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s cubic-bezier(0.2, 0.6, 0.2, 1);
+      }
+      [data-reveal].in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      [data-tilt] {
+        transition: transform 0.2s ease-out;
+      }
+
+      /* ============ SCROLL-TRIGGERED CARD ENTRANCES ============ */
+      /* Each card starts hidden/displaced with a blur, then snaps into place with a
+     soft magnetic overshoot when it enters the viewport. Direction + a subtle
+     3D rotation vary per card so a row of cards doesn't move in lockstep. */
+      [data-fx] {
+        opacity: 0;
+        filter: blur(10px);
+        will-change: transform, opacity, filter;
+        transition:
+          opacity 0.9s cubic-bezier(0.16, 0.9, 0.28, 1),
+          filter 1s cubic-bezier(0.16, 0.9, 0.28, 1),
+          transform 1.05s cubic-bezier(0.19, 1.24, 0.35, 1);
+      }
+      [data-fx].fx-in {
+        opacity: 1;
+        filter: blur(0px);
+        transform: none !important;
+      }
+
+      [data-fx="left"] {
+        transform: translate3d(-90px, 26px, 0) rotate(-6deg) scale(0.92);
+      }
+      [data-fx="right"] {
+        transform: translate3d(90px, 26px, 0) rotate(6deg) scale(0.92);
+      }
+      [data-fx="bottom"] {
+        transform: translate3d(0, 90px, 0) scale(0.9);
+      }
+      [data-fx="rise"] {
+        transform: translate3d(0, 70px, 0) rotateX(30deg) scale(0.94);
+      }
+      [data-fx="pop"] {
+        transform: translate3d(0, 20px, 0) scale(0.55);
+      }
+      [data-fx="drop"] {
+        transform: translate3d(0, -80px, 0) rotate(-4deg) scale(0.94);
+      }
+
+      /* landing "thud" — a brief compressive squash right as each card locks in,
+     layered on top of the transform transition above via a keyframe pass */
+      [data-fx].fx-in {
+        animation: fxSettle 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s both;
+      }
+      @keyframes fxSettle {
+        0% {
+          transform: scale(1.045);
+        }
+        55% {
+          transform: scale(0.985);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* thin light sweep across the glass the instant a card lands */
+      [data-fx] {
+        position: relative;
+        overflow: hidden;
+      }
+      [data-fx]::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        border-radius: inherit;
+        background: linear-gradient(
+          115deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.65) 48%,
+          transparent 66%
+        );
+        transform: translateX(-140%);
         opacity: 0;
       }
-      30% {
-        transform: translate(-50%, -50%) scale(1.5) rotateY(360deg);
-        opacity: 0.9;
+      [data-fx].fx-in::after {
+        animation: fxSheen 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s both;
       }
-      60% {
-        transform: translate(-50%, -50%) scale(0.95) rotateY(720deg);
-        opacity: 1;
+      @keyframes fxSheen {
+        0% {
+          transform: translateX(-140%);
+          opacity: 0;
+        }
+        12% {
+          opacity: 0.9;
+        }
+        60% {
+          opacity: 0.35;
+        }
+        100% {
+          transform: translateX(140%);
+          opacity: 0;
+        }
       }
-      100% {
-        transform: translate(-50%, -50%) scale(1.2) rotateY(720deg);
-        opacity: 1;
+
+      @media (prefers-reduced-motion: reduce) {
+        [data-reveal],
+        [data-fx] {
+          opacity: 1 !important;
+          transform: none !important;
+          filter: none !important;
+          transition: none !important;
+          animation: none !important;
+        }
+        [data-fx]::after {
+          display: none;
+        }
       }
-    }
-
-    .founder-card .close-flip {
-      display: none;
-      position: absolute;
-      top: 12px;
-      right: 16px;
-      font-size: 1.6rem;
-      line-height: 1;
-      cursor: pointer;
-      color: var(--text-muted);
-      background: var(--surface);
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--border);
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      z-index: 10;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .founder-card .close-flip:hover {
-      background: var(--text);
-      color: var(--bg);
-      border-color: var(--text);
-      transform: rotate(90deg) scale(1.1);
-    }
-
-    .founder-card.active-flip .close-flip {
-      display: flex;
-    }
-
-    #team .team-particle {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: var(--text);
-      border-radius: 50%;
-      opacity: 0.08;
-      pointer-events: none;
-      animation: floatParticle 12s infinite alternate ease-in-out;
-      z-index: 0;
-    }
-
-    @keyframes floatParticle {
-      0% { transform: translate(0, 0) scale(1); opacity: 0.04; }
-      100% { transform: translate(80px, -80px) scale(3); opacity: 0.2; }
-    }
-
-    .founder-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 32px;
-      position: relative;
-      z-index: 1;
-      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .founder-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      text-align: center;
-      cursor: pointer;
-      position: relative;
-      z-index: 1;
-      transform-style: preserve-3d;
-      perspective: 800px;
-    }
-
-    .founder-card:hover {
-      transform: translateY(-10px) scale(1.04) rotateX(2deg);
-      border-color: var(--text);
-      box-shadow: var(--shadow);
-    }
-
-    .founder-card.active-flip {
-      cursor: default;
-    }
-
-    .founder-card.active-flip:hover {
-      transform: translate(-50%, -50%) scale(1.2);
-    }
-
-    .founder-photo {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 16px;
-      display: block;
-      border: 2px solid var(--border);
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      background: var(--surface-2);
-    }
-
-    .founder-card:hover .founder-photo {
-      border-color: var(--text);
-      transform: rotate(360deg) scale(1.05);
-    }
-
-    .founder-card h3 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 2px;
-      transition: all 0.3s ease;
-    }
-
-    .founder-card:hover h3 {
-      transform: translateY(-2px);
-    }
-
-    .founder-role {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-      display: inline-block;
-      transition: all 0.3s ease;
-    }
-
-    .founder-card:hover .founder-role {
-      color: var(--text);
-    }
-
-    .founder-card ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 16px;
-      text-align: left;
-    }
-
-    .founder-card ul li {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .founder-card:hover ul li {
-      color: var(--text);
-      transform: translateX(4px);
-    }
-
-    .founder-card ul li::before {
-      content: '—';
-      color: #4a4f6b;
-      opacity: 0.4;
-      transition: all 0.3s ease;
-    }
-
-    .founder-card:hover ul li::before {
-      opacity: 0.8;
-    }
-
-    .linkedin-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 20px;
-      background: #0a66c2;
-      color: #fff;
-      border-radius: 60px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.85rem;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .linkedin-btn:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 8px 24px rgba(10, 102, 194, 0.4);
-      background: #004182;
-    }
-
-    .linkedin-btn i {
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-
-    .linkedin-btn:hover i {
-      transform: rotate(10deg) scale(1.2);
-    }
-
-    .team-extra {
-      margin-top: 32px;
-      text-align: center;
-      padding: 24px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
-      z-index: 1;
-    }
-
-    .team-extra:hover {
-      transform: translateY(-4px);
-      border-color: var(--text);
-      box-shadow: var(--shadow);
-    }
-
-    .team-extra p {
-      color: var(--text-muted);
-      font-size: 1rem;
-      max-width: 680px;
-      margin: 0 auto;
-      transition: all 0.3s ease;
-    }
-
-    .team-extra:hover p {
-      color: var(--text);
-    }
-
-    .team-extra strong {
-      color: var(--text);
-    }
-
-    /* ===== BUSINESS MODEL ===== */
-    .model-simple {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 48px 40px;
-      text-align: center;
-      margin-top: 28px;
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .model-simple:hover {
-      transform: translateY(-6px) scale(1.02);
-      border-color: var(--text);
-      box-shadow: var(--shadow);
-    }
-
-    .model-simple .big-free {
-      font-size: 3.5rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 8px;
-      transition: all 0.4s ease;
-    }
-
-    .model-simple:hover .big-free {
-      transform: scale(1.05);
-    }
-
-    .model-simple .big-free .highlight {
-      background: linear-gradient(120deg, var(--text), #4a4f6b);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      background-size: 200% 200%;
-      animation: gradientShift 3s ease-in-out infinite;
-    }
-
-    .model-simple p {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      max-width: 580px;
-      margin: 0 auto;
-      transition: all 0.3s ease;
-    }
-
-    .model-simple:hover p {
-      color: var(--text);
-    }
-
-    .model-simple .sub-line {
-      margin-top: 16px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      transition: all 0.3s ease;
-    }
-
-    .model-simple:hover .sub-line {
-      color: var(--text);
-    }
-
-    .model-simple .sub-line strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    /* ===== CTA ===== */
-    .cta-block {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 64px 40px;
-      text-align: center;
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .cta-block:hover {
-      transform: translateY(-4px) scale(1.01);
-      border-color: var(--text);
-      box-shadow: var(--shadow);
-    }
-
-    .cta-block h2 {
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-      transition: all 0.3s ease;
-    }
-
-    .cta-block:hover h2 {
-      transform: scale(1.02);
-    }
-
-    .cta-block p {
-      color: var(--text-muted);
-      max-width: 480px;
-      margin: 0 auto 32px;
-      transition: all 0.3s ease;
-    }
-
-    .cta-block:hover p {
-      color: var(--text);
-    }
-
-    .cta-actions {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 48px 0 32px;
-      margin-top: 60px;
-    }
-
-    .footer-grid {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    .footer-tag {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-top: 8px;
-      max-width: 280px;
-      transition: all 0.3s ease;
-    }
-
-    .footer-tag:hover {
-      color: var(--text);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 48px;
-      flex-wrap: wrap;
-    }
-
-    .footer-col h5 {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .footer-col:hover h5 {
-      color: var(--text);
-    }
-
-    .footer-col a {
-      display: block;
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.9rem;
-      margin-bottom: 10px;
-      opacity: 0.6;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .footer-col a:hover {
-      opacity: 1;
-      transform: translateX(8px);
-    }
-
-    .footer-bottom {
-      border-top: 1px solid var(--border);
-      padding-top: 24px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .footer-bottom .rights {
-      font-weight: 500;
-      color: var(--text);
-      transition: all 0.3s ease;
-    }
-
-    .footer-bottom .rights:hover {
-      transform: scale(1.05);
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 1024px) {
-      .product-grid { grid-template-columns: 1fr 1fr 1fr; }
-      .product-grid .card-live { grid-column: 1 / -1; }
-    }
-
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; gap: 40px; }
-      .grid-2col { grid-template-columns: 1fr; }
-      .founder-grid { grid-template-columns: 1fr 1fr; }
-      .core-principles { grid-template-columns: 1fr; }
-      .principle:nth-child(odd) { border-right: 0; }
-      .principle:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
-      .principle:last-child { border-bottom: 0; }
-      .hero h1 { font-size: 2.6rem; }
-      .philosophy { padding: 40px 24px; }
-      .philosophy .phil-quote { font-size: 1.2rem; }
-      #team.flip-active .founder-card.active-flip {
-        width: 90vw;
-        transform: translate(-50%, -50%) scale(1.05);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links, .nav-cta { display: none; }
-      .hamburger { display: flex; }
-      .hero h1 { font-size: 2.2rem; }
-      .orbit-scene { max-width: 320px; }
-      .core-sphere { width: 110px; height: 110px; }
-      .core-sphere .logo-in-core { height: 40px; }
-      .ring-1 { width: 200px; height: 200px; }
-      .ring-2 { width: 260px; height: 260px; }
-      .ring-3 { width: 300px; height: 300px; }
-      .node { width: 16px; height: 16px; font-size: 0.5rem; }
-      .node .label { display: none; }
-      .product-grid { grid-template-columns: 1fr 1fr; }
-      .product-grid .card-live { grid-column: 1 / -1; }
-      .brand-logo { height: 30px; }
-      #team.flip-active .founder-card.active-flip {
-        width: 92vw;
-        transform: translate(-50%, -50%) scale(1);
-      }
-      @keyframes flipInSuper {
-        0% { transform: translate(-50%, -50%) scale(0.05) rotateY(1080deg); opacity: 0; }
-        30% { transform: translate(-50%, -50%) scale(1.3) rotateY(360deg); opacity: 0.9; }
-        60% { transform: translate(-50%, -50%) scale(0.95) rotateY(720deg); opacity: 1; }
-        100% { transform: translate(-50%, -50%) scale(1) rotateY(720deg); opacity: 1; }
-      }
-    }
-
-    @media (max-width: 640px) {
-      .navbar { flex-direction: row; flex-wrap: wrap; }
-      .founder-grid { grid-template-columns: 1fr; }
-      .footer-grid { flex-direction: column; }
-      .footer-links { gap: 28px; }
-      .cta-block { padding: 40px 24px; }
-      .hero h1 { font-size: 2rem; }
-      .hero .big-quote { font-size: 1.05rem; }
-      .hero-actions { flex-direction: column; align-items: stretch; }
-      .hero-actions .btn { text-align: center; justify-content: center; }
-      .philosophy .phil-quote { font-size: 1rem; }
-      .product-grid { grid-template-columns: 1fr; }
-      .model-simple { padding: 32px 20px; }
-      .model-simple .big-free { font-size: 2.5rem; }
-      .brand-logo { height: 26px; }
-      #team.flip-active .founder-card.active-flip {
-        width: 95vw;
-        transform: translate(-50%, -50%) scale(1);
-        padding: 20px 16px;
-      }
-      @keyframes flipInSuper {
-        0% { transform: translate(-50%, -50%) scale(0.05) rotateY(1080deg); opacity: 0; }
-        30% { transform: translate(-50%, -50%) scale(1.2) rotateY(360deg); opacity: 0.9; }
-        60% { transform: translate(-50%, -50%) scale(0.95) rotateY(720deg); opacity: 1; }
-        100% { transform: translate(-50%, -50%) scale(1) rotateY(720deg); opacity: 1; }
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-
-    <!-- HEADER -->
-    <header class="navbar">
-      <div class="brand">
-        <img src="./assets/logo.png" alt="PrivoSafe logo" class="brand-logo">
-        <span class="brand-name">PrivoSafe</span>
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol id="ps-mark" viewBox="0 0 32 32">
+        <rect width="32" height="32" rx="8" fill="#0c0d10" />
+        <path
+          d="M16 6.5L9 9.2v6.1c0 5.3 3 8.9 7 10.2 4-1.3 7-4.9 7-10.2V9.2l-7-2.7z"
+          fill="none"
+          stroke="#f4f3ef"
+          stroke-width="1.5"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M13 16.2l2 2 4-4.4"
+          fill="none"
+          stroke="#f4f3ef"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+    </svg>
+    <div class="ambient">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <header class="nav">
+      <div class="nav-inner glass">
+        <div class="brand">
+          <img
+            src="./assets/rhino.png"
+            alt="PrivoSafe logo"
+            class="brand-mark"
+            onerror="
+              this.onerror = null;
+              this.src =
+                'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%230c0d10%22/%3E%3Cpath d=%22M16 6.5L9 9.2v6.1c0 5.3 3 8.9 7 10.2 4-1.3 7-4.9 7-10.2V9.2l-7-2.7z%22 fill=%22none%22 stroke=%22%23f4f3ef%22 stroke-width=%221.5%22/%3E%3C/svg%3E';
+            "
+          />PrivoSafe
+        </div>
+        <nav class="nav-links">
+          <a href="#product">Product</a>
+          <a href="#core">Privacy core</a>
+          <a href="#team">Team</a>
+          <a href="#model">Model</a>
+        </nav>
+        <a href="#product" class="nav-cta">Try Clozzy</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <div class="nav-links">
-        <a href="#product">Product</a>
-        <a href="#core">Privacy Core</a>
-        <a href="#team">Team</a>
-        <a href="#model">Model</a>
+      <div class="wrap">
+        <div class="mobile-nav glass" id="mobileNav">
+          <a href="#product">Product</a>
+          <a href="#core">Privacy core</a>
+          <a href="#team">Team</a>
+          <a href="#model">Business model</a>
+        </div>
       </div>
-      <a href="#product" class="nav-cta">Try Clozzy</a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
     </header>
 
-    <!-- MOBILE NAV -->
-    <div class="mobile-nav" id="mobileNav">
-      <a href="#product">Product</a>
-      <a href="#core">Privacy Core</a>
-      <a href="#team">Team</a>
-      <a href="#model">Business Model</a>
-      <a href="#product" style="border-bottom: none; color: var(--bg); background: var(--text); padding: 10px 20px; border-radius: 60px; text-align: center; margin-top: 8px;">Try Clozzy</a>
-    </div>
-
-    <!-- HERO -->
-    <div class="hero">
-      <div class="hero-content">
-        <div class="badge"><span class="badge-dot"></span> Privacy is a right</div>
-        <h1>We respect and manage <span class="highlight">your privacy.</span></h1>
-        <div class="big-quote">
-          “Privacy is not an option, it's a fundamental right. <em>We exist to protect it.</em>”
+    <div class="wrap">
+      <!-- HERO -->
+      <div class="hero">
+        <div class="hero-content" data-reveal>
+          <div class="eyebrow glass">
+            <span class="dot"></span>Privacy is a right
+          </div>
+          <h1 class="display">
+            Privacy-first<br />infrastructure<br />for everyday apps.
+          </h1>
+          <p class="hero-lede">
+            PrivoSafe builds the identity and encryption layer other companies
+            bolt on as an afterthought. One Privacy Core, shared across every
+            product we ship.
+          </p>
+          <div class="hero-actions">
+            <a href="#product" class="btn btn-fill">Try Clozzy</a>
+            <a href="#core" class="btn btn-glass glass">Our philosophy</a>
+          </div>
+          <div class="hero-trust">
+            <div class="trust-pill glass"><i></i>End-to-end encrypted</div>
+            <div class="trust-pill glass"><i></i>Zero data sold</div>
+            <div class="trust-pill glass"><i></i>Free, always</div>
+          </div>
         </div>
-        <p>PrivoSafe is built on one core belief: your data belongs to you. We give you the tools to take back control — simple, secure, and transparent.</p>
-        <div class="hero-actions">
-          <a href="#product" class="btn btn-primary">Try Clozzy →</a>
-          <a href="#core" class="btn btn-outline">Our philosophy</a>
-        </div>
-      </div>
 
-      <div class="hero-visual">
-        <div class="orbit-scene">
-          <div class="pulse-ring"></div>
-          <div class="pulse-ring"></div>
-          <div class="orbit-ring ring-1"></div>
-          <div class="orbit-ring ring-2"></div>
-          <div class="orbit-ring ring-3"></div>
-          <div class="particle particle-1"></div>
-          <div class="particle particle-2"></div>
-          <div class="particle particle-3"></div>
-          <div class="particle particle-4"></div>
-          <div class="node node-1">R<span class="label">Right</span></div>
-          <div class="node node-2">T<span class="label">Trust</span></div>
-          <div class="node node-3">C<span class="label">Control</span></div>
-          <div class="node node-4">S<span class="label">Security</span></div>
-          <div class="node node-5">E<span class="label">Encrypt</span></div>
-          <div class="node node-6">K<span class="label">Keys</span></div>
-          <div class="core-sphere">
-            <span style="color:#fff;font-weight:700;font-size:1.8rem;z-index:3;"><img src="./assets/rhino.png" alt="PrivoSafe logo" class="brand-logo" style="width: 110px; height: 110px; border-radius: 30%; object-fit: cover;" /></span>
+        <div class="hero-visual" data-reveal>
+          <div class="float-chip glass chip-1">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+              <rect
+                x="5"
+                y="11"
+                width="14"
+                height="9"
+                rx="2"
+                stroke="#0c0d10"
+                stroke-width="1.8"
+              />
+              <path
+                d="M8 11V7a4 4 0 018 0v4"
+                stroke="#0c0d10"
+                stroke-width="1.8"
+              />
+            </svg>
+            Encrypted
+          </div>
+          <div class="float-chip glass chip-2">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+              <circle
+                cx="8"
+                cy="15"
+                r="4"
+                stroke="#0c0d10"
+                stroke-width="1.8"
+              />
+              <path
+                d="M11 12l9-9M17 6l3 3M14 9l2 2"
+                stroke="#0c0d10"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+            </svg>
+            Keys: yours
+          </div>
+          <div class="glass-card glass">
+            <div class="card-top">
+              <div class="card-shield">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 2L4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5l-8-3z"
+                    stroke="#f4f3ef"
+                    stroke-width="1.6"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <div class="lock-status"><span class="g"></span>Vault locked</div>
+            </div>
+            <div class="card-mid">
+              <div class="big-num">100%</div>
+              <div class="cap">Data encrypted at rest</div>
+              <div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="card-rows">
+                <div class="card-row">
+                  <span>Identity</span><span class="ok">SECURED</span>
+                </div>
+                <div class="card-row">
+                  <span>Devices trusted</span><span class="ok">3 / 3</span>
+                </div>
+                <div class="card-row">
+                  <span>Data sold</span><span class="ok">0</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- PHILOSOPHY -->
-    <div class="philosophy">
-      <div style="font-size:3.2rem;margin-bottom:8px;opacity:0.6;transition:all 0.5s cubic-bezier(0.34,1.56,0.64,1);">🛡️</div>
-      <h2>Privacy is the right of every single user</h2>
-      <div class="phil-quote">
-        “<strong>Your digital life, your rules.</strong> We don't collect what we don't need, we don't store what we don't protect, and we never sell what's yours.”
-      </div>
-      <div class="divider-line"></div>
-      <p>We believe that privacy is the foundation of freedom. That's why every product we build starts with respect for you — and ends with control in your hands.</p>
-    </div>
-
-    <!-- PRODUCT GRID -->
-    <div id="product" class="product-grid">
-      <div class="product-card card-live" style="--i:1">
-        <div>
-          <span class="live-tag"><span class="pulse"></span> Live now</span>
-          <div class="product-icon">💬</div>
-          <h3>Clozzy</h3>
-          <p>Private communication &amp; relationships — conversations that stay yours. Built for trust, designed for privacy.</p>
+    <!-- STATS BAR -->
+    <div class="wrap">
+      <div class="stats-bar glass" data-fx="bottom">
+        <div class="stat">
+          <span class="stat-num">256-bit</span
+          ><span class="stat-label">Encryption standard</span>
         </div>
-        <a href="./clozzy/clozzy.html" class="btn-sm">Try Clozzy</a>
-      </div>
-
-      <div class="product-card card-coming" style="--i:2">
-        <div class="coming-icon">⏳</div>
-        <h4>Coming soon</h4>
-        <p>More privacy tools on the way.</p>
-        <a href="./vaultrix/vaultrix.html" class="btn-sm">Try Vaultrix</a>
-      </div>
-
-      <div class="product-card card-coming" style="--i:3">
-        <div class="coming-icon">⏳</div>
-        <h4>Coming soon</h4>
-        <p>Expanding the ecosystem.</p>
-      </div>
-
-      <div class="product-card card-coming" style="--i:4">
-        <div class="coming-icon">⏳</div>
-        <h4>Coming soon</h4>
-        <p>Stay tuned for updates.</p>
+        <div class="stat-div"></div>
+        <div class="stat">
+          <span class="stat-num">0</span
+          ><span class="stat-label">User records sold, ever</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat">
+          <span class="stat-num">3</span
+          ><span class="stat-label">Products on one Privacy Core</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat">
+          <span class="stat-num">100%</span
+          ><span class="stat-label">Free, permanently</span>
+        </div>
       </div>
     </div>
 
-    <!-- PRIVACY CORE -->
-    <section id="core">
-      <div class="section-label">Foundation</div>
-      <h2 class="section-title">Privacy Core – shared security language</h2>
-      <p class="section-sub">Every product speaks the same encryption, identity, and trust model. One set of keys, one set of rules — all built for you.</p>
-      <div class="grid-2col">
-        <div class="core-principles">
-          <div class="principle"><span class="num">01</span><h4>Identity</h4><p>One trusted identity across every product.</p></div>
-          <div class="principle"><span class="num">02</span><h4>Encryption</h4><p>End-to-end by default, everywhere.</p></div>
-          <div class="principle"><span class="num">03</span><h4>Key management</h4><p>You hold the keys — not a server.</p></div>
-          <div class="principle"><span class="num">04</span><h4>Device trust</h4><p>Only verified devices stay connected.</p></div>
-          <div class="principle"><span class="num">05</span><h4>Permissions</h4><p>Clear, granular control over what's shared.</p></div>
-          <div class="principle"><span class="num">06</span><h4>Recovery</h4><p>Safe recovery without weakening security.</p></div>
+    <!-- STRIP -->
+    <div class="strip wrap">
+      <div class="strip-inner glass">
+        <div class="strip-track">
+          <span>End-to-end by default</span><span>You hold the keys</span
+          ><span>Zero data sold</span><span>Verified devices only</span
+          ><span>Granular permissions</span><span>Safe recovery</span>
+          <span>End-to-end by default</span><span>You hold the keys</span
+          ><span>Zero data sold</span><span>Verified devices only</span
+          ><span>Granular permissions</span><span>Safe recovery</span>
         </div>
-        <div class="core-visual-mini">
-          <div class="glyph-box">
-            <span style="position:relative;z-index:2;font-weight:700;font-size:1.4rem;color:#fff;">PS</span>
-          </div>
-          <h3 style="font-weight:600; margin-bottom:6px;">Privacy Core</h3>
-          <p>The shared foundation that unifies every PrivoSafe product — and protects your rights.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- TEAM SECTION -->
-    <section id="team">
-      <div class="section-label">Team</div>
-      <h2 class="section-title">Three founders, one mission</h2>
-      <p class="section-sub">We're a small team with a big purpose: to make privacy the standard, not the exception.</p>
-      <div class="founder-grid">
-        <!-- Card 1 -->
-        <div class="founder-card" data-name="nikhil">
-          <span class="close-flip" onclick="closeFlip(event)">✕</span>
-          <img src="/assets/nikhil-chavan.png" alt="Founder" class="founder-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23eef1f4%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 font-family=%22Inter%22 font-size=%2232%22 fill=%22%235f6b7a%22%3EF%3C/text%3E%3C/svg%3E';">
-          <h3>Nikhil Chavan</h3>
-          <span class="founder-role">Founder &amp; CEO</span>
-          <ul>
-            <li>Vision &amp; business</li>
-            <li>Strategy &amp; product</li>
-            <li>Company coordination</li>
-          </ul>
-          <a href="https://www.linkedin.com/in/codenik/" class="linkedin-btn" target="_blank"><i class="fab fa-linkedin"></i> Connect</a>
-        </div>
-        <!-- Card 2 -->
-        <div class="founder-card" data-name="harsh-gautam">
-          <span class="close-flip" onclick="closeFlip(event)">✕</span>
-          <img src="/assets/harsh-gautam.jpeg" alt="Co-founder" class="founder-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23eef1f4%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 font-family=%22Inter%22 font-size=%2232%22 fill=%22%235f6b7a%22%3EC%3C/text%3E%3C/svg%3E';">
-          <h3>Harsh Gautam</h3>
-          <span class="founder-role">Co-founder &amp; CTO</span>
-          <ul>
-            <li>Engineering &amp; architecture</li>
-            <li>Infrastructure &amp; security</li>
-            <li>Technical team</li>
-          </ul>
-          <a href="https://www.linkedin.com/in/harshgautamdev/" class="linkedin-btn" target="_blank"><i class="fab fa-linkedin"></i> Connect</a>
-        </div>
-        <!-- Card 3 -->
-        <div class="founder-card" data-name="harsh-chandra">
-          <span class="close-flip" onclick="closeFlip(event)">✕</span>
-          <img src="/assets/harsh-chandra.jpeg" alt="Co-founder" class="founder-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23eef1f4%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 font-family=%22Inter%22 font-size=%2232%22 fill=%22%235f6b7a%22%3EC%3C/text%3E%3C/svg%3E';">
-          <h3>Harsh Chandra</h3>
-          <span class="founder-role">Co-founder &amp; COO/CMO</span>
-          <ul>
-            <li>Operations &amp; marketing</li>
-            <li>Partnerships &amp; growth</li>
-            <li>Team coordination</li>
-          </ul>
-          <a href="https://www.linkedin.com/in/harsh-chandra-2707a8393/" class="linkedin-btn" target="_blank"><i class="fab fa-linkedin"></i> Connect</a>
-        </div>
-      </div>
-      <div class="team-extra">
-        <p><strong>We are PrivoSafe.</strong> We don't just build products — we build trust. Every line of code, every design decision, every partnership starts with your privacy.</p>
-      </div>
-
-      <!-- Floating particles -->
-      <div class="team-particle" style="top:10%;left:5%;animation-delay:0s;"></div>
-      <div class="team-particle" style="top:20%;right:8%;animation-delay:2s;width:10px;height:10px;"></div>
-      <div class="team-particle" style="bottom:15%;left:12%;animation-delay:4s;"></div>
-      <div class="team-particle" style="bottom:25%;right:5%;animation-delay:1s;width:8px;height:8px;"></div>
-      <div class="team-particle" style="top:50%;left:2%;animation-delay:3s;width:12px;height:12px;"></div>
-      <div class="team-particle" style="top:60%;right:2%;animation-delay:5s;"></div>
-    </section>
-
-    <!-- BUSINESS MODEL -->
-    <section id="model">
-      <div class="section-label">Business model</div>
-      <h2 class="section-title">Privacy shouldn't cost a thing</h2>
-      <p class="section-sub">We believe that privacy is a right, not a premium feature. That's why PrivoSafe is free for everyone.</p>
-      <div class="model-simple">
-        <div class="big-free"><span class="highlight">Free</span> for everyone</div>
-        <p>We are building PrivoSafe to protect your privacy — because it's your right. No hidden fees, no data selling, no fine print.</p>
-        <div class="sub-line"><strong>We work for your privacy.</strong> Not for profit.</div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <div class="cta-block">
-      <h2>Your privacy is our priority</h2>
-      <p>Start with Clozzy today — and join us in building a future where privacy is a right, not a privilege.</p>
-      <div class="cta-actions">
-        <a href="#" class="btn btn-primary">Try Clozzy now</a>
-        <a href="#" class="btn btn-outline">Learn more</a>
       </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-grid">
-        <div>
-          <div class="footer-brand">
-            <span style="font-weight:700;font-size:1.2rem;background:#0f1117;color:white;padding:4px 10px;border-radius:6px;"><img src="../assets/rhino.png" alt="PrivoSafe Logo" style="width: 60px; height: 60px; margin-right: 10px; margin-left: 10px; margin-top: 5px;" /></span>
-            PrivoSafe
+    <div class="wrap">
+      <!-- PHILOSOPHY -->
+      <section data-reveal>
+        <div class="philosophy glass" data-fx="bottom">
+          <div class="phil-grid">
+            <div>
+              <div class="shield-mini">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 2L4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5l-8-3z"
+                    stroke="#f4f3ef"
+                    stroke-width="1.6"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <div class="phil-quote">
+                Your digital life, your rules. We don't collect what we don't
+                need, we don't store what we don't protect, and we never sell
+                what's yours.
+              </div>
+            </div>
+            <div class="phil-side">
+              <p>
+                Privacy is the foundation of freedom. Every product we build
+                starts with respect for you, and ends with control in your
+                hands.
+              </p>
+              <p>
+                That means default encryption, transparent permissions, and a
+                business model that never depends on your data.
+              </p>
+            </div>
           </div>
-          <p class="footer-tag">We respect and manage your privacy. Because privacy is the right of every single user.</p>
         </div>
-        <div class="footer-links">
-          <div class="footer-col">
-            <h5>Product</h5>
-            <a href="#">Clozzy</a>
-            <a href="#">Coming soon</a>
+      </section>
+
+      <!-- PRODUCTS -->
+      <section id="product" data-reveal>
+        <span class="sec-num glass">Product</span>
+        <h2 class="sec-title">One identity. Every product you'll ever need.</h2>
+        <p class="sec-sub">
+          Clozzy is live. The rest of the ecosystem is being built on the same
+          Privacy Core.
+        </p>
+
+        <div class="product-grid">
+          <div class="p-card p-live glass" data-tilt data-fx="left">
+            <div>
+              <span class="tag"><span class="dot"></span>LIVE NOW</span>
+              <div class="p-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M4 5h16v11H8l-4 4V5z"
+                    stroke="#f4f3ef"
+                    stroke-width="1.6"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3>Clozzy</h3>
+              <p>
+                Private communication and relationships — conversations that
+                stay yours. Built for trust, designed for privacy.
+              </p>
+            </div>
+            <a href="./clozzy/clozzy.html" class="p-link">Open Clozzy →</a>
           </div>
-          <div class="footer-col">
-            <h5>Company</h5>
-            <a href="#team">Team</a>
-            <a href="#core">Privacy Core</a>
-            <a href="#model">Business Model</a>
+          <div class="p-card p-soon glass" data-tilt data-fx="bottom">
+            <div>
+              <div class="idle-dot">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="8.5"
+                    stroke="#4b4f58"
+                    stroke-width="1.6"
+                  />
+                  <path
+                    d="M12 7.5V12l3 2"
+                    stroke="#4b4f58"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <span class="idx">002</span>
+              <h4>Vaultrix</h4>
+              <p>In development.</p>
+            </div>
+            <a href="./vaultrix/vaultrix.html" class="p-link">Preview →</a>
           </div>
-          <div class="footer-col">
-            <h5>Trust</h5>
-            <a href="#">Security Transparency</a>
-            <a href="#">Privacy Policy</a>
+          <div class="p-card p-soon glass" data-tilt data-fx="right">
+            <div>
+              <div class="idle-dot">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="8.5"
+                    stroke="#4b4f58"
+                    stroke-width="1.6"
+                  />
+                  <path
+                    d="M12 7.5V12l3 2"
+                    stroke="#4b4f58"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <span class="idx">003</span>
+              <h4>Unannounced</h4>
+              <p>Expanding the ecosystem.</p>
+            </div>
           </div>
+        </div>
+      </section>
+
+      <!-- PRIVACY CORE -->
+      <section id="core" data-reveal>
+        <span class="sec-num glass">Foundation</span>
+        <h2 class="sec-title">
+          Privacy Core — the shared language behind every product.
+        </h2>
+        <p class="sec-sub">
+          One identity, one key model, one set of rules that every PrivoSafe
+          product inherits.
+        </p>
+
+        <div class="core-wrap">
+          <div class="principle glass" data-tilt data-fx="left">
+            <span class="num">01</span>
+            <h4>Identity</h4>
+            <p>One trusted identity across every product.</p>
+          </div>
+          <div class="principle glass" data-tilt data-fx="right">
+            <span class="num">02</span>
+            <h4>Encryption</h4>
+            <p>End-to-end by default, everywhere.</p>
+          </div>
+          <div class="principle glass" data-tilt data-fx="left">
+            <span class="num">03</span>
+            <h4>Key management</h4>
+            <p>You hold the keys, not a server.</p>
+          </div>
+          <div class="principle glass" data-tilt data-fx="right">
+            <span class="num">04</span>
+            <h4>Device trust</h4>
+            <p>Only verified devices stay connected.</p>
+          </div>
+          <div class="principle glass" data-tilt data-fx="pop">
+            <span class="num">05</span>
+            <h4>Permissions</h4>
+            <p>Clear, granular control over what's shared.</p>
+          </div>
+          <div class="principle glass" data-tilt data-fx="drop">
+            <span class="num">06</span>
+            <h4>Recovery</h4>
+            <p>Safe recovery without weakening security.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TEAM -->
+      <section id="team" data-reveal>
+        <span class="sec-num glass">Team</span>
+        <h2 class="sec-title">Three founders, one mission.</h2>
+        <p class="sec-sub">
+          A small team making privacy the standard, not the exception.
+        </p>
+
+        <div class="founder-grid">
+          <div
+            class="founder-card glass"
+            data-tilt
+            data-fx="rise"
+            id="founder-card-nikhil"
+          >
+            <img
+              src="./assets/nikhil-chavan.png"
+              alt="Nikhil Chavan"
+              class="founder-photo"
+              onerror="
+                this.onerror = null;
+                this.src =
+                  'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23e7e9ed%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2258%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2230%22 fill=%22%238a8e97%22%3EN%3C/text%3E%3C/svg%3E';
+              "
+            />
+            <h3>Nikhil Chavan</h3>
+            <span class="founder-role">FOUNDER &amp; CEO</span>
+            <ul>
+              <li>Vision &amp; business</li>
+              <li>Strategy &amp; product</li>
+              <li>Company coordination</li>
+            </ul>
+            <a
+              href="https://www.linkedin.com/in/codenik/"
+              class="linkedin-link"
+              data-no-card-nav
+              target="_blank"
+              rel="noopener"
+              >Connect on LinkedIn</a
+            >
+          </div>
+          <div class="founder-card glass" data-tilt data-fx="bottom">
+            <img
+              src="./assets/harsh-gautam.jpeg"
+              alt="Harsh Gautam"
+              class="founder-photo"
+              onerror="
+                this.onerror = null;
+                this.src =
+                  'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23e7e9ed%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2258%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2230%22 fill=%22%238a8e97%22%3EH%3C/text%3E%3C/svg%3E';
+              "
+            />
+            <h3>Harsh Gautam</h3>
+            <span class="founder-role">CO-FOUNDER &amp; CTO</span>
+            <ul>
+              <li>Engineering &amp; architecture</li>
+              <li>Infrastructure &amp; security</li>
+              <li>Technical team</li>
+            </ul>
+            <a
+              href="https://www.linkedin.com/in/harshgautamdev/"
+              class="linkedin-link"
+              target="_blank"
+              >Connect on LinkedIn</a
+            >
+          </div>
+          <div class="founder-card glass" data-tilt data-fx="rise">
+            <img
+              src="./assets/harsh-chandra.jpeg"
+              alt="Harsh Chandra"
+              class="founder-photo"
+              onerror="
+                this.onerror = null;
+                this.src =
+                  'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23e7e9ed%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2258%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2230%22 fill=%22%238a8e97%22%3EH%3C/text%3E%3C/svg%3E';
+              "
+            />
+            <h3>Harsh Chandra</h3>
+            <span class="founder-role">CO-FOUNDER &amp; COO/CMO</span>
+            <ul>
+              <li>Operations &amp; marketing</li>
+              <li>Partnerships &amp; growth</li>
+              <li>Team coordination</li>
+            </ul>
+            <a
+              href="https://www.linkedin.com/in/harsh-chandra-2707a8393/"
+              class="linkedin-link"
+              target="_blank"
+              >Connect on LinkedIn</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- MODEL -->
+      <section id="model" data-reveal>
+        <span class="sec-num glass">Business model</span>
+        <h2 class="sec-title">Privacy shouldn't cost a thing.</h2>
+        <p class="sec-sub">
+          A right isn't a premium feature. PrivoSafe is free for everyone,
+          permanently.
+        </p>
+
+        <div class="model-block glass" data-fx="pop">
+          <div class="big-free">Free for everyone</div>
+          <p>
+            We're building PrivoSafe to protect your privacy because it's your
+            right — no hidden fees, no data selling, no fine print.
+          </p>
+          <div class="model-sub glass">
+            We work for your privacy. Not for profit.
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <div class="cta-block glass" data-reveal>
+        <h2>Your privacy is our priority.</h2>
+        <p>
+          Start with Clozzy today, and join us in building a future where
+          privacy is a right, not a privilege.
+        </p>
+        <div class="cta-actions">
+          <a href="#product" class="btn btn-fill">Try Clozzy now</a>
+          <a href="#core" class="btn btn-glass glass">Learn more</a>
         </div>
       </div>
-      <div class="footer-bottom">
-        <span>© 2026 PrivoSafe. All rights reserved.</span>
-        <span class="rights">Privacy is a right — we protect it.</span>
-        <span class="mono" style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;">Privacy Core v1</span>
-      </div>
-    </footer>
 
-  </div>
+      <footer>
+        <div class="footer-glass glass">
+          <div class="footer-grid">
+            <div>
+              <div class="footer-brand">
+                <img
+                  src="./assets/logo.png"
+                  alt="PrivoSafe logo"
+                  class="brand-mark"
+                  onerror="
+                    this.onerror = null;
+                    this.src =
+                      'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%230c0d10%22/%3E%3Cpath d=%22M16 6.5L9 9.2v6.1c0 5.3 3 8.9 7 10.2 4-1.3 7-4.9 7-10.2V9.2l-7-2.7z%22 fill=%22none%22 stroke=%22%23f4f3ef%22 stroke-width=%221.5%22/%3E%3C/svg%3E';
+                  "
+                />PrivoSafe
+              </div>
+              <p class="footer-tag">
+                We respect and manage your privacy, because privacy is the right
+                of every single user.
+              </p>
+            </div>
+            <div class="footer-links">
+              <div class="footer-col">
+                <h5>PRODUCT</h5>
+                <a href="#product">Clozzy</a>
+                <a href="#product">Coming soon</a>
+              </div>
+              <div class="footer-col">
+                <h5>COMPANY</h5>
+                <a href="#team">Team</a>
+                <a href="#core">Privacy core</a>
+                <a href="#model">Business model</a>
+              </div>
+              <div class="footer-col">
+                <h5>TRUST</h5>
+                <a href="#">Security transparency</a>
+                <a href="#">Privacy policy</a>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <span>© 2026 PRIVOSAFE. ALL RIGHTS RESERVED.</span>
+            <span>PRIVACY CORE V1</span>
+          </div>
+        </div>
+      </footer>
+    </div>
 
-  <script>
-    // Hamburger
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobileNav');
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const mobileNav = document.getElementById("mobileNav");
+      hamburger.addEventListener("click", () =>
+        mobileNav.classList.toggle("open"),
+      );
+      mobileNav
+        .querySelectorAll("a")
+        .forEach((a) =>
+          a.addEventListener("click", () => mobileNav.classList.remove("open")),
+        );
 
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      mobileNav.classList.toggle('open');
-    });
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("in");
+          });
+        },
+        { threshold: 0.12 },
+      );
+      document
+        .querySelectorAll("[data-reveal]")
+        .forEach((el) => io.observe(el));
 
-    mobileNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        mobileNav.classList.remove('open');
+      // Card entrances: staggered by position within their own row/grid, so
+      // groups of cards cascade in rather than popping together.
+      const fxGroups = new Map();
+      document.querySelectorAll("[data-fx]").forEach((el) => {
+        const parent = el.parentElement;
+        if (!fxGroups.has(parent)) fxGroups.set(parent, []);
+        fxGroups.get(parent).push(el);
       });
-    });
-
-    // ===== TEAM CARD FLIP =====
-    const teamSection = document.getElementById('team');
-    const founderCards = document.querySelectorAll('.founder-card');
-
-    function closeFlip(e) {
-      e.stopPropagation();
-      const card = e.currentTarget.closest('.founder-card');
-      if (card) {
-        card.classList.remove('active-flip');
-        teamSection.classList.remove('flip-active');
-        card.style.position = '';
-        card.style.top = '';
-        card.style.left = '';
-        card.style.transform = '';
-        card.style.width = '';
-        card.style.maxWidth = '';
-        card.style.zIndex = '';
-        card.style.boxShadow = '';
-        card.style.background = '';
-        card.querySelector('.close-flip').style.display = 'none';
-      }
-    }
-
-    founderCards.forEach(card => {
-      card.removeEventListener('click', card._flipHandler);
-      
-      const handler = function(e) {
-        if (e.target.closest('.close-flip') || e.target.closest('.linkedin-btn')) return;
-        
-        if (card.classList.contains('active-flip')) {
-          card.classList.remove('active-flip');
-          teamSection.classList.remove('flip-active');
-          card.style.position = '';
-          card.style.top = '';
-          card.style.left = '';
-          card.style.transform = '';
-          card.style.width = '';
-          card.style.maxWidth = '';
-          card.style.zIndex = '';
-          card.style.boxShadow = '';
-          card.style.background = '';
-          card.querySelector('.close-flip').style.display = 'none';
-          return;
-        }
-
-        document.querySelectorAll('.founder-card.active-flip').forEach(c => {
-          c.classList.remove('active-flip');
-          c.style.position = '';
-          c.style.top = '';
-          c.style.left = '';
-          c.style.transform = '';
-          c.style.width = '';
-          c.style.maxWidth = '';
-          c.style.zIndex = '';
-          c.style.boxShadow = '';
-          c.style.background = '';
-          c.querySelector('.close-flip').style.display = 'none';
+      fxGroups.forEach((list) => {
+        list.forEach((el, i) => {
+          el.dataset.fxDelay = (i * 110).toString();
         });
-
-        teamSection.classList.add('flip-active');
-        card.classList.add('active-flip');
-        card.querySelector('.close-flip').style.display = 'flex';
-      };
-      
-      card._flipHandler = handler;
-      card.addEventListener('click', handler);
-      
-      document.addEventListener('keydown', function escClose(e) {
-        if (e.key === 'Escape') {
-          const active = document.querySelector('.founder-card.active-flip');
-          if (active) {
-            active.classList.remove('active-flip');
-            teamSection.classList.remove('flip-active');
-            active.style.position = '';
-            active.style.top = '';
-            active.style.left = '';
-            active.style.transform = '';
-            active.style.width = '';
-            active.style.maxWidth = '';
-            active.style.zIndex = '';
-            active.style.boxShadow = '';
-            active.style.background = '';
-            active.querySelector('.close-flip').style.display = 'none';
-          }
-        }
       });
-    });
 
-    document.addEventListener('click', function(e) {
-      const active = document.querySelector('.founder-card.active-flip');
-      if (active && !active.contains(e.target) && !e.target.closest('.founder-card') && !e.target.closest('.close-flip')) {
-        active.classList.remove('active-flip');
-        teamSection.classList.remove('flip-active');
-        active.style.position = '';
-        active.style.top = '';
-        active.style.left = '';
-        active.style.transform = '';
-        active.style.width = '';
-        active.style.maxWidth = '';
-        active.style.zIndex = '';
-        active.style.boxShadow = '';
-        active.style.background = '';
-        active.querySelector('.close-flip').style.display = 'none';
-      }
-    });
+      const fxIo = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const delay = Number(el.dataset.fxDelay || 0);
+            setTimeout(() => el.classList.add("fx-in"), delay);
+            fxIo.unobserve(el);
+          });
+        },
+        { threshold: 0.2, rootMargin: "0px 0px -60px 0px" },
+      );
+      document.querySelectorAll("[data-fx]").forEach((el) => fxIo.observe(el));
 
-    // Extra floating particles
-    (function addExtraParticles() {
-      const container = document.getElementById('team');
-      for (let i = 0; i < 16; i++) {
-        const p = document.createElement('div');
-        p.className = 'team-particle';
-        const size = 4 + Math.random() * 12;
-        p.style.width = size + 'px';
-        p.style.height = size + 'px';
-        p.style.top = (Math.random() * 90 + 5) + '%';
-        p.style.left = (Math.random() * 90 + 5) + '%';
-        p.style.animationDuration = (8 + Math.random() * 18) + 's';
-        p.style.animationDelay = (Math.random() * 10) + 's';
-        p.style.opacity = 0.03 + Math.random() * 0.15;
-        container.appendChild(p);
-      }
-    })();
-  </script>
-</body>
+      document.querySelectorAll("[data-tilt]").forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width - 0.5;
+          const y = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transform = `perspective(800px) rotateX(${(-y * 5).toFixed(2)}deg) rotateY(${(x * 5).toFixed(2)}deg) translateY(-4px)`;
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "";
+        });
+      });
+
+      // parallax ambient orbs on mouse move
+      const orbs = document.querySelectorAll(".orb");
+      document.addEventListener("mousemove", (e) => {
+        const x = e.clientX / window.innerWidth - 0.5;
+        const y = e.clientY / window.innerHeight - 0.5;
+        orbs.forEach((o, i) => {
+          const depth = (i + 1) * 12;
+          o.style.transform = `translate(${x * depth}px, ${y * depth}px)`;
+        });
+      });
+
+      // Founder card → portfolio link (no visible UI change; card itself is clickable)
+      (function () {
+        const card = document.getElementById("founder-card-nikhil");
+        if (!card) return;
+        card.style.cursor = "pointer";
+        card.addEventListener("click", (e) => {
+          if (e.target.closest("[data-no-card-nav]")) return;
+          window.open("https://www.nikhilchavan.in/", "_blank", "noopener");
+        });
+      })();
+    </script>
+  </body>
 </html>
