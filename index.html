@@ -7,7 +7,7 @@
     <title>PrivoSafe | Privacy-First Infrastructure</title>
     <meta
       name="description"
-      content="PrivoSafe is a privacy-first infrastructure company founded by Nikhil Chavan. It builds a shared Privacy Core for identity, end-to-end encryption, and key management across its products."
+      content="PrivoSafe is a privacy-first infrastructure company founded by Nikhil Chavan. It builds a shared Privacy Core for identity, end-to-end encryption, and key management across its products. Know more: hello@privosafe.com"
     />
     <meta name="author" content="Nikhil Chavan" />
     <meta
@@ -38,7 +38,7 @@
     />
     <meta
       property="og:description"
-      content="PrivoSafe builds privacy-first infrastructure and a shared Privacy Core for identity, end-to-end encryption, and key management."
+      content="PrivoSafe builds privacy-first infrastructure and a shared Privacy Core for identity, end-to-end encryption, and key management. Know more: hello@privosafe.com"
     />
     <meta
       property="og:image"
@@ -58,7 +58,7 @@
     />
     <meta
       name="twitter:description"
-      content="PrivoSafe builds privacy-first infrastructure and a shared Privacy Core for identity, end-to-end encryption, and key management."
+      content="PrivoSafe builds privacy-first infrastructure and a shared Privacy Core for identity, end-to-end encryption, and key management. Know more: hello@privosafe.com"
     />
     <meta
       name="twitter:image"
@@ -87,6 +87,14 @@
             "description": "PrivoSafe is a privacy-first infrastructure company that builds a shared Privacy Core for identity, end-to-end encryption, and key management across its products.",
             "foundingDate": "2025",
             "founder": { "@id": "https://www.privosafe.com/#nikhil-chavan" },
+            "email": "hello@privosafe.com",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "email": "hello@privosafe.com",
+              "contactType": "customer support",
+              "areaServed": "Worldwide",
+              "availableLanguage": ["English"]
+            },
             "sameAs": [
               "https://www.nikhilchavan.in/",
               "https://www.linkedin.com/in/codenik/",
@@ -143,6 +151,15 @@
               "https://www.instagram.com/clozzyapp/",
               "https://www.producthunt.com/products/clozzy/"
             ]
+          },
+          {
+            "@type": "ContactPage",
+            "@id": "https://www.privosafe.com/#contact",
+            "url": "https://www.privosafe.com/#contact",
+            "name": "Contact PrivoSafe",
+            "isPartOf": { "@id": "https://www.privosafe.com/#website" },
+            "about": { "@id": "https://www.privosafe.com/#organization" },
+            "description": "Contact PrivoSafe at hello@privosafe.com for press, partnerships, or general inquiries."
           }
         ]
       }
@@ -1070,6 +1087,17 @@
         display: inline-block;
       }
 
+      /* ============ CONTACT ============ */
+      .contact-email-link {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 2px solid rgba(12, 13, 16, 0.15);
+        transition: border-color 0.3s;
+      }
+      .contact-email-link:hover {
+        border-color: var(--ink);
+      }
+
       /* ============ CTA ============ */
       .cta-block {
         border-radius: 36px;
@@ -1381,6 +1409,7 @@
           <a href="#core">Privacy core</a>
           <a href="#team">Team</a>
           <a href="#model">Model</a>
+          <a href="#contact">Contact</a>
         </nav>
         <a href="#product" class="nav-cta">Try Clozzy</a>
         <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -1393,6 +1422,7 @@
           <a href="#core">Privacy core</a>
           <a href="#team">Team</a>
           <a href="#model">Business model</a>
+          <a href="#contact">Contact</a>
         </div>
       </div>
     </header>
@@ -1815,6 +1845,32 @@
         </div>
       </section>
 
+      <!-- CONTACT -->
+      <section id="contact" data-reveal>
+        <span class="sec-num glass">Get in touch</span>
+        <h2 class="sec-title">Questions? Reach out directly.</h2>
+        <p class="sec-sub">
+          Whether it's press, partnerships, or just curiosity about how the
+          Privacy Core works — we read every email ourselves. Know more at
+          <a href="mailto:hello@privosafe.com" class="contact-email-link"
+            >hello@privosafe.com</a
+          >.
+        </p>
+
+        <div class="model-block glass" data-fx="pop" style="margin-top: 48px">
+          <div class="big-free" style="font-size: clamp(1.5rem, 3vw, 2.2rem)">
+            hello@privosafe.com
+          </div>
+          <p>Say hello, ask a question, or just tell us what you think.</p>
+          <a
+            href="mailto:hello@privosafe.com"
+            class="btn btn-fill"
+            style="margin-top: 26px; display: inline-flex"
+            >Email us</a
+          >
+        </div>
+      </section>
+
       <!-- CTA -->
       <div class="cta-block glass" data-reveal>
         <h2>Your privacy is our priority.</h2>
@@ -1865,6 +1921,10 @@
                 <h5>TRUST</h5>
                 <a href="#">Security transparency</a>
                 <a href="#">Privacy policy</a>
+              </div>
+              <div class="footer-col">
+                <h5>CONTACT</h5>
+                <a href="mailto:hello@privosafe.com">hello@privosafe.com</a>
               </div>
             </div>
           </div>
