@@ -1,2026 +1,648 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- ═══════════════════════════════════════════ BASIC SEO ═══════════════════════════════════════════ -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PrivoSafe | Privacy-First Infrastructure</title>
-    <meta
-      name="description"
-      content="PrivoSafe is a privacy-first infrastructure company founded by Nikhil Chavan. It builds a shared Privacy Core for identity, end-to-end encryption, and key management across its products. Know more: hello@privosafe.com"
-    />
-    <meta name="author" content="Nikhil Chavan" />
-    <meta
-      name="robots"
-      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-    />
-    <meta
-      name="googlebot"
-      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-    />
-    <meta name="theme-color" content="#0c0d10" />
-    <!-- ═══════════════════════════════════════════ CANONICAL ═══════════════════════════════════════════ -->
-    <link rel="canonical" href="https://www.privosafe.com/" />
-    <!-- ═══════════════════════════════════════════ FAVICON ═══════════════════════════════════════════ -->
-    <link rel="icon" type="image/png" href="/privosafe.png" />
-    <link rel="apple-touch-icon" href="/privosafe.png" />
-    <!-- ═══════════════════════════════════════════ IDENTITY / RELATIONSHIPS ═══════════════════════════════════════════ -->
-    <link rel="me" href="https://www.nikhilchavan.in/" />
-    <link rel="me" href="https://www.linkedin.com/in/codenik/" />
-    <!-- ═══════════════════════════════════════════ OPEN GRAPH ═══════════════════════════════════════════ -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="PrivoSafe" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:url" content="https://www.privosafe.com/" />
-    <meta
-      property="og:title"
-      content="PrivoSafe | Privacy-First Infrastructure"
-    />
-    <meta
-      property="og:description"
-      content="PrivoSafe builds privacy-first infrastructure and a shared Privacy Core for identity, end-to-end encryption, and key management. Know more: hello@privosafe.com"
-    />
-    <meta
-      property="og:image"
-      content="https://www.privosafe.com/privosafe.png"
-    />
-    <meta
-      property="og:image:alt"
-      content="PrivoSafe — Privacy-first infrastructure"
-    />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <!-- ═══════════════════════════════════════════ X / TWITTER ═══════════════════════════════════════════ -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="PrivoSafe | Privacy-First Infrastructure"
-    />
-    <meta
-      name="twitter:description"
-      content="PrivoSafe builds privacy-first infrastructure and a shared Privacy Core for identity, end-to-end encryption, and key management. Know more: hello@privosafe.com"
-    />
-    <meta
-      name="twitter:image"
-      content="https://www.privosafe.com/privosafe.png"
-    />
-    <!-- ═══════════════════════════════════════════ JSON-LD Organization + Founder + Website + Product ═══════════════════════════════════════════ -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Organization",
-            "@id": "https://www.privosafe.com/#organization",
-            "name": "PrivoSafe",
-            "url": "https://www.privosafe.com/",
-            "logo": {
-              "@type": "ImageObject",
-              "@id": "https://www.privosafe.com/#logo",
-              "url": "https://www.privosafe.com/privosafe.png",
-              "contentUrl": "https://www.privosafe.com/privosafe.png",
-              "width": 1200,
-              "height": 1200
-            },
-            "image": { "@id": "https://www.privosafe.com/#logo" },
-            "slogan": "Privacy is a right, not a feature.",
-            "description": "PrivoSafe is a privacy-first infrastructure company that builds a shared Privacy Core for identity, end-to-end encryption, and key management across its products.",
-            "foundingDate": "2025",
-            "founder": { "@id": "https://www.privosafe.com/#nikhil-chavan" },
-            "email": "hello@privosafe.com",
-            "contactPoint": {
-              "@type": "ContactPoint",
-              "email": "hello@privosafe.com",
-              "contactType": "customer support",
-              "areaServed": "Worldwide",
-              "availableLanguage": ["English"]
-            },
-            "sameAs": [
-              "https://www.nikhilchavan.in/",
-              "https://www.linkedin.com/in/codenik/",
-              "https://play.google.com/store/apps/details?id=com.clozzy.app",
-              "https://www.instagram.com/clozzyapp/",
-              "https://www.producthunt.com/products/clozzy/"
-            ]
-          },
-          {
-            "@type": "Person",
-            "@id": "https://www.privosafe.com/#nikhil-chavan",
-            "name": "Nikhil Chavan",
-            "url": "https://www.nikhilchavan.in/",
-            "jobTitle": "Founder & CEO",
-            "worksFor": { "@id": "https://www.privosafe.com/#organization" },
-            "sameAs": [
-              "https://www.nikhilchavan.in/",
-              "https://www.linkedin.com/in/codenik/",
-              "https://github.com/codenik01",
-              "https://medium.com/@nikhilchavanresearch"
-            ],
-            "description": "Nikhil Chavan is the Founder & CEO of PrivoSafe and a cybersecurity researcher."
-          },
-          {
-            "@type": "WebSite",
-            "@id": "https://www.privosafe.com/#website",
-            "url": "https://www.privosafe.com/",
-            "name": "PrivoSafe",
-            "description": "The official website of PrivoSafe, a privacy-first infrastructure company.",
-            "publisher": { "@id": "https://www.privosafe.com/#organization" }
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://www.privosafe.com/#webpage",
-            "url": "https://www.privosafe.com/",
-            "name": "PrivoSafe | Privacy-First Infrastructure",
-            "isPartOf": { "@id": "https://www.privosafe.com/#website" },
-            "about": { "@id": "https://www.privosafe.com/#organization" },
-            "author": { "@id": "https://www.privosafe.com/#nikhil-chavan" },
-            "publisher": { "@id": "https://www.privosafe.com/#organization" }
-          },
-          {
-            "@type": "SoftwareApplication",
-            "@id": "https://www.privosafe.com/#clozzy",
-            "name": "Clozzy",
-            "applicationCategory": "SocialNetworkingApplication",
-            "operatingSystem": "Android",
-            "url": "https://play.google.com/store/apps/details?id=com.clozzy.app",
-            "description": "Clozzy is a private relationship app for couples built on PrivoSafe's Privacy Core.",
-            "author": { "@id": "https://www.privosafe.com/#organization" },
-            "publisher": { "@id": "https://www.privosafe.com/#organization" },
-            "sameAs": [
-              "https://play.google.com/store/apps/details?id=com.clozzy.app",
-              "https://www.instagram.com/clozzyapp/",
-              "https://www.producthunt.com/products/clozzy/"
-            ]
-          },
-          {
-            "@type": "ContactPage",
-            "@id": "https://www.privosafe.com/#contact",
-            "url": "https://www.privosafe.com/#contact",
-            "name": "Contact PrivoSafe",
-            "isPartOf": { "@id": "https://www.privosafe.com/#website" },
-            "about": { "@id": "https://www.privosafe.com/#organization" },
-            "description": "Contact PrivoSafe at hello@privosafe.com for press, partnerships, or general inquiries."
-          }
-        ]
-      }
-    </script>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PrivoSafe | Privacy-First Infrastructure</title>
+<meta name="description" content="PrivoSafe is a privacy-first infrastructure company building a shared Privacy Core for identity, end-to-end encryption, and key management across every product it ships, starting with Clozzy." />
+<meta name="author" content="Nikhil Chavan" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="theme-color" content="#f5f5f7" />
+<link rel="canonical" href="https://www.privosafe.com/" />
+<link rel="icon" type="image/png" href="/privosafe.png" />
+<link rel="apple-touch-icon" href="/privosafe.png" />
+<link rel="me" href="https://www.nikhilchavan.in/" />
+<link rel="me" href="https://www.linkedin.com/in/codenik/" />
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --bg: #eef0f3;
-        --paper: #f7f8fa;
-        --ink: #0c0d10;
-        --ink-soft: #4b4f58;
-        --ink-faint: #8a8e97;
-        --line: rgba(12, 13, 16, 0.09);
-        --line-strong: rgba(12, 13, 16, 0.18);
-        --glass: rgba(255, 255, 255, 0.55);
-        --glass-strong: rgba(255, 255, 255, 0.72);
-        --glass-border: rgba(255, 255, 255, 0.9);
-        --shadow-soft:
-          0 1px 1px rgba(12, 13, 16, 0.02),
-          0 8px 24px -10px rgba(12, 13, 16, 0.1);
-        --shadow-lift: 0 20px 48px -16px rgba(12, 13, 16, 0.22);
-        --radius: 22px;
-      }
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: "Manrope", system-ui, sans-serif;
-        color: var(--ink);
-        background:
-          radial-gradient(
-            1100px 500px at 12% -8%,
-            rgba(255, 255, 255, 0.9),
-            transparent 60%
-          ),
-          radial-gradient(
-            900px 500px at 90% 8%,
-            rgba(255, 255, 255, 0.7),
-            transparent 55%
-          ),
-          linear-gradient(180deg, #eef0f3 0%, #e7e9ed 100%);
-        line-height: 1.5;
-        -webkit-font-smoothing: antialiased;
-        overflow-x: hidden;
-        position: relative;
-      }
-      ::selection {
-        background: var(--ink);
-        color: #fff;
-      }
-      .mono {
-        font-family: "IBM Plex Mono", monospace;
-      }
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="PrivoSafe" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="https://www.privosafe.com/" />
+<meta property="og:title" content="PrivoSafe | Privacy-First Infrastructure" />
+<meta property="og:description" content="One Privacy Core — identity, end-to-end encryption, and key management — shared across every product PrivoSafe builds." />
+<meta property="og:image" content="https://www.privosafe.com/privosafe.png" />
+<meta property="og:image:alt" content="PrivoSafe — Privacy-first infrastructure" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 
-      /* floating ambient orbs behind everything */
-      .ambient {
-        position: fixed;
-        inset: 0;
-        z-index: 0;
-        pointer-events: none;
-        overflow: hidden;
-      }
-      .orb {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(60px);
-        opacity: 0.55;
-      }
-      .orb-1 {
-        width: 520px;
-        height: 520px;
-        background: radial-gradient(circle, #ffffff, transparent 70%);
-        top: -180px;
-        left: -120px;
-        animation: drift1 22s ease-in-out infinite;
-      }
-      .orb-2 {
-        width: 460px;
-        height: 460px;
-        background: radial-gradient(circle, #dfe3e9, transparent 70%);
-        bottom: -160px;
-        right: -100px;
-        animation: drift2 26s ease-in-out infinite;
-      }
-      .orb-3 {
-        width: 380px;
-        height: 380px;
-        background: radial-gradient(circle, #ffffff, transparent 70%);
-        top: 40%;
-        left: 50%;
-        animation: drift3 30s ease-in-out infinite;
-      }
-      @keyframes drift1 {
-        0%,
-        100% {
-          transform: translate(0, 0);
-        }
-        50% {
-          transform: translate(60px, 40px);
-        }
-      }
-      @keyframes drift2 {
-        0%,
-        100% {
-          transform: translate(0, 0);
-        }
-        50% {
-          transform: translate(-50px, -30px);
-        }
-      }
-      @keyframes drift3 {
-        0%,
-        100% {
-          transform: translate(-50%, 0);
-        }
-        50% {
-          transform: translate(-50%, -60px);
-        }
-      }
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="PrivoSafe | Privacy-First Infrastructure" />
+<meta name="twitter:description" content="One Privacy Core — identity, end-to-end encryption, and key management — shared across every product PrivoSafe builds." />
+<meta name="twitter:image" content="https://www.privosafe.com/privosafe.png" />
 
-      .wrap {
-        max-width: 1180px;
-        margin: 0 auto;
-        padding: 0 32px;
-        position: relative;
-        z-index: 1;
-      }
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.privosafe.com/#organization",
+      "name": "PrivoSafe",
+      "url": "https://www.privosafe.com/",
+      "logo": { "@type": "ImageObject", "@id": "https://www.privosafe.com/#logo", "url": "https://www.privosafe.com/privosafe.png", "contentUrl": "https://www.privosafe.com/privosafe.png", "width": 1200, "height": 1200 },
+      "image": { "@id": "https://www.privosafe.com/#logo" },
+      "slogan": "Privacy isn't a feature. It's the foundation.",
+      "description": "PrivoSafe is a privacy-first infrastructure company that builds a shared Privacy Core for identity, end-to-end encryption, and key management across its products.",
+      "foundingDate": "2025",
+      "founder": { "@id": "https://www.privosafe.com/#nikhil-chavan" },
+      "email": "hello@privosafe.com",
+      "contactPoint": { "@type": "ContactPoint", "email": "hello@privosafe.com", "contactType": "customer support", "areaServed": "Worldwide", "availableLanguage": ["English"] },
+      "sameAs": [
+        "https://www.nikhilchavan.in/",
+        "https://www.linkedin.com/in/codenik/",
+        "https://play.google.com/store/apps/details?id=com.clozzy.app",
+        "https://www.instagram.com/clozzyapp/",
+        "https://www.producthunt.com/products/clozzy/"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.privosafe.com/#nikhil-chavan",
+      "name": "Nikhil Chavan",
+      "url": "https://www.nikhilchavan.in/",
+      "jobTitle": "Founder & CEO",
+      "worksFor": { "@id": "https://www.privosafe.com/#organization" },
+      "sameAs": ["https://www.nikhilchavan.in/", "https://www.linkedin.com/in/codenik/", "https://github.com/codenik01", "https://medium.com/@nikhilchavanresearch"],
+      "description": "Nikhil Chavan is the Founder & CEO of PrivoSafe and a cybersecurity researcher."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.privosafe.com/#website",
+      "url": "https://www.privosafe.com/",
+      "name": "PrivoSafe",
+      "description": "The official website of PrivoSafe, a privacy-first infrastructure company.",
+      "publisher": { "@id": "https://www.privosafe.com/#organization" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.privosafe.com/#webpage",
+      "url": "https://www.privosafe.com/",
+      "name": "PrivoSafe | Privacy-First Infrastructure",
+      "isPartOf": { "@id": "https://www.privosafe.com/#website" },
+      "about": { "@id": "https://www.privosafe.com/#organization" },
+      "author": { "@id": "https://www.privosafe.com/#nikhil-chavan" },
+      "publisher": { "@id": "https://www.privosafe.com/#organization" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.privosafe.com/#clozzy",
+      "name": "Clozzy",
+      "applicationCategory": "SocialNetworkingApplication",
+      "operatingSystem": "Android",
+      "url": "https://play.google.com/store/apps/details?id=com.clozzy.app",
+      "description": "Clozzy is a private relationship app for couples built on PrivoSafe's Privacy Core.",
+      "author": { "@id": "https://www.privosafe.com/#organization" },
+      "publisher": { "@id": "https://www.privosafe.com/#organization" },
+      "sameAs": ["https://play.google.com/store/apps/details?id=com.clozzy.app", "https://www.instagram.com/clozzyapp/", "https://www.producthunt.com/products/clozzy/"]
+    },
+    {
+      "@type": "ContactPage",
+      "@id": "https://www.privosafe.com/#contact",
+      "url": "https://www.privosafe.com/#contact",
+      "name": "Contact PrivoSafe",
+      "isPartOf": { "@id": "https://www.privosafe.com/#website" },
+      "about": { "@id": "https://www.privosafe.com/#organization" },
+      "description": "Contact PrivoSafe at hello@privosafe.com for press, partnerships, or general inquiries."
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --white:#ffffff;
+    --canvas:#f5f5f7;
+    --ink:#1d1d1f;
+    --ink-soft:#6e6e73;
+    --ink-faint:#86868b;
+    --line:rgba(0,0,0,0.08);
+    --dark:#000000;
+    --dark-2:#111113;
+    --dark-ink:#f5f5f7;
+    --dark-ink-soft:#a1a1a6;
+    --accent:#0071e3;
+    --accent-press:#0060c2;
+    --radius-lg:20px;
+    --radius-md:14px;
+    --radius-sm:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:-apple-system,"SF Pro Display","SF Pro Text",system-ui,"Helvetica Neue",Arial,sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.47;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 22px;}
+  .wrap-wide{max-width:1180px;margin:0 auto;padding:0 22px;}
 
-      .glass {
-        background: var(--glass);
-        backdrop-filter: blur(18px) saturate(160%);
-        -webkit-backdrop-filter: blur(18px) saturate(160%);
-        border: 1px solid var(--glass-border);
-        box-shadow: var(--shadow-soft);
-      }
+  /* ============ NAV ============ */
+  header.nav{
+    position:sticky;top:0;z-index:100;
+    height:52px;
+    background:rgba(255,255,255,0.8);
+    backdrop-filter:saturate(180%) blur(20px);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1180px;margin:0 auto;padding:0 22px;height:52px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{display:flex;align-items:center;gap:8px;font-weight:600;font-size:0.98rem;letter-spacing:-0.01em;text-decoration:none;}
+  .brand-mark{width:20px;height:20px;border-radius:5px;flex-shrink:0;}
+  .nav-links{display:flex;gap:30px;font-size:0.78rem;font-weight:400;color:var(--ink);}
+  .nav-links a{text-decoration:none;opacity:0.8;transition:opacity .2s;}
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{
+    font-size:0.78rem;font-weight:400;color:var(--accent);text-decoration:none;
+  }
+  .hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:4px;}
+  .hamburger span{width:20px;height:1.5px;background:var(--ink);}
+  .mobile-nav{display:none;flex-direction:column;background:var(--white);border-bottom:1px solid var(--line);}
+  .mobile-nav.open{display:flex;}
+  .mobile-nav a{padding:14px 22px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);font-size:0.95rem;}
 
-      /* ============ NAV ============ */
-      header.nav {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        padding: 18px 24px 0;
-      }
-      .nav-inner {
-        max-width: 1180px;
-        margin: 0 auto;
-        padding: 14px 24px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-radius: 16px;
-      }
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 11px;
-        font-weight: 800;
-        font-size: 1.08rem;
-        letter-spacing: -0.015em;
-      }
-      .brand-mark {
-        width: 32px;
-        height: 32px;
-        flex-shrink: 0;
-        object-fit: contain;
-        border-radius: 8px;
-      }
-      .nav-links {
-        display: flex;
-        gap: 8px;
-        font-size: 0.86rem;
-        color: var(--ink-soft);
-        font-weight: 600;
-      }
-      .nav-links a {
-        color: inherit;
-        text-decoration: none;
-        padding: 9px 16px;
-        border-radius: 10px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        display: inline-block;
-      }
-      .nav-links a:hover {
-        background: rgba(255, 255, 255, 0.8);
-        color: var(--ink);
-        box-shadow: var(--shadow-soft);
-      }
-      .nav-cta {
-        font-size: 0.85rem;
-        font-weight: 700;
-        background: var(--ink);
-        color: #fff;
-        text-decoration: none;
-        padding: 11px 22px;
-        border-radius: 11px;
-        transition:
-          transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-          box-shadow 0.35s;
-        box-shadow: 0 10px 24px -10px rgba(12, 13, 16, 0.5);
-      }
-      .nav-cta:hover {
-        transform: translateY(-3px) scale(1.04);
-        box-shadow: 0 16px 34px -10px rgba(12, 13, 16, 0.55);
-      }
-      .hamburger {
-        display: none;
-        flex-direction: column;
-        gap: 5px;
-        background: none;
-        border: none;
-        cursor: pointer;
-      }
-      .hamburger span {
-        width: 22px;
-        height: 2px;
-        border-radius: 2px;
-        background: var(--ink);
-      }
-      .mobile-nav {
-        display: none;
-        flex-direction: column;
-        margin-top: 10px;
-        border-radius: 16px;
-        overflow: hidden;
-      }
-      .mobile-nav.open {
-        display: flex;
-      }
-      .mobile-nav a {
-        padding: 16px 24px;
-        border-bottom: 1px solid var(--line);
-        color: var(--ink);
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.95rem;
-      }
+  /* ============ HERO ============ */
+  .hero{
+    padding:120px 0 90px;
+    text-align:center;
+    background:linear-gradient(180deg,#ffffff 0%,#fbfbfc 100%);
+  }
+  .eyebrow{
+    font-size:0.9rem;color:var(--ink-soft);font-weight:500;margin-bottom:14px;
+  }
+  h1.display{
+    font-size:clamp(2.6rem,6vw,4.6rem);
+    font-weight:600;
+    letter-spacing:-0.03em;
+    line-height:1.05;
+    color:var(--ink);
+    max-width:820px;
+    margin:0 auto 18px;
+  }
+  .hero-lede{
+    font-size:clamp(1.1rem,2vw,1.4rem);
+    color:var(--ink-soft);
+    font-weight:400;
+    max-width:560px;
+    margin:0 auto 34px;
+  }
+  .hero-actions{display:flex;gap:28px;justify-content:center;align-items:center;font-size:1.08rem;}
+  .link-chevron{color:var(--accent);text-decoration:none;font-weight:400;}
+  .link-chevron:hover{text-decoration:underline;}
+  .btn{
+    font-size:1rem;font-weight:400;padding:11px 22px;border-radius:980px;
+    text-decoration:none;display:inline-flex;align-items:center;
+    background:var(--accent);color:#fff;transition:background .2s;
+  }
+  .btn:hover{background:var(--accent-press);}
 
-      /* ============ HERO ============ */
-      .hero {
-        padding: 90px 0 70px;
-        display: grid;
-        grid-template-columns: 1.05fr 0.95fr;
-        gap: 50px;
-        align-items: center;
-      }
-      .eyebrow {
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: var(--ink-soft);
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 26px;
-        padding: 8px 16px;
-        border-radius: 100px;
-      }
-      .eyebrow .dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: #16a34a;
-        box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.15);
-        animation: blink 2.2s infinite;
-      }
-      @keyframes blink {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.35;
-        }
-      }
-      h1.display {
-        font-size: clamp(2.5rem, 4.6vw, 3.9rem);
-        font-weight: 800;
-        letter-spacing: -0.035em;
-        line-height: 1.03;
-        margin-bottom: 24px;
-      }
-      h1.display .soft {
-        color: var(--ink-faint);
-      }
-      .hero-lede {
-        font-size: 1.08rem;
-        color: var(--ink-soft);
-        max-width: 480px;
-        margin-bottom: 34px;
-        font-weight: 500;
-      }
-      .hero-actions {
-        display: flex;
-        gap: 14px;
-        flex-wrap: wrap;
-        margin-bottom: 34px;
-      }
-      .btn {
-        font-size: 0.9rem;
-        font-weight: 700;
-        padding: 15px 28px;
-        border-radius: 12px;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      }
-      .btn-fill {
-        background: var(--ink);
-        color: #fff;
-        box-shadow: 0 12px 26px -10px rgba(12, 13, 16, 0.45);
-      }
-      .btn-fill:hover {
-        transform: translateY(-4px) scale(1.03);
-        box-shadow: 0 20px 38px -12px rgba(12, 13, 16, 0.5);
-      }
-      .btn-glass {
-        color: var(--ink);
-      }
-      .btn-glass:hover {
-        transform: translateY(-4px) scale(1.03);
-      }
-      .hero-trust {
-        display: flex;
-        gap: 24px;
-        flex-wrap: wrap;
-      }
-      .trust-pill {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 14px;
-        border-radius: 100px;
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: var(--ink-soft);
-      }
-      .trust-pill i {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: var(--ink);
-      }
+  /* ============ HERO VISUAL (the one bold moment) ============ */
+  .hero-visual{
+    margin-top:70px;
+    display:flex;justify-content:center;
+  }
+  .core-diagram{
+    position:relative;width:100%;max-width:640px;aspect-ratio:16/10;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .core-center{
+    width:120px;height:120px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #1d1d1f, #000);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.35);
+    z-index:2;
+  }
+  .core-ring{
+    position:absolute;border-radius:50%;
+    border:1px solid var(--line);
+  }
+  .ring-1{width:280px;height:280px;animation:spin 40s linear infinite;}
+  .ring-2{width:420px;height:420px;animation:spin 60s linear infinite reverse;}
+  .ring-3{width:560px;height:560px;animation:spin 80s linear infinite;}
+  @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+  .core-node{
+    position:absolute;
+    width:46px;height:46px;border-radius:50%;
+    background:#fff;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.68rem;font-weight:600;color:var(--ink-soft);
+    box-shadow:0 8px 20px -8px rgba(0,0,0,0.12);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ring-1,.ring-2,.ring-3{animation:none;}
+  }
 
-      /* Hero glass card visual */
-      .hero-visual {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        perspective: 1200px;
-      }
-      .glass-card {
-        width: 100%;
-        max-width: 400px;
-        aspect-ratio: 1/1.02;
-        border-radius: 32px;
-        position: relative;
-        padding: 34px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        transform: rotateY(-8deg) rotateX(4deg);
-        transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
-        animation: cardfloat 7s ease-in-out infinite;
-      }
-      .hero-visual:hover .glass-card {
-        transform: rotateY(0deg) rotateX(0deg) scale(1.02);
-      }
-      @keyframes cardfloat {
-        0%,
-        100% {
-          transform: rotateY(-8deg) rotateX(4deg) translateY(0);
-        }
-        50% {
-          transform: rotateY(-8deg) rotateX(4deg) translateY(-14px);
-        }
-      }
-      .glass-card .card-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-      }
-      .card-shield {
-        width: 54px;
-        height: 54px;
-        border-radius: 16px;
-        background: linear-gradient(145deg, #1a1c22, #0c0d10);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow:
-          inset 0 1px 1px rgba(255, 255, 255, 0.35),
-          0 10px 20px -8px rgba(0, 0, 0, 0.4);
-      }
-      .lock-status {
-        font-size: 0.72rem;
-        font-weight: 700;
-        color: var(--ink-soft);
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 6px 12px;
-        border-radius: 100px;
-        background: rgba(255, 255, 255, 0.7);
-      }
-      .lock-status .g {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #16a34a;
-      }
-      .card-mid {
-        text-align: left;
-      }
-      .card-mid .big-num {
-        font-size: 2.6rem;
-        font-weight: 800;
-        letter-spacing: -0.03em;
-        line-height: 1;
-      }
-      .card-mid .cap {
-        font-size: 0.78rem;
-        color: var(--ink-soft);
-        font-weight: 600;
-        margin-top: 6px;
-      }
-      .bars {
-        display: flex;
-        gap: 6px;
-        align-items: flex-end;
-        height: 46px;
-        margin: 20px 0;
-      }
-      .bars i {
-        flex: 1;
-        border-radius: 5px;
-        background: rgba(12, 13, 16, 0.12);
-      }
-      .bars i:nth-child(1) {
-        height: 40%;
-      }
-      .bars i:nth-child(2) {
-        height: 70%;
-        background: rgba(12, 13, 16, 0.85);
-      }
-      .bars i:nth-child(3) {
-        height: 55%;
-      }
-      .bars i:nth-child(4) {
-        height: 90%;
-        background: rgba(12, 13, 16, 0.85);
-      }
-      .bars i:nth-child(5) {
-        height: 35%;
-      }
-      .bars i:nth-child(6) {
-        height: 65%;
-      }
-      .card-rows {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .card-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: var(--ink-soft);
-        padding: 10px 14px;
-        border-radius: 14px;
-        background: rgba(255, 255, 255, 0.55);
-      }
-      .card-row .ok {
-        color: #16a34a;
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 0.7rem;
-      }
-      .float-chip {
-        position: absolute;
-        padding: 10px 16px;
-        border-radius: 100px;
-        font-size: 0.75rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        animation: chipfloat 5s ease-in-out infinite;
-      }
-      .chip-1 {
-        top: 6%;
-        right: -6%;
-        animation-delay: 0s;
-      }
-      .chip-2 {
-        bottom: 12%;
-        left: -10%;
-        animation-delay: 1.5s;
-      }
-      @keyframes chipfloat {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-12px);
-        }
-      }
+  /* ============ SECTION shared ============ */
+  section{padding:100px 0;}
+  .section-head{text-align:center;max-width:680px;margin:0 auto 56px;}
+  .kicker{font-size:0.95rem;color:var(--accent);font-weight:500;margin-bottom:10px;}
+  h2.title{
+    font-size:clamp(2rem,4vw,3rem);
+    font-weight:600;letter-spacing:-0.025em;line-height:1.08;color:var(--ink);
+    margin-bottom:14px;
+  }
+  .sub{font-size:1.15rem;color:var(--ink-soft);font-weight:400;line-height:1.5;}
 
-      /* ============ STATS BAR ============ */
-      .stats-bar {
-        border-radius: 20px;
-        padding: 30px 40px;
-        margin-top: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 24px;
-      }
-      .stat {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        min-width: 140px;
-      }
-      .stat-num {
-        font-size: 1.7rem;
-        font-weight: 800;
-        letter-spacing: -0.02em;
-      }
-      .stat-label {
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: var(--ink-soft);
-      }
-      .stat-div {
-        width: 1px;
-        height: 36px;
-        background: var(--line-strong);
-      }
-      @media (max-width: 768px) {
-        .stat-div {
-          display: none;
-        }
-        .stats-bar {
-          padding: 26px;
-        }
-      }
+  /* dark sections */
+  .dark{background:var(--dark);color:var(--dark-ink);}
+  .dark .sub{color:var(--dark-ink-soft);}
+  .dark h2.title{color:var(--dark-ink);}
 
-      /* ============ MARQUEE STRIP ============ */
-      .strip {
-        padding: 26px 0;
-        overflow: hidden;
-        position: relative;
-        z-index: 1;
-      }
-      .strip-inner {
-        border-radius: 14px;
-        padding: 16px 0;
-        overflow: hidden;
-      }
-      .strip-track {
-        display: flex;
-        gap: 50px;
-        white-space: nowrap;
-        animation: scroll 24s linear infinite;
-        font-size: 0.85rem;
-        font-weight: 700;
-        color: var(--ink-soft);
-      }
-      .strip-track span {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .strip-track span::before {
-        content: "●";
-        font-size: 0.5rem;
-        color: var(--ink-faint);
-      }
-      @keyframes scroll {
-        from {
-          transform: translateX(0);
-        }
-        to {
-          transform: translateX(-50%);
-        }
-      }
+  /* ============ PRODUCT ============ */
+  .product-feature{
+    display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+  }
+  .product-media{
+    aspect-ratio:4/3;border-radius:var(--radius-lg);
+    background:linear-gradient(160deg,#1d1d1f 0%, #000 100%);
+    display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+  }
+  .product-media svg{width:34%;height:34%;}
+  .status-live{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:0.85rem;font-weight:500;color:#30d158;margin-bottom:14px;
+  }
+  .status-live .dot{width:6px;height:6px;border-radius:50%;background:#30d158;}
+  .product-info h3{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:600;letter-spacing:-0.02em;margin-bottom:12px;color:var(--dark-ink);}
+  .product-info p{font-size:1.08rem;color:var(--dark-ink-soft);margin-bottom:26px;max-width:420px;}
+  .product-info .btn{background:#fff;color:#000;}
+  .product-info .btn:hover{background:#e6e6e6;}
 
-      /* ============ SECTIONS ============ */
-      section {
-        padding: 100px 0;
-        position: relative;
-        z-index: 1;
-      }
-      .sec-num {
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: var(--ink-faint);
-        margin-bottom: 16px;
-        display: inline-block;
-        padding: 6px 14px;
-        border-radius: 100px;
-      }
-      .sec-title {
-        font-size: clamp(1.8rem, 3vw, 2.4rem);
-        font-weight: 800;
-        letter-spacing: -0.03em;
-        max-width: 620px;
-        margin-bottom: 16px;
-      }
-      .sec-sub {
-        color: var(--ink-soft);
-        max-width: 520px;
-        font-size: 1rem;
-        font-weight: 500;
-      }
+  .upcoming-row{
+    display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:64px;
+  }
+  .upcoming-card{
+    border-radius:var(--radius-md);padding:28px;
+    background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);
+  }
+  .upcoming-card .status{font-size:0.82rem;color:var(--dark-ink-soft);margin-bottom:10px;}
+  .upcoming-card h4{font-size:1.2rem;font-weight:600;color:var(--dark-ink);margin-bottom:6px;}
+  .upcoming-card p{font-size:0.92rem;color:var(--dark-ink-soft);}
 
-      /* ============ PHILOSOPHY ============ */
-      .philosophy {
-        border-radius: 36px;
-        padding: 80px 60px;
-        margin: 0 0 40px;
-      }
-      .phil-grid {
-        display: grid;
-        grid-template-columns: 0.9fr 1.1fr;
-        gap: 60px;
-        align-items: center;
-      }
-      .phil-quote {
-        font-size: clamp(1.5rem, 2.4vw, 2.05rem);
-        font-weight: 700;
-        letter-spacing: -0.025em;
-        line-height: 1.32;
-      }
-      .phil-side p {
-        color: var(--ink-soft);
-        font-size: 0.98rem;
-        margin-bottom: 18px;
-        max-width: 440px;
-        font-weight: 500;
-      }
-      .shield-mini {
-        width: 64px;
-        height: 64px;
-        border-radius: 20px;
-        background: linear-gradient(145deg, #1a1c22, #0c0d10);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 26px;
-        box-shadow: 0 14px 28px -12px rgba(0, 0, 0, 0.45);
-      }
+  /* ============ PRIVACY CORE — the sequence content, numbered legitimately ============ */
+  .core-list{max-width:760px;margin:0 auto;}
+  .core-item{
+    display:grid;grid-template-columns:60px 1fr;gap:24px;
+    padding:30px 0;border-top:1px solid var(--line);
+  }
+  .core-item:last-child{border-bottom:1px solid var(--line);}
+  .core-item .num{font-size:0.95rem;color:var(--ink-faint);font-weight:500;padding-top:3px;}
+  .core-item h4{font-size:1.25rem;font-weight:600;letter-spacing:-0.015em;margin-bottom:6px;}
+  .core-item p{font-size:1.02rem;color:var(--ink-soft);max-width:480px;}
 
-      /* ============ PRODUCTS ============ */
-      .product-grid {
-        display: grid;
-        grid-template-columns: 1.5fr 1fr 1fr;
-        gap: 20px;
-        margin-top: 48px;
-      }
-      .p-card {
-        border-radius: 26px;
-        padding: 32px;
-        min-height: 250px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        transition:
-          transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1),
-          box-shadow 0.45s;
-      }
-      .p-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-lift);
-      }
-      .p-live .tag {
-        font-size: 0.72rem;
-        font-weight: 700;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 7px 14px;
-        border-radius: 100px;
-        background: rgba(22, 163, 74, 0.12);
-        color: #15803d;
-        width: fit-content;
-      }
-      .p-live .tag .dot {
-        width: 6px;
-        height: 6px;
-        background: #16a34a;
-        border-radius: 50%;
-        animation: blink 1.6s infinite;
-      }
-      .p-icon {
-        width: 46px;
-        height: 46px;
-        border-radius: 14px;
-        background: linear-gradient(145deg, #1a1c22, #0c0d10);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 20px 0 14px;
-        box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.4);
-      }
-      .p-card h3 {
-        font-size: 1.4rem;
-        font-weight: 800;
-        letter-spacing: -0.02em;
-        margin-bottom: 8px;
-      }
-      .p-card p {
-        color: var(--ink-soft);
-        font-size: 0.9rem;
-        font-weight: 500;
-        max-width: 340px;
-        margin-bottom: 22px;
-      }
-      .p-link {
-        font-size: 0.85rem;
-        font-weight: 700;
-        color: var(--ink);
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        width: fit-content;
-        padding: 10px 18px;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.7);
-        transition: all 0.3s;
-      }
-      .p-link:hover {
-        background: var(--ink);
-        color: #fff;
-        transform: translateX(2px);
-      }
-      .p-soon .idx {
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: var(--ink-faint);
-      }
-      .p-soon h4 {
-        font-weight: 700;
-        color: var(--ink-soft);
-        margin-top: 14px;
-        font-size: 1.05rem;
-      }
-      .p-soon p {
-        color: var(--ink-faint);
-        font-size: 0.85rem;
-        margin-top: 6px;
-        font-weight: 500;
-      }
-      .idle-dot {
-        width: 36px;
-        height: 36px;
-        border-radius: 12px;
-        background: rgba(12, 13, 16, 0.06);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.9rem;
-      }
+  /* ============ TEAM ============ */
+  .founder-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border-top:1px solid var(--line);
+  }
+  .founder-card{
+    padding:36px 28px;border-right:1px solid var(--line);
+  }
+  .founder-card:last-child{border-right:none;}
+  .founder-photo{
+    width:64px;height:64px;border-radius:50%;object-fit:cover;margin-bottom:18px;
+  }
+  .founder-card h3{font-size:1.1rem;font-weight:600;letter-spacing:-0.01em;margin-bottom:2px;}
+  .founder-role{font-size:0.86rem;color:var(--ink-faint);display:block;margin-bottom:16px;}
+  .founder-card p.focus{font-size:0.92rem;color:var(--ink-soft);margin-bottom:18px;line-height:1.5;}
+  .linkedin-link{font-size:0.88rem;color:var(--accent);text-decoration:none;}
+  .linkedin-link:hover{text-decoration:underline;}
 
-      /* ============ CORE PRINCIPLES ============ */
-      .core-wrap {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-        margin-top: 48px;
-      }
-      .principle {
-        border-radius: 22px;
-        padding: 26px 28px;
-        transition:
-          transform 0.35s cubic-bezier(0.2, 0.7, 0.3, 1),
-          box-shadow 0.35s;
-      }
-      .principle:hover {
-        transform: translateY(-5px) scale(1.01);
-        box-shadow: var(--shadow-lift);
-      }
-      .principle .num {
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: var(--ink-faint);
-      }
-      .principle h4 {
-        font-size: 1.05rem;
-        font-weight: 800;
-        margin: 10px 0 6px;
-        letter-spacing: -0.015em;
-      }
-      .principle p {
-        color: var(--ink-soft);
-        font-size: 0.87rem;
-        font-weight: 500;
-      }
+  /* ============ MODEL ============ */
+  .model-section{text-align:center;}
+  .big-free{
+    font-size:clamp(2.6rem,6vw,4rem);font-weight:600;letter-spacing:-0.03em;
+    margin-bottom:16px;color:var(--dark-ink);
+  }
 
-      /* ============ TEAM ============ */
-      .founder-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        margin-top: 48px;
-      }
-      .founder-card {
-        border-radius: 26px;
-        padding: 32px 28px;
-        text-align: left;
-        transition:
-          transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1),
-          box-shadow 0.4s;
-      }
-      .founder-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-lift);
-      }
-      .founder-photo {
-        width: 66px;
-        height: 66px;
-        border-radius: 20px;
-        object-fit: cover;
-        margin-bottom: 20px;
-        box-shadow: 0 8px 20px -8px rgba(12, 13, 16, 0.3);
-      }
-      .founder-card h3 {
-        font-size: 1.12rem;
-        font-weight: 800;
-        margin-bottom: 3px;
-        letter-spacing: -0.015em;
-      }
-      .founder-role {
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: var(--ink-faint);
-        display: block;
-        margin-bottom: 18px;
-      }
-      .founder-card ul {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 7px;
-        margin-bottom: 22px;
-      }
-      .founder-card ul li {
-        font-size: 0.86rem;
-        color: var(--ink-soft);
-        font-weight: 500;
-        padding-left: 16px;
-        position: relative;
-      }
-      .founder-card ul li::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 8px;
-        width: 7px;
-        height: 2px;
-        border-radius: 2px;
-        background: var(--ink-faint);
-      }
-      .linkedin-link {
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: var(--ink);
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 9px 16px;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.7);
-        transition: all 0.3s;
-      }
-      .linkedin-link:hover {
-        background: #0a66c2;
-        color: #fff;
-        transform: translateX(2px);
-      }
+  /* ============ CONTACT ============ */
+  .contact-section{text-align:center;}
+  .contact-email{
+    font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;letter-spacing:-0.02em;
+    color:var(--accent);text-decoration:none;display:inline-block;margin-top:8px;
+  }
+  .contact-email:hover{text-decoration:underline;}
 
-      /* ============ MODEL ============ */
-      .model-block {
-        border-radius: 32px;
-        margin-top: 48px;
-        padding: 70px 50px;
-        text-align: center;
-      }
-      .big-free {
-        font-size: clamp(2.4rem, 4.6vw, 3.6rem);
-        font-weight: 800;
-        letter-spacing: -0.035em;
-        margin-bottom: 14px;
-      }
-      .model-block p {
-        color: var(--ink-soft);
-        max-width: 520px;
-        margin: 0 auto;
-        font-size: 1.02rem;
-        font-weight: 500;
-      }
-      .model-sub {
-        font-size: 0.84rem;
-        font-weight: 700;
-        color: var(--ink-faint);
-        margin-top: 22px;
-        padding: 10px 20px;
-        border-radius: 10px;
-        display: inline-block;
-      }
+  /* ============ CTA ============ */
+  .cta-section{text-align:center;padding-bottom:60px;}
 
-      /* ============ CONTACT ============ */
-      .contact-email-link {
-        color: inherit;
-        text-decoration: none;
-        border-bottom: 2px solid rgba(12, 13, 16, 0.15);
-        transition: border-color 0.3s;
-      }
-      .contact-email-link:hover {
-        border-color: var(--ink);
-      }
+  /* ============ FOOTER ============ */
+  footer{border-top:1px solid var(--line);padding:40px 0;}
+  .footer-top{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;
+    padding-bottom:28px;border-bottom:1px solid var(--line);margin-bottom:20px;
+  }
+  .footer-col h5{font-size:0.78rem;font-weight:600;color:var(--ink);margin-bottom:12px;}
+  .footer-col a{display:block;font-size:0.82rem;color:var(--ink-soft);text-decoration:none;margin-bottom:9px;}
+  .footer-col a:hover{color:var(--ink);text-decoration:underline;}
+  .footer-bottom{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-size:0.78rem;color:var(--ink-faint);
+  }
 
-      /* ============ CTA ============ */
-      .cta-block {
-        border-radius: 36px;
-        padding: 90px 50px;
-        text-align: center;
-        margin-bottom: 60px;
-      }
-      .cta-block h2 {
-        font-size: clamp(1.9rem, 3.4vw, 2.7rem);
-        font-weight: 800;
-        letter-spacing: -0.03em;
-        margin-bottom: 16px;
-      }
-      .cta-block p {
-        color: var(--ink-soft);
-        max-width: 460px;
-        margin: 0 auto 36px;
-        font-weight: 500;
-      }
-      .cta-actions {
-        display: flex;
-        gap: 14px;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
+  /* reveal-once: one orchestrated entrance per section as it scrolls into view */
+  [data-reveal]{
+    opacity:0;transform:translateY(18px);
+    transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+  [data-reveal].in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    [data-reveal]{opacity:1!important;transform:none!important;transition:none!important;}
+    .ring-1,.ring-2,.ring-3{animation:none!important;}
+  }
 
-      /* ============ FOOTER ============ */
-      footer {
-        padding: 20px 0 40px;
-      }
-      .footer-glass {
-        border-radius: 32px;
-        padding: 48px 44px;
-      }
-      .footer-grid {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 40px;
-        margin-bottom: 40px;
-      }
-      .footer-brand {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: 800;
-        font-size: 1.05rem;
-      }
-      .footer-tag {
-        color: var(--ink-soft);
-        font-size: 0.88rem;
-        margin-top: 10px;
-        max-width: 260px;
-        font-weight: 500;
-      }
-      .footer-links {
-        display: flex;
-        gap: 52px;
-        flex-wrap: wrap;
-      }
-      .footer-col h5 {
-        font-size: 0.72rem;
-        font-weight: 800;
-        color: var(--ink-faint);
-        margin-bottom: 14px;
-        letter-spacing: 0.02em;
-      }
-      .footer-col a {
-        display: block;
-        color: var(--ink-soft);
-        text-decoration: none;
-        font-size: 0.88rem;
-        font-weight: 600;
-        margin-bottom: 10px;
-        transition: color 0.25s;
-      }
-      .footer-col a:hover {
-        color: var(--ink);
-      }
-      .footer-bottom {
-        border-top: 1px solid var(--line);
-        padding-top: 20px;
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.76rem;
-        font-weight: 600;
-        color: var(--ink-faint);
-        flex-wrap: wrap;
-        gap: 10px;
-      }
+  /* buttons: Apple-style press feedback rather than a hover lift */
+  .btn{transition:background .2s ease, transform .15s ease;}
+  .btn:active{transform:scale(0.97);}
+  .link-chevron{transition:opacity .2s ease;}
+  .upcoming-card{transition:border-color .3s ease;}
+  .upcoming-card:hover{border-color:rgba(255,255,255,0.18);}
+  .founder-card{transition:background .3s ease;}
+  .founder-card:hover{background:rgba(0,0,0,0.02);}
 
-      /* ============ responsive ============ */
-      @media (max-width: 980px) {
-        .hero {
-          grid-template-columns: 1fr;
-        }
-        .phil-grid {
-          grid-template-columns: 1fr;
-          gap: 34px;
-        }
-        .product-grid {
-          grid-template-columns: 1fr;
-        }
-        .core-wrap {
-          grid-template-columns: 1fr;
-        }
-        .founder-grid {
-          grid-template-columns: 1fr;
-        }
-        .philosophy,
-        .cta-block,
-        .footer-glass {
-          padding: 50px 28px;
-        }
-      }
-      @media (max-width: 768px) {
-        .nav-links,
-        .nav-cta {
-          display: none;
-        }
-        .hamburger {
-          display: flex;
-        }
-        .wrap {
-          padding: 0 18px;
-        }
-        header.nav {
-          padding: 14px 12px 0;
-        }
-        section {
-          padding: 70px 0;
-        }
-        .glass-card {
-          max-width: 320px;
-        }
-        .float-chip {
-          display: none;
-        }
-      }
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:900px){
+    .product-feature{grid-template-columns:1fr;gap:40px;}
+    .upcoming-row{grid-template-columns:1fr;}
+    .founder-grid{grid-template-columns:1fr;}
+    .founder-card{border-right:none;border-bottom:1px solid var(--line);}
+  }
+  @media (max-width:720px){
+    .nav-links,.nav-cta{display:none;}
+    .hamburger{display:flex;}
+    section{padding:70px 0;}
+    .hero{padding:80px 0 60px;}
+    .core-item{grid-template-columns:40px 1fr;gap:16px;}
+  }
+</style>
+</head>
+<body>
 
-      [data-reveal] {
-        opacity: 0;
-        transform: translateY(22px);
-        transition:
-          opacity 0.8s ease,
-          transform 0.8s cubic-bezier(0.2, 0.6, 0.2, 1);
-      }
-      [data-reveal].in {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      [data-tilt] {
-        transition: transform 0.2s ease-out;
-      }
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#" class="brand">
+      <svg class="brand-mark" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#1d1d1f"/><path d="M16 6.5L9 9.2v6.1c0 5.3 3 8.9 7 10.2 4-1.3 7-4.9 7-10.2V9.2l-7-2.7z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      PrivoSafe
+    </a>
+    <nav class="nav-links">
+      <a href="#product">Product</a>
+      <a href="#core">Privacy Core</a>
+      <a href="#team">Team</a>
+      <a href="#model">Model</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#product" class="nav-cta">Try Clozzy</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#product">Product</a>
+    <a href="#core">Privacy Core</a>
+    <a href="#team">Team</a>
+    <a href="#model">Model</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
 
-      /* ============ SCROLL-TRIGGERED CARD ENTRANCES ============ */
-      /* Each card starts hidden/displaced with a blur, then snaps into place with a
-     soft magnetic overshoot when it enters the viewport. Direction + a subtle
-     3D rotation vary per card so a row of cards doesn't move in lockstep. */
-      [data-fx] {
-        opacity: 0;
-        filter: blur(10px);
-        will-change: transform, opacity, filter;
-        transition:
-          opacity 0.9s cubic-bezier(0.16, 0.9, 0.28, 1),
-          filter 1s cubic-bezier(0.16, 0.9, 0.28, 1),
-          transform 1.05s cubic-bezier(0.19, 1.24, 0.35, 1);
-      }
-      [data-fx].fx-in {
-        opacity: 1;
-        filter: blur(0px);
-        transform: none !important;
-      }
-
-      [data-fx="left"] {
-        transform: translate3d(-90px, 26px, 0) rotate(-6deg) scale(0.92);
-      }
-      [data-fx="right"] {
-        transform: translate3d(90px, 26px, 0) rotate(6deg) scale(0.92);
-      }
-      [data-fx="bottom"] {
-        transform: translate3d(0, 90px, 0) scale(0.9);
-      }
-      [data-fx="rise"] {
-        transform: translate3d(0, 70px, 0) rotateX(30deg) scale(0.94);
-      }
-      [data-fx="pop"] {
-        transform: translate3d(0, 20px, 0) scale(0.55);
-      }
-      [data-fx="drop"] {
-        transform: translate3d(0, -80px, 0) rotate(-4deg) scale(0.94);
-      }
-
-      /* landing "thud" — a brief compressive squash right as each card locks in,
-     layered on top of the transform transition above via a keyframe pass */
-      [data-fx].fx-in {
-        animation: fxSettle 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s both;
-      }
-      @keyframes fxSettle {
-        0% {
-          transform: scale(1.045);
-        }
-        55% {
-          transform: scale(0.985);
-        }
-        100% {
-          transform: scale(1);
-        }
-      }
-
-      /* thin light sweep across the glass the instant a card lands */
-      [data-fx] {
-        position: relative;
-        overflow: hidden;
-      }
-      [data-fx]::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        border-radius: inherit;
-        background: linear-gradient(
-          115deg,
-          transparent 30%,
-          rgba(255, 255, 255, 0.65) 48%,
-          transparent 66%
-        );
-        transform: translateX(-140%);
-        opacity: 0;
-      }
-      [data-fx].fx-in::after {
-        animation: fxSheen 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s both;
-      }
-      @keyframes fxSheen {
-        0% {
-          transform: translateX(-140%);
-          opacity: 0;
-        }
-        12% {
-          opacity: 0.9;
-        }
-        60% {
-          opacity: 0.35;
-        }
-        100% {
-          transform: translateX(140%);
-          opacity: 0;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        [data-reveal],
-        [data-fx] {
-          opacity: 1 !important;
-          transform: none !important;
-          filter: none !important;
-          transition: none !important;
-          animation: none !important;
-        }
-        [data-fx]::after {
-          display: none;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
-      <symbol id="ps-mark" viewBox="0 0 32 32">
-        <rect width="32" height="32" rx="8" fill="#0c0d10" />
-        <path
-          d="M16 6.5L9 9.2v6.1c0 5.3 3 8.9 7 10.2 4-1.3 7-4.9 7-10.2V9.2l-7-2.7z"
-          fill="none"
-          stroke="#f4f3ef"
-          stroke-width="1.5"
-          stroke-linejoin="round"
-        />
-        <path
-          d="M13 16.2l2 2 4-4.4"
-          fill="none"
-          stroke="#f4f3ef"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </symbol>
-    </svg>
-    <div class="ambient">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="orb orb-3"></div>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow" data-reveal>PrivoSafe</div>
+    <h1 class="display" data-reveal>Privacy isn't a feature.<br>It's the foundation.</h1>
+    <p class="hero-lede" data-reveal>One Privacy Core — identity, encryption, and key management — shared across every product we build.</p>
+    <div class="hero-actions" data-reveal>
+      <a href="#product" class="btn">Try Clozzy</a>
+      <a href="#core" class="link-chevron">See how it works &rsaquo;</a>
     </div>
 
-    <header class="nav">
-      <div class="nav-inner glass">
-        <div class="brand">
-          <img
-            src="./assets/rhino.png"
-            alt="PrivoSafe logo"
-            class="brand-mark"
-            onerror="
-              this.onerror = null;
-              this.src =
-                'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%230c0d10%22/%3E%3Cpath d=%22M16 6.5L9 9.2v6.1c0 5.3 3 8.9 7 10.2 4-1.3 7-4.9 7-10.2V9.2l-7-2.7z%22 fill=%22none%22 stroke=%22%23f4f3ef%22 stroke-width=%221.5%22/%3E%3C/svg%3E';
-            "
-          />PrivoSafe
+    <div class="hero-visual" data-reveal>
+      <div class="core-diagram">
+        <div class="core-ring ring-3"></div>
+        <div class="core-ring ring-2"></div>
+        <div class="core-ring ring-1"></div>
+        <div class="core-center">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5l-8-3z" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
         </div>
-        <nav class="nav-links">
-          <a href="#product">Product</a>
-          <a href="#core">Privacy core</a>
-          <a href="#team">Team</a>
-          <a href="#model">Model</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <a href="#product" class="nav-cta">Try Clozzy</a>
-        <button class="hamburger" id="hamburger" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
+        <div class="core-node" style="top:8%;left:50%;transform:translateX(-50%);">ID</div>
+        <div class="core-node" style="bottom:8%;left:50%;transform:translateX(-50%);">Keys</div>
+        <div class="core-node" style="top:50%;left:4%;transform:translateY(-50%);">Trust</div>
+        <div class="core-node" style="top:50%;right:4%;transform:translateY(-50%);">Perms</div>
       </div>
-      <div class="wrap">
-        <div class="mobile-nav glass" id="mobileNav">
-          <a href="#product">Product</a>
-          <a href="#core">Privacy core</a>
-          <a href="#team">Team</a>
-          <a href="#model">Business model</a>
-          <a href="#contact">Contact</a>
-        </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT -->
+<section id="product" class="dark">
+  <div class="wrap-wide">
+    <div class="product-feature" data-reveal>
+      <div class="product-info">
+        <div class="status-live"><span class="dot"></span>Live now</div>
+        <h3>Clozzy</h3>
+        <p>Private communication and relationships — conversations that stay yours. Built for trust, designed for privacy, from the first message.</p>
+        <a href="./clozzy/clozzy.html" class="btn">Open Clozzy</a>
       </div>
-    </header>
-
-    <div class="wrap">
-      <!-- HERO -->
-      <div class="hero">
-        <div class="hero-content" data-reveal>
-          <div class="eyebrow glass">
-            <span class="dot"></span>Privacy is a right
-          </div>
-          <h1 class="display">
-            Privacy-first<br />infrastructure<br />for everyday apps.
-          </h1>
-          <p class="hero-lede">
-            PrivoSafe builds the identity and encryption layer other companies
-            bolt on as an afterthought. One Privacy Core, shared across every
-            product we ship.
-          </p>
-          <div class="hero-actions">
-            <a href="#product" class="btn btn-fill">Try Clozzy</a>
-            <a href="#core" class="btn btn-glass glass">Our philosophy</a>
-          </div>
-          <div class="hero-trust">
-            <div class="trust-pill glass"><i></i>End-to-end encrypted</div>
-            <div class="trust-pill glass"><i></i>Zero data sold</div>
-            <div class="trust-pill glass"><i></i>Free, always</div>
-          </div>
-        </div>
-
-        <div class="hero-visual" data-reveal>
-          <div class="float-chip glass chip-1">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
-              <rect
-                x="5"
-                y="11"
-                width="14"
-                height="9"
-                rx="2"
-                stroke="#0c0d10"
-                stroke-width="1.8"
-              />
-              <path
-                d="M8 11V7a4 4 0 018 0v4"
-                stroke="#0c0d10"
-                stroke-width="1.8"
-              />
-            </svg>
-            Encrypted
-          </div>
-          <div class="float-chip glass chip-2">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
-              <circle
-                cx="8"
-                cy="15"
-                r="4"
-                stroke="#0c0d10"
-                stroke-width="1.8"
-              />
-              <path
-                d="M11 12l9-9M17 6l3 3M14 9l2 2"
-                stroke="#0c0d10"
-                stroke-width="1.8"
-                stroke-linecap="round"
-              />
-            </svg>
-            Keys: yours
-          </div>
-          <div class="glass-card glass">
-            <div class="card-top">
-              <div class="card-shield">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M12 2L4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5l-8-3z"
-                    stroke="#f4f3ef"
-                    stroke-width="1.6"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-              <div class="lock-status"><span class="g"></span>Vault locked</div>
-            </div>
-            <div class="card-mid">
-              <div class="big-num">100%</div>
-              <div class="cap">Data encrypted at rest</div>
-              <div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-              <div class="card-rows">
-                <div class="card-row">
-                  <span>Identity</span><span class="ok">SECURED</span>
-                </div>
-                <div class="card-row">
-                  <span>Devices trusted</span><span class="ok">3 / 3</span>
-                </div>
-                <div class="card-row">
-                  <span>Data sold</span><span class="ok">0</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="product-media">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v11H8l-4 4V5z" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg>
       </div>
     </div>
 
-    <!-- STATS BAR -->
-    <div class="wrap">
-      <div class="stats-bar glass" data-fx="bottom">
-        <div class="stat">
-          <span class="stat-num">256-bit</span
-          ><span class="stat-label">Encryption standard</span>
-        </div>
-        <div class="stat-div"></div>
-        <div class="stat">
-          <span class="stat-num">0</span
-          ><span class="stat-label">User records sold, ever</span>
-        </div>
-        <div class="stat-div"></div>
-        <div class="stat">
-          <span class="stat-num">3</span
-          ><span class="stat-label">Products on one Privacy Core</span>
-        </div>
-        <div class="stat-div"></div>
-        <div class="stat">
-          <span class="stat-num">100%</span
-          ><span class="stat-label">Free, permanently</span>
-        </div>
+    <div class="upcoming-row" data-reveal>
+      <div class="upcoming-card">
+        <div class="status">In development</div>
+        <h4>Vaultrix</h4>
+        <p>The next product on the Privacy Core. <a href="./vaultrix/vaultrix.html" style="color:#fff;">Preview &rsaquo;</a></p>
+      </div>
+      <div class="upcoming-card">
+        <div class="status">Unannounced</div>
+        <h4>Expanding the ecosystem</h4>
+        <p>More of your digital life, built on the same foundation.</p>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- STRIP -->
-    <div class="strip wrap">
-      <div class="strip-inner glass">
-        <div class="strip-track">
-          <span>End-to-end by default</span><span>You hold the keys</span
-          ><span>Zero data sold</span><span>Verified devices only</span
-          ><span>Granular permissions</span><span>Safe recovery</span>
-          <span>End-to-end by default</span><span>You hold the keys</span
-          ><span>Zero data sold</span><span>Verified devices only</span
-          ><span>Granular permissions</span><span>Safe recovery</span>
-        </div>
-      </div>
+<!-- PRIVACY CORE -->
+<section id="core">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div class="kicker">Privacy Core</div>
+      <h2 class="title">The shared foundation<br>behind every product.</h2>
+      <p class="sub">One identity, one key model, one set of rules — inherited by everything we build.</p>
     </div>
 
-    <div class="wrap">
-      <!-- PHILOSOPHY -->
-      <section data-reveal>
-        <div class="philosophy glass" data-fx="bottom">
-          <div class="phil-grid">
-            <div>
-              <div class="shield-mini">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M12 2L4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5l-8-3z"
-                    stroke="#f4f3ef"
-                    stroke-width="1.6"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-              <div class="phil-quote">
-                Your digital life, your rules. We don't collect what we don't
-                need, we don't store what we don't protect, and we never sell
-                what's yours.
-              </div>
-            </div>
-            <div class="phil-side">
-              <p>
-                Privacy is the foundation of freedom. Every product we build
-                starts with respect for you, and ends with control in your
-                hands.
-              </p>
-              <p>
-                That means default encryption, transparent permissions, and a
-                business model that never depends on your data.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- PRODUCTS -->
-      <section id="product" data-reveal>
-        <span class="sec-num glass">Product</span>
-        <h2 class="sec-title">One identity. Every product you'll ever need.</h2>
-        <p class="sec-sub">
-          Clozzy is live. The rest of the ecosystem is being built on the same
-          Privacy Core.
-        </p>
-
-        <div class="product-grid">
-          <div class="p-card p-live glass" data-tilt data-fx="left">
-            <div>
-              <span class="tag"><span class="dot"></span>LIVE NOW</span>
-              <div class="p-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M4 5h16v11H8l-4 4V5z"
-                    stroke="#f4f3ef"
-                    stroke-width="1.6"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-              <h3>Clozzy</h3>
-              <p>
-                Private communication and relationships — conversations that
-                stay yours. Built for trust, designed for privacy.
-              </p>
-            </div>
-            <a href="./clozzy/clozzy.html" class="p-link">Open Clozzy →</a>
-          </div>
-          <div class="p-card p-soon glass" data-tilt data-fx="bottom">
-            <div>
-              <div class="idle-dot">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="8.5"
-                    stroke="#4b4f58"
-                    stroke-width="1.6"
-                  />
-                  <path
-                    d="M12 7.5V12l3 2"
-                    stroke="#4b4f58"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                  />
-                </svg>
-              </div>
-              <span class="idx">002</span>
-              <h4>Vaultrix</h4>
-              <p>In development.</p>
-            </div>
-            <a href="./vaultrix/vaultrix.html" class="p-link">Preview →</a>
-          </div>
-          <div class="p-card p-soon glass" data-tilt data-fx="right">
-            <div>
-              <div class="idle-dot">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="8.5"
-                    stroke="#4b4f58"
-                    stroke-width="1.6"
-                  />
-                  <path
-                    d="M12 7.5V12l3 2"
-                    stroke="#4b4f58"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                  />
-                </svg>
-              </div>
-              <span class="idx">003</span>
-              <h4>Unannounced</h4>
-              <p>Expanding the ecosystem.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- PRIVACY CORE -->
-      <section id="core" data-reveal>
-        <span class="sec-num glass">Foundation</span>
-        <h2 class="sec-title">
-          Privacy Core — the shared language behind every product.
-        </h2>
-        <p class="sec-sub">
-          One identity, one key model, one set of rules that every PrivoSafe
-          product inherits.
-        </p>
-
-        <div class="core-wrap">
-          <div class="principle glass" data-tilt data-fx="left">
-            <span class="num">01</span>
-            <h4>Identity</h4>
-            <p>One trusted identity across every product.</p>
-          </div>
-          <div class="principle glass" data-tilt data-fx="right">
-            <span class="num">02</span>
-            <h4>Encryption</h4>
-            <p>End-to-end by default, everywhere.</p>
-          </div>
-          <div class="principle glass" data-tilt data-fx="left">
-            <span class="num">03</span>
-            <h4>Key management</h4>
-            <p>You hold the keys, not a server.</p>
-          </div>
-          <div class="principle glass" data-tilt data-fx="right">
-            <span class="num">04</span>
-            <h4>Device trust</h4>
-            <p>Only verified devices stay connected.</p>
-          </div>
-          <div class="principle glass" data-tilt data-fx="pop">
-            <span class="num">05</span>
-            <h4>Permissions</h4>
-            <p>Clear, granular control over what's shared.</p>
-          </div>
-          <div class="principle glass" data-tilt data-fx="drop">
-            <span class="num">06</span>
-            <h4>Recovery</h4>
-            <p>Safe recovery without weakening security.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- TEAM -->
-      <section id="team" data-reveal>
-        <span class="sec-num glass">Team</span>
-        <h2 class="sec-title">Three founders, one mission.</h2>
-        <p class="sec-sub">
-          A small team making privacy the standard, not the exception.
-        </p>
-
-        <div class="founder-grid">
-          <div
-            class="founder-card glass"
-            data-tilt
-            data-fx="rise"
-            id="founder-card-nikhil"
-          >
-            <img
-              src="./assets/nikhil-chavan.png"
-              alt="Nikhil Chavan"
-              class="founder-photo"
-              onerror="
-                this.onerror = null;
-                this.src =
-                  'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23e7e9ed%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2258%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2230%22 fill=%22%238a8e97%22%3EN%3C/text%3E%3C/svg%3E';
-              "
-            />
-            <h3>Nikhil Chavan</h3>
-            <span class="founder-role">FOUNDER &amp; CEO</span>
-            <ul>
-              <li>Vision &amp; business</li>
-              <li>Strategy &amp; product</li>
-              <li>Company coordination</li>
-            </ul>
-            <a
-              href="https://www.linkedin.com/in/codenik/"
-              class="linkedin-link"
-              data-no-card-nav
-              target="_blank"
-              rel="noopener"
-              >Connect on LinkedIn</a
-            >
-          </div>
-          <div class="founder-card glass" data-tilt data-fx="bottom">
-            <img
-              src="./assets/harsh-gautam.jpeg"
-              alt="Harsh Gautam"
-              class="founder-photo"
-              onerror="
-                this.onerror = null;
-                this.src =
-                  'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23e7e9ed%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2258%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2230%22 fill=%22%238a8e97%22%3EH%3C/text%3E%3C/svg%3E';
-              "
-            />
-            <h3>Harsh Gautam</h3>
-            <span class="founder-role">CO-FOUNDER &amp; CTO</span>
-            <ul>
-              <li>Engineering &amp; architecture</li>
-              <li>Infrastructure &amp; security</li>
-              <li>Technical team</li>
-            </ul>
-            <a
-              href="https://www.linkedin.com/in/harshgautamdev/"
-              class="linkedin-link"
-              target="_blank"
-              >Connect on LinkedIn</a
-            >
-          </div>
-          <div class="founder-card glass" data-tilt data-fx="rise">
-            <img
-              src="./assets/harsh-chandra.jpeg"
-              alt="Harsh Chandra"
-              class="founder-photo"
-              onerror="
-                this.onerror = null;
-                this.src =
-                  'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23e7e9ed%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2258%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2230%22 fill=%22%238a8e97%22%3EH%3C/text%3E%3C/svg%3E';
-              "
-            />
-            <h3>Harsh Chandra</h3>
-            <span class="founder-role">CO-FOUNDER &amp; COO/CMO</span>
-            <ul>
-              <li>Operations &amp; marketing</li>
-              <li>Partnerships &amp; growth</li>
-              <li>Team coordination</li>
-            </ul>
-            <a
-              href="https://www.linkedin.com/in/harsh-chandra-2707a8393/"
-              class="linkedin-link"
-              target="_blank"
-              >Connect on LinkedIn</a
-            >
-          </div>
-        </div>
-      </section>
-
-      <!-- MODEL -->
-      <section id="model" data-reveal>
-        <span class="sec-num glass">Business model</span>
-        <h2 class="sec-title">Privacy shouldn't cost a thing.</h2>
-        <p class="sec-sub">
-          A right isn't a premium feature. PrivoSafe is free for everyone,
-          permanently.
-        </p>
-
-        <div class="model-block glass" data-fx="pop">
-          <div class="big-free">Free for everyone</div>
-          <p>
-            We're building PrivoSafe to protect your privacy because it's your
-            right — no hidden fees, no data selling, no fine print.
-          </p>
-          <div class="model-sub glass">
-            We work for your privacy. Not for profit.
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact" data-reveal>
-        <span class="sec-num glass">Get in touch</span>
-        <h2 class="sec-title">Questions? Reach out directly.</h2>
-        <p class="sec-sub">
-          Whether it's press, partnerships, or just curiosity about how the
-          Privacy Core works — we read every email ourselves. Know more at
-          <a href="mailto:hello@privosafe.com" class="contact-email-link"
-            >hello@privosafe.com</a
-          >.
-        </p>
-
-        <div class="model-block glass" data-fx="pop" style="margin-top: 48px">
-          <div class="big-free" style="font-size: clamp(1.5rem, 3vw, 2.2rem)">
-            hello@privosafe.com
-          </div>
-          <p>Say hello, ask a question, or just tell us what you think.</p>
-          <a
-            href="mailto:hello@privosafe.com"
-            class="btn btn-fill"
-            style="margin-top: 26px; display: inline-flex"
-            >Email us</a
-          >
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <div class="cta-block glass" data-reveal>
-        <h2>Your privacy is our priority.</h2>
-        <p>
-          Start with Clozzy today, and join us in building a future where
-          privacy is a right, not a privilege.
-        </p>
-        <div class="cta-actions">
-          <a href="#product" class="btn btn-fill">Try Clozzy now</a>
-          <a href="#core" class="btn btn-glass glass">Learn more</a>
-        </div>
+    <div class="core-list" data-reveal>
+      <div class="core-item">
+        <span class="num">01</span>
+        <div><h4>Identity</h4><p>One trusted identity across every product you use.</p></div>
       </div>
+      <div class="core-item">
+        <span class="num">02</span>
+        <div><h4>Encryption</h4><p>End-to-end by default, everywhere — nothing readable in between.</p></div>
+      </div>
+      <div class="core-item">
+        <span class="num">03</span>
+        <div><h4>Key management</h4><p>You hold the keys. Not a server, not us.</p></div>
+      </div>
+      <div class="core-item">
+        <span class="num">04</span>
+        <div><h4>Device trust</h4><p>Only verified devices ever stay connected to your account.</p></div>
+      </div>
+      <div class="core-item">
+        <span class="num">05</span>
+        <div><h4>Permissions</h4><p>Clear, granular control over exactly what's shared, and with whom.</p></div>
+      </div>
+      <div class="core-item">
+        <span class="num">06</span>
+        <div><h4>Recovery</h4><p>Safe account recovery that never weakens your security.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <footer>
-        <div class="footer-glass glass">
-          <div class="footer-grid">
-            <div>
-              <div class="footer-brand">
-                <img
-                  src="./assets/logo.png"
-                  alt="PrivoSafe logo"
-                  class="brand-mark"
-                  onerror="
-                    this.onerror = null;
-                    this.src =
-                      'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%230c0d10%22/%3E%3Cpath d=%22M16 6.5L9 9.2v6.1c0 5.3 3 8.9 7 10.2 4-1.3 7-4.9 7-10.2V9.2l-7-2.7z%22 fill=%22none%22 stroke=%22%23f4f3ef%22 stroke-width=%221.5%22/%3E%3C/svg%3E';
-                  "
-                />PrivoSafe
-              </div>
-              <p class="footer-tag">
-                We respect and manage your privacy, because privacy is the right
-                of every single user.
-              </p>
-            </div>
-            <div class="footer-links">
-              <div class="footer-col">
-                <h5>PRODUCT</h5>
-                <a href="#product">Clozzy</a>
-                <a href="#product">Coming soon</a>
-              </div>
-              <div class="footer-col">
-                <h5>COMPANY</h5>
-                <a href="#team">Team</a>
-                <a href="#core">Privacy core</a>
-                <a href="#model">Business model</a>
-              </div>
-              <div class="footer-col">
-                <h5>TRUST</h5>
-                <a href="#">Security transparency</a>
-                <a href="#">Privacy policy</a>
-              </div>
-              <div class="footer-col">
-                <h5>CONTACT</h5>
-                <a href="mailto:hello@privosafe.com">hello@privosafe.com</a>
-              </div>
-            </div>
-          </div>
-          <div class="footer-bottom">
-            <span>© 2026 PRIVOSAFE. ALL RIGHTS RESERVED.</span>
-            <span>PRIVACY CORE V1</span>
-          </div>
-        </div>
-      </footer>
+<!-- TEAM -->
+<section id="team" style="background:var(--canvas);">
+  <div class="wrap-wide">
+    <div class="section-head" data-reveal>
+      <div class="kicker">Team</div>
+      <h2 class="title">Three founders, one mission.</h2>
+      <p class="sub">A small team making privacy the standard, not the exception.</p>
     </div>
 
-    <script>
-      const hamburger = document.getElementById("hamburger");
-      const mobileNav = document.getElementById("mobileNav");
-      hamburger.addEventListener("click", () =>
-        mobileNav.classList.toggle("open"),
-      );
-      mobileNav
-        .querySelectorAll("a")
-        .forEach((a) =>
-          a.addEventListener("click", () => mobileNav.classList.remove("open")),
-        );
+    <div class="founder-grid" data-reveal>
+      <div class="founder-card" id="founder-card-nikhil">
+        <img src="./assets/nikhil-chavan.png" alt="Nikhil Chavan" class="founder-photo"
+          onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23e7e9ed%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2258%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2230%22 fill=%22%238a8e97%22%3EN%3C/text%3E%3C/svg%3E';">
+        <h3>Nikhil Chavan</h3>
+        <span class="founder-role">Founder &amp; CEO</span>
+        <p class="focus">Vision, strategy, and company coordination.</p>
+        <a href="https://www.linkedin.com/in/codenik/" class="linkedin-link" data-no-card-nav target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </div>
+      <div class="founder-card">
+        <img src="./assets/harsh-gautam.jpeg" alt="Harsh Gautam" class="founder-photo"
+          onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23e7e9ed%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2258%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2230%22 fill=%22%238a8e97%22%3EH%3C/text%3E%3C/svg%3E';">
+        <h3>Harsh Gautam</h3>
+        <span class="founder-role">Co-founder &amp; CTO</span>
+        <p class="focus">Engineering, architecture, and infrastructure security.</p>
+        <a href="https://www.linkedin.com/in/harshgautamdev/" class="linkedin-link" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </div>
+      <div class="founder-card">
+        <img src="./assets/harsh-chandra.jpeg" alt="Harsh Chandra" class="founder-photo"
+          onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23e7e9ed%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2258%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2230%22 fill=%22%238a8e97%22%3EH%3C/text%3E%3C/svg%3E';">
+        <h3>Harsh Chandra</h3>
+        <span class="founder-role">Co-founder &amp; COO/CMO</span>
+        <p class="focus">Operations, partnerships, and growth.</p>
+        <a href="https://www.linkedin.com/in/harsh-chandra-2707a8393/" class="linkedin-link" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) e.target.classList.add("in");
-          });
-        },
-        { threshold: 0.12 },
-      );
-      document
-        .querySelectorAll("[data-reveal]")
-        .forEach((el) => io.observe(el));
+<!-- MODEL -->
+<section id="model" class="dark model-section">
+  <div class="wrap">
+    <div class="kicker" data-reveal>Business model</div>
+    <div class="big-free" data-reveal>Free for everyone,<br>permanently.</div>
+    <p class="sub" style="max-width:520px;margin:0 auto;">A right isn't a premium feature. No hidden fees, no data selling, no fine print — we work for your privacy, not for profit.</p>
+  </div>
+</section>
 
-      // Card entrances: staggered by position within their own row/grid, so
-      // groups of cards cascade in rather than popping together.
-      const fxGroups = new Map();
-      document.querySelectorAll("[data-fx]").forEach((el) => {
-        const parent = el.parentElement;
-        if (!fxGroups.has(parent)) fxGroups.set(parent, []);
-        fxGroups.get(parent).push(el);
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="wrap">
+    <div class="kicker" data-reveal>Get in touch</div>
+    <h2 class="title" data-reveal>Questions? Reach out directly.</h2>
+    <p class="sub" style="max-width:520px;margin:0 auto;">Press, partnerships, or just curiosity about how the Privacy Core works — we read every email ourselves.</p>
+    <a href="mailto:hello@privosafe.com" class="contact-email" data-reveal>hello@privosafe.com</a>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="wrap">
+    <h2 class="title" data-reveal>Your privacy is our priority.</h2>
+    <p class="sub" style="max-width:460px;margin:0 auto 28px;">Start with Clozzy today, and join us in building a future where privacy is a right, not a privilege.</p>
+    <a href="#product" class="btn">Try Clozzy now</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap-wide">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h5>Product</h5>
+        <a href="#product">Clozzy</a>
+        <a href="#product">Coming soon</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#team">Team</a>
+        <a href="#core">Privacy Core</a>
+        <a href="#model">Business model</a>
+      </div>
+      <div class="footer-col">
+        <h5>Trust</h5>
+        <a href="#">Security transparency</a>
+        <a href="#">Privacy policy</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="mailto:hello@privosafe.com">hello@privosafe.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 PrivoSafe. All rights reserved.</span>
+      <span>Privacy Core v1</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const mobileNav = document.getElementById("mobileNav");
+  hamburger.addEventListener("click", () => mobileNav.classList.toggle("open"));
+  mobileNav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => mobileNav.classList.remove("open")));
+
+  // hero: one orchestrated reveal immediately on load
+  const heroReveals = document.querySelectorAll(".hero [data-reveal]");
+  window.addEventListener("DOMContentLoaded", () => {
+    heroReveals.forEach((el, i) => setTimeout(() => el.classList.add("in"), i * 120));
+  });
+
+  // everything below the hero: reveals once as it scrolls into view
+  const scrollReveals = Array.from(document.querySelectorAll("[data-reveal]")).filter(
+    (el) => !el.closest(".hero")
+  );
+  const revealIo = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("in");
+        revealIo.unobserve(entry.target);
       });
-      fxGroups.forEach((list) => {
-        list.forEach((el, i) => {
-          el.dataset.fxDelay = (i * 110).toString();
-        });
-      });
+    },
+    { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+  );
+  scrollReveals.forEach((el) => revealIo.observe(el));
 
-      const fxIo = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            const el = entry.target;
-            const delay = Number(el.dataset.fxDelay || 0);
-            setTimeout(() => el.classList.add("fx-in"), delay);
-            fxIo.unobserve(el);
-          });
-        },
-        { threshold: 0.2, rootMargin: "0px 0px -60px 0px" },
-      );
-      document.querySelectorAll("[data-fx]").forEach((el) => fxIo.observe(el));
-
-      document.querySelectorAll("[data-tilt]").forEach((card) => {
-        card.addEventListener("mousemove", (e) => {
-          const r = card.getBoundingClientRect();
-          const x = (e.clientX - r.left) / r.width - 0.5;
-          const y = (e.clientY - r.top) / r.height - 0.5;
-          card.style.transform = `perspective(800px) rotateX(${(-y * 5).toFixed(2)}deg) rotateY(${(x * 5).toFixed(2)}deg) translateY(-4px)`;
-        });
-        card.addEventListener("mouseleave", () => {
-          card.style.transform = "";
-        });
-      });
-
-      // parallax ambient orbs on mouse move
-      const orbs = document.querySelectorAll(".orb");
-      document.addEventListener("mousemove", (e) => {
-        const x = e.clientX / window.innerWidth - 0.5;
-        const y = e.clientY / window.innerHeight - 0.5;
-        orbs.forEach((o, i) => {
-          const depth = (i + 1) * 12;
-          o.style.transform = `translate(${x * depth}px, ${y * depth}px)`;
-        });
-      });
-
-      // Founder card → portfolio link (no visible UI change; card itself is clickable)
-      (function () {
-        const card = document.getElementById("founder-card-nikhil");
-        if (!card) return;
-        card.style.cursor = "pointer";
-        card.addEventListener("click", (e) => {
-          if (e.target.closest("[data-no-card-nav]")) return;
-          window.open("https://www.nikhilchavan.in/", "_blank", "noopener");
-        });
-      })();
-    </script>
-  </body>
+  (function () {
+    const card = document.getElementById("founder-card-nikhil");
+    if (!card) return;
+    card.style.cursor = "pointer";
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("[data-no-card-nav]")) return;
+      window.open("https://www.nikhilchavan.in/", "_blank", "noopener");
+    });
+  })();
+</script>
+</body>
 </html>
