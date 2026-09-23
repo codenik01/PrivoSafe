@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Security Research | PrivoSafe</title>
+    <meta
+      name="description"
+      content="How PrivoSafe's Privacy Core actually works: the encryption, key management, and threat-model decisions behind Vaultrix and Clozzy, written by the team that built them."
+    />
+    <meta name="author" content="Nikhil Chavan" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#0c0d10" />
+    <link rel="canonical" href="https://www.privosafe.com/research.html" />
+    <link rel="icon" type="image/png" href="/privosafe.png" />
+    <link rel="apple-touch-icon" href="/privosafe.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="PrivoSafe" />
+    <meta property="og:url" content="https://www.privosafe.com/research.html" />
+    <meta property="og:title" content="Security Research | PrivoSafe" />
+    <meta property="og:description" content="How PrivoSafe's Privacy Core actually works: encryption, key management, and threat-model decisions behind Vaultrix and Clozzy." />
+    <meta property="og:image" content="https://www.privosafe.com/privosafe.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Security Research | PrivoSafe" />
+    <meta name="twitter:description" content="How PrivoSafe's Privacy Core actually works: encryption, key management, and threat-model decisions." />
+    <meta name="twitter:image" content="https://www.privosafe.com/privosafe.png" />
+
+    <!-- ═══════════════════════ JSON-LD: TechArticle + FAQPage + Breadcrumb ═══════════════════════ -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "TechArticle",
+            "@id": "https://www.privosafe.com/research.html#article",
+            "headline": "How PrivoSafe's Privacy Core Protects Vaultrix and Clozzy",
+            "description": "A first-party technical writeup of the encryption scheme, key management, and threat model behind PrivoSafe's Privacy Core, as implemented in Vaultrix and Clozzy.",
+            "url": "https://www.privosafe.com/research.html",
+            "datePublished": "2026-09-23",
+            "dateModified": "2026-09-23",
+            "author": { "@id": "https://www.privosafe.com/#organization" },
+            "publisher": { "@id": "https://www.privosafe.com/#organization" },
+            "about": [
+              { "@type": "Thing", "name": "AES-256-GCM" },
+              { "@type": "Thing", "name": "Argon2id" },
+              { "@type": "Thing", "name": "End-to-end encryption" },
+              { "@type": "Thing", "name": "Key management" }
+            ],
+            "isPartOf": { "@id": "https://www.privosafe.com/#website" },
+            "mainEntityOfPage": "https://www.privosafe.com/research.html"
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://www.privosafe.com/research.html#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Does PrivoSafe store my password?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Your password is never stored. It is run through Argon2id to derive a key-encryption key that only unlocks (wraps/unwraps) your Master Key. The Master Key itself is a random value generated on-device and is never derived from your password, so changing your password only re-wraps a small blob rather than re-encrypting your data."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What encryption does Vaultrix use?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Vaultrix encrypts file contents and metadata with AES-256-GCM, using a fresh random nonce for every encryption operation. The Master Key that performs this encryption is a CSPRNG-generated 256-bit key, wrapped by a key derived from your password using Argon2id (64 MB memory cost, 3 iterations, parallelism 2)."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does Vaultrix ever write unencrypted data to disk?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. On import, source files are read into memory, encrypted, and written to disk only as ciphertext; any temporary copy created by the file picker is deleted immediately after. On viewing, ciphertext is decrypted into an in-memory buffer that is handed to the UI and dropped when the screen closes. Plaintext is never persisted."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What happens if I'm forced to unlock my vault under duress?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Vaultrix includes a Panic Wipe that destroys the real vault's keys, metadata database, and encrypted files behind a typed confirmation phrase, and a Decoy Vault feature where a second password unlocks an entirely separate Master Key, database, and file space with no detectable difference from the real vault. A wrong password and a correct-but-different decoy password fail identically, so there is no behavioral signal to distinguish them."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is Clozzy end-to-end encrypted?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Clozzy runs on the same Privacy Core as Vaultrix: a per-vault Master Key generated with a CSPRNG, wrapped by an Argon2id-derived key from your password, with AES-256-GCM used to encrypt messages, photos, and mood/status updates. Only you and your partner hold the keys to your shared space."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can PrivoSafe read my data or sell it?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Because the Master Key is derived and held on-device and is wrapped by a key only your password can unwrap, PrivoSafe does not hold the keys needed to decrypt your content. PrivoSafe does not sell user data."
+                }
+              }
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "PrivoSafe", "item": "https://www.privosafe.com/" },
+              { "@type": "ListItem", "position": 2, "name": "Security Research", "item": "https://www.privosafe.com/research.html" }
+            ]
+          }
+        ]
+      }
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #eef0f3;
+        --paper: #f7f8fa;
+        --ink: #0c0d10;
+        --ink-soft: #4b4f58;
+        --ink-faint: #8a8e97;
+        --line: rgba(12, 13, 16, 0.09);
+        --line-strong: rgba(12, 13, 16, 0.18);
+        --glass: rgba(255, 255, 255, 0.55);
+        --glass-strong: rgba(255, 255, 255, 0.72);
+        --glass-border: rgba(255, 255, 255, 0.9);
+        --shadow-soft: 0 1px 1px rgba(12,13,16,0.02), 0 8px 24px -10px rgba(12,13,16,0.1);
+        --shadow-lift: 0 20px 48px -16px rgba(12,13,16,0.22);
+        --radius: 22px;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: "Manrope", system-ui, sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(1100px 500px at 12% -8%, rgba(255,255,255,0.9), transparent 60%),
+          radial-gradient(900px 500px at 90% 8%, rgba(255,255,255,0.7), transparent 55%),
+          linear-gradient(180deg, #eef0f3 0%, #e7e9ed 100%);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      .mono { font-family: "IBM Plex Mono", monospace; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+      .glass {
+        background: var(--glass);
+        backdrop-filter: blur(18px) saturate(160%);
+        -webkit-backdrop-filter: blur(18px) saturate(160%);
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--shadow-soft);
+      }
+
+      header.nav { position: sticky; top: 0; z-index: 100; padding: 18px 24px 0; }
+      .nav-inner {
+        max-width: 880px; margin: 0 auto; padding: 14px 24px;
+        display: flex; align-items: center; justify-content: space-between; border-radius: 16px;
+      }
+      .brand { display: flex; align-items: center; gap: 11px; font-weight: 800; font-size: 1.05rem; text-decoration: none; color: var(--ink); }
+      .brand-mark { width: 30px; height: 30px; border-radius: 8px; }
+      .nav-back { font-size: 0.85rem; font-weight: 700; color: var(--ink-soft); text-decoration: none; padding: 9px 16px; border-radius: 10px; }
+      .nav-back:hover { color: var(--ink); background: rgba(255,255,255,0.7); }
+
+      .hero { padding: 60px 0 40px; }
+      .kicker {
+        font-size: 0.78rem; font-weight: 700; color: var(--ink-soft);
+        display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px;
+        padding: 7px 14px; border-radius: 100px;
+      }
+      .kicker .dot { width: 6px; height: 6px; border-radius: 50%; background: #16a34a; }
+      h1.title { font-size: clamp(2rem, 4vw, 2.7rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 18px; }
+      .dek { font-size: 1.05rem; color: var(--ink-soft); font-weight: 500; max-width: 640px; margin-bottom: 22px; }
+      .byline { font-size: 0.82rem; color: var(--ink-faint); font-weight: 600; display: flex; gap: 14px; flex-wrap: wrap; }
+
+      article { padding: 10px 0 60px; }
+      .panel { border-radius: var(--radius); padding: 40px; margin-bottom: 28px; }
+      .panel h2 {
+        font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px;
+      }
+      .panel .tag-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 20px; }
+      .pill {
+        font-size: 0.72rem; font-weight: 700; padding: 5px 12px; border-radius: 100px;
+        background: rgba(12,13,16,0.06); color: var(--ink-soft);
+      }
+      .panel p { color: var(--ink-soft); font-weight: 500; margin-bottom: 14px; font-size: 0.98rem; }
+      .panel h3 { font-size: 1.05rem; font-weight: 800; margin: 26px 0 10px; letter-spacing: -0.01em; }
+      .spec-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 16px 0 20px; }
+      .spec-list li {
+        font-size: 0.92rem; color: var(--ink-soft); font-weight: 500;
+        padding: 12px 16px; border-radius: 12px; background: rgba(255,255,255,0.5);
+        display: flex; gap: 10px;
+      }
+      .spec-list li b { color: var(--ink); font-weight: 700; white-space: nowrap; }
+      .caveat {
+        font-size: 0.85rem; font-weight: 600; color: var(--ink-soft);
+        padding: 14px 18px; border-radius: 14px; border: 1px dashed var(--line-strong);
+        margin-top: 8px;
+      }
+      code {
+        font-family: "IBM Plex Mono", monospace; font-size: 0.85em;
+        background: rgba(12,13,16,0.06); padding: 2px 6px; border-radius: 5px;
+      }
+
+      .faq-item { border-bottom: 1px solid var(--line); padding: 22px 0; }
+      .faq-item:last-child { border-bottom: none; }
+      .faq-item h3 { font-size: 1rem; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.01em; }
+      .faq-item p { color: var(--ink-soft); font-size: 0.92rem; font-weight: 500; margin: 0; }
+
+      .disclosure {
+        border-radius: var(--radius); padding: 34px 40px; text-align: left; margin-bottom: 28px;
+      }
+      .disclosure h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
+      .disclosure p { color: var(--ink-soft); font-weight: 500; font-size: 0.95rem; margin-bottom: 8px; }
+      .disclosure a {
+        display: inline-flex; margin-top: 10px; font-size: 0.85rem; font-weight: 700;
+        color: var(--ink); text-decoration: none; padding: 10px 18px; border-radius: 10px;
+        background: rgba(255,255,255,0.7);
+      }
+
+      footer { padding: 20px 0 60px; text-align: center; }
+      footer p { font-size: 0.8rem; color: var(--ink-faint); font-weight: 600; }
+      footer a { color: var(--ink-soft); text-decoration: none; font-weight: 700; }
+
+      @media (max-width: 640px) {
+        .wrap { padding: 0 18px; }
+        .panel, .disclosure { padding: 26px 22px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="nav">
+      <div class="nav-inner glass">
+        <a href="./index.html" class="brand">
+          <img src="./assets/rhino.png" alt="PrivoSafe logo" class="brand-mark"
+            onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%230c0d10%22/%3E%3C/svg%3E';" />
+          PrivoSafe
+        </a>
+        <a href="./index.html" class="nav-back">← Back to home</a>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <div class="hero">
+        <div class="kicker glass"><span class="dot"></span>Engineering &amp; Security</div>
+        <h1 class="title">How the Privacy Core actually protects Vaultrix and Clozzy</h1>
+        <p class="dek">
+          Not a marketing claim — the real cryptographic design decisions behind our products:
+          what's encrypted, what's derived vs. random, what never touches disk, and what we
+          deliberately did <em>not</em> build (yet).
+        </p>
+        <div class="byline">
+          <span>By the PrivoSafe engineering team</span>
+          <span>·</span>
+          <span>Updated September 2026</span>
+          <span>·</span>
+          <span>~6 min read</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <article>
+        <!-- VAULTRIX -->
+        <section class="panel glass">
+          <h2>Vaultrix: an encrypted vault with no plaintext on disk</h2>
+          <div class="tag-row">
+            <span class="pill">AES-256-GCM</span>
+            <span class="pill">Argon2id</span>
+            <span class="pill">CSPRNG Master Key</span>
+            <span class="pill">In development</span>
+          </div>
+          <p>
+            Vaultrix is a private vault for files, passwords, and photos. The design goal was
+            simple to state and hard to get right: your password should never become your
+            encryption key, and plaintext should never be written to storage at any point in
+            the app's lifecycle.
+          </p>
+
+          <h3>Key architecture</h3>
+          <ul class="spec-list">
+            <li><b>Master Key</b> A single random 256-bit key per vault, generated with a cryptographically secure random number generator — never derived from the password. This means a password change only re-wraps a small key blob, not every encrypted file.</li>
+            <li><b>Password wrapping</b> Your password derives a key-encryption key via Argon2id (64&nbsp;MB memory cost, 3 iterations, parallelism 2), which wraps — not replaces — the Master Key.</li>
+            <li><b>Encryption</b> AES-256-GCM for both file contents and metadata (original filename, MIME type), with a fresh random nonce generated per operation. Nonces are never reused.</li>
+            <li><b>Key lifetime</b> The Master Key lives only in memory (<code>VaultSession</code>) and is dropped when the app backgrounds or after an idle timeout (default 2 minutes).</li>
+            <li><b>Biometric unlock</b> Wraps the Master Key with a separate, device-bound key gated behind the OS biometric prompt. The fingerprint or face scan itself never becomes cryptographic key material.</li>
+          </ul>
+
+          <h3>No plaintext, at any stage</h3>
+          <p>
+            On import, source bytes are read into memory, encrypted, and written to disk only as
+            ciphertext — the file picker's temporary copy is deleted immediately after. On view,
+            ciphertext is decrypted into an in-memory buffer handed to the UI and dropped when the
+            screen closes. Deleted files are additionally shredded — overwritten with random bytes
+            before removal — as defense-in-depth against filesystem-level undelete of the
+            ciphertext.
+          </p>
+
+          <h3>Duress features</h3>
+          <p>
+            A <b>Panic Wipe</b>, gated behind a typed confirmation phrase, destroys the real
+            vault's keys, metadata database, and every encrypted blob. A <b>Decoy Vault</b> lets a
+            second password unlock a completely separate Master Key, database, and file space —
+            <code>unlockAny</code> fails identically for a wrong password and a correct-but-wrong-vault
+            password, so there is no timing or behavioral tell between the two.
+          </p>
+
+          <h3>Client-side signals, not a trust boundary</h3>
+          <p>
+            The in-app Security Center checks device integrity — root/jailbreak status, developer
+            options, mock location, external storage — via the <code>safe_device</code> package, plus
+            app posture like biometric enrollment and auto-lock, rolled into a protection score.
+          </p>
+          <div class="caveat">
+            We're explicit about this internally and publicly: these are client-side hygiene
+            signals a sufficiently privileged attacker on the device can spoof. They inform the
+            user, they don't anchor the security model — the encryption above does that.
+          </div>
+        </section>
+
+        <!-- CLOZZY -->
+        <section class="panel glass">
+          <h2>Clozzy: the same Privacy Core, applied to shared spaces</h2>
+          <div class="tag-row">
+            <span class="pill">AES-256-GCM</span>
+            <span class="pill">Argon2id</span>
+            <span class="pill">Live</span>
+          </div>
+          <p>
+            Clozzy is a private space for couples — messages, mood updates, photos, and daily
+            notes shared between exactly two people. It runs on the same Privacy Core as Vaultrix:
+            a random per-vault Master Key wrapped by an Argon2id-derived key from your password,
+            with AES-256-GCM encrypting message content, media, and status updates before they
+            ever leave the device.
+          </p>
+          <p>
+            Because the Master Key is generated and held client-side and only your password (or
+            your partner's, for shared content) can unwrap it, PrivoSafe's own infrastructure is
+            not in a position to read the contents of your space or hand it over in readable form —
+            by design, not by policy promise.
+          </p>
+        </section>
+
+        <!-- FAQ -->
+        <section class="panel glass" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Common questions</h2>
+          <div class="tag-row"><span class="pill">Straight answers</span></div>
+
+          <div class="faq-item">
+            <h3>Does PrivoSafe store my password?</h3>
+            <p>No. Your password is never stored anywhere. It's run through Argon2id to derive a key that wraps your Master Key — the password itself never leaves that one-way derivation.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What encryption does Vaultrix use?</h3>
+            <p>AES-256-GCM for file contents and metadata, with a fresh random nonce per operation, protecting a CSPRNG-generated Master Key that's wrapped by an Argon2id-derived key from your password.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Does Vaultrix ever write unencrypted data to disk?</h3>
+            <p>No. Plaintext exists only in memory during import and viewing. Everything persisted to disk is ciphertext, and temporary copies created by the OS file picker are deleted immediately.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What happens if I'm forced to unlock my vault under duress?</h3>
+            <p>Panic Wipe destroys the real vault behind a typed confirmation phrase. Decoy Vault gives a second password its own separate vault with no detectable difference from a wrong password.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Is Clozzy end-to-end encrypted?</h3>
+            <p>Yes — Clozzy shares Vaultrix's Privacy Core, so messages, photos, and status updates are encrypted client-side with AES-256-GCM under keys only you and your partner hold.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Can PrivoSafe read or sell my data?</h3>
+            <p>PrivoSafe does not hold the keys needed to decrypt your content, and does not sell user data.</p>
+          </div>
+        </section>
+
+        <!-- RESPONSIBLE DISCLOSURE -->
+        <div class="disclosure glass">
+          <h2>Found a security issue?</h2>
+          <p>
+            We'd rather hear from you first. If you find a vulnerability in Vaultrix, Clozzy, or
+            the Privacy Core, please report it privately before any public disclosure.
+          </p>
+          <p>We commit to acknowledging reports promptly and crediting researchers who report responsibly.</p>
+          <a href="mailto:security@privosafe.com">Report a vulnerability →</a>
+        </div>
+      </article>
+    </div>
+
+    <footer>
+      <p>© 2026 PrivoSafe · <a href="./index.html">Home</a></p>
+    </footer>
+  </body>
+</html>
