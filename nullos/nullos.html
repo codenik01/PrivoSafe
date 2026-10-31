@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NullØS: a black, minimal security OS</title>
+<meta name="description" content="NullØS is a minimal security operating system with a tiling desktop, hardened defaults and 30+ core tools. Live ISO for x86_64 and arm64.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="NullØS: a black, minimal security OS">
+<meta property="og:description" content="Tiling desktop, hardened defaults, 30+ core tools. The rest is one command away.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='%230a0a0a'/%3E%3Cg fill='none' stroke='%23f0f0f0' stroke-width='14'%3E%3Cpath d='M100 66A68 68 0 0 0 100 190M156 66A68 68 0 0 1 156 190M128 6V58M128 198V250M106 170L152 86'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+:root{--bg:#0a0a0a;--fg:#c8c8c8;--dim:#8a8a8a;--line:#1f1f1f;--ac:#e5484d;color-scheme:dark}
+:root[data-theme=blue]{--ac:#4c8dff}
+:root[data-theme=green]{--ac:#3ecf8e}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 "JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+header{position:sticky;top:0;z-index:5;background:rgba(10,10,10,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:28px;height:56px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.04em;color:#f0f0f0}
+.brand svg{width:22px;height:22px}
+nav{display:flex;gap:22px;margin-left:auto;font-size:14px}
+nav a{text-decoration:none;color:var(--dim)}
+nav a:hover{color:var(--fg)}
+.hero{padding:72px 0 88px;border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:center}
+h1{font-size:clamp(44px,7vw,84px);line-height:1;margin:0 0 22px;letter-spacing:-.02em;color:#f4f4f4}
+h1 span{color:var(--ac)}
+.lead{font-size:18px;max-width:46ch;margin:0 0 14px}
+.motto{color:var(--dim);margin:0 0 32px;max-width:46ch}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:12px 20px;border:2px solid var(--ac);color:var(--ac);text-decoration:none;font-weight:700;transition:background .15s,color .15s}
+.btn:hover,.btn.solid{background:var(--ac);color:var(--bg)}
+.btn.solid:hover{background:transparent;color:var(--ac)}
+.term{border:3px solid var(--ac);background:var(--bg);box-shadow:0 0 0 1px #000,0 30px 80px -30px var(--ac);transition:border-color .2s,box-shadow .2s}
+.tbar{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);font-size:13px;color:var(--dim)}
+.tbar b{margin-right:auto;font-weight:400}
+.dots{display:flex;gap:8px}
+.dot{width:16px;height:16px;border-radius:50%;border:2px solid transparent;padding:0;cursor:pointer;background:var(--c)}
+.dot[aria-checked=true]{border-color:#f4f4f4}
+.tbody{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:18px;font-size:13px;line-height:1.45;overflow-x:auto;min-height:330px}
+#logo{margin:0;line-height:1.05;font:inherit;color:#e8e8e8}
+#logo i{font-style:normal;color:var(--ac)}
+#info{margin:0;white-space:pre-wrap;font:inherit}
+#info em{font-style:normal;color:var(--ac)}
+.cur{display:inline-block;width:.6em;height:1.1em;background:var(--ac);vertical-align:text-bottom;animation:b 1.1s steps(2) infinite}
+@keyframes b{50%{opacity:0}}
+section{padding:80px 0;border-bottom:1px solid var(--line)}
+h2{font-size:clamp(26px,3.4vw,38px);line-height:1.15;margin:0 0 12px;color:#f4f4f4;letter-spacing:-.01em}
+.sub{color:var(--dim);max-width:60ch;margin:0 0 44px}
+dl{margin:0;display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);border-top:1px solid var(--line)}
+dt,dd{margin:0;padding:18px 0;border-bottom:1px solid var(--line)}
+dt{color:var(--ac);font-weight:700;padding-right:24px}
+dd{max-width:68ch}
+.keys{width:100%;border-collapse:collapse;font-size:15px}
+.keys td{padding:11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.keys td:first-child{width:46%;padding-right:20px;white-space:nowrap}
+kbd{font:inherit;border:1px solid #333;border-bottom-width:3px;padding:1px 7px;color:#f0f0f0;background:#111}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px}
+.tools{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.tools li{border:1px solid #2a2a2a;padding:3px 10px;font-size:14px}
+.ondemand li{border-style:dashed;color:var(--dim)}
+.dl{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 28px;align-items:center;padding:26px 0;border-top:1px solid var(--line)}
+.dl:last-of-type{border-bottom:1px solid var(--line)}
+.dl h3{margin:0;font-size:22px;color:#f4f4f4}
+.dl p{margin:2px 0 0;color:var(--dim);font-size:14px}
+pre.cmd{margin:18px 0 0;padding:14px 16px;border:1px solid var(--line);background:#101010;overflow-x:auto;font:14px/1.6 inherit;display:flex;gap:16px;justify-content:space-between;align-items:flex-start}
+pre.cmd code{font:inherit;white-space:pre}
+pre.cmd button{flex:none;font:inherit;font-size:13px;background:none;border:1px solid #333;color:var(--fg);padding:2px 10px;cursor:pointer}
+pre.cmd button:hover{border-color:var(--ac);color:var(--ac)}
+details{border-top:1px solid var(--line);padding:16px 0}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:700;color:#f0f0f0}
+details p{margin:10px 0 0;max-width:68ch;color:var(--fg)}
+footer{padding:44px 0 60px;color:var(--dim);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between}
+footer p{margin:0;max-width:62ch}
+@media (max-width:860px){
+ .hero .wrap,.cols{grid-template-columns:minmax(0,1fr)}
+ .hero{padding-top:44px}
+ dl{grid-template-columns:minmax(0,1fr)}
+ dt{border-bottom:0;padding-bottom:0}
+ nav{gap:14px;font-size:13px}
+ .keys td:first-child{white-space:normal}
+ .dl{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:520px){nav a:nth-child(n+3){display:none}}
+@media (prefers-reduced-motion:reduce){.cur{animation:none}html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap">
+  <a class="brand" href="#top" aria-label="NullØS home">
+   <svg viewBox="0 0 256 256" aria-hidden="true"><g fill="none" stroke="#f0f0f0" stroke-width="16"><path d="M100 66A68 68 0 0 0 100 190M156 66A68 68 0 0 1 156 190M128 6V58M128 198V250"/><path d="M106 170L152 86" stroke="var(--ac)"/></g></svg>
+   NullØS
+  </a>
+  <nav aria-label="Main"><a href="#features">Features</a><a href="#desktop">Desktop</a><a href="#tools">Tools</a><a href="#download">Download</a><a href="#faq">FAQ</a></nav>
+ </div>
+</header>
+
+<main id="top">
+ <div class="hero">
+  <div class="wrap">
+   <div>
+    <h1>Null<span>Ø</span>S</h1>
+    <p class="lead">A black, minimal security OS. A tiling desktop, hardened defaults and 30+ core tools, with everything else one command away.</p>
+    <p class="motto">Privacy. Security. Freedom. No tracks, no data, no you.</p>
+    <div class="btns">
+     <a class="btn solid" href="#download">Download the ISO</a>
+     <a class="btn" href="#features">See what’s inside</a>
+    </div>
+   </div>
+   <div class="term" aria-label="NullØS terminal preview">
+    <div class="tbar"><b>ns@nullos: ~</b>
+     <div class="dots" role="radiogroup" aria-label="Accent colour">
+      <button class="dot" role="radio" aria-checked="true" data-t="red" aria-label="Red accent" style="--c:#e5484d"></button>
+      <button class="dot" role="radio" aria-checked="false" data-t="blue" aria-label="Blue accent" style="--c:#4c8dff"></button>
+      <button class="dot" role="radio" aria-checked="false" data-t="green" aria-label="Green accent" style="--c:#3ecf8e"></button>
+     </div>
+    </div>
+    <div class="tbody"><pre id="logo" aria-hidden="true"></pre><pre id="info"></pre></div>
+   </div>
+  </div>
+ </div>
+
+ <section id="features"><div class="wrap">
+  <h2>Built to stay out of your way</h2>
+  <p class="sub">Most security distros ship thousands of tools and a desktop that looks like an office PC. NullØS ships the ones you reach for daily and looks like a workstation.</p>
+  <dl>
+   <dt>Tiling desktop</dt><dd>Windows tile themselves with gaps and accent borders. F12 drops a terminal from the top. Prefer title bars? Switch to floating mode with one command.</dd>
+   <dt>Hardened defaults</dt><dd>Inbound traffic is blocked by default, Wi‑Fi MAC addresses are randomised, kernel hardening is on, and unused services (Bluetooth, printing, discovery) are off.</dd>
+   <dt>Lean toolset</dt><dd>nmap, masscan, ffuf, gobuster, sqlmap, hydra, john, aircrack‑ng, bettercap, radare2, gdb, pwntools, impacket and more are already installed. Heavier tools install when you ask.</dd>
+   <dt>One accent, your choice</dt><dd>Red, blue or green. <code>ns-theme blue</code> recolours the panel, borders, menus, terminal, GTK apps, prompt and logo together.</dd>
+   <dt>Made for VMs</dt><dd>Guest tools for UTM, VirtualBox, VMware and QEMU are included, so clipboard, resizing and mouse behave.</dd>
+   <dt>Ordinary apps, done</dt><dd>Files, text editor, Wi‑Fi menu, audio mixer, archive manager, screenshots, PDF and image viewers, calculator and Firefox. Right‑click in the terminal gives you Copy and Paste.</dd>
+   <dt>x86_64 and arm64</dt><dd>Built natively for both, including Apple silicon through UTM.</dd>
+  </dl>
+ </div></section>
+
+ <section id="desktop"><div class="wrap cols">
+  <div>
+   <h2>Keys you will actually use</h2>
+   <p class="sub">Super is the main key. Alt works for the core shortcuts if your VM keeps Super for itself.</p>
+   <table class="keys">
+    <tr><td><kbd>Super</kbd> + <kbd>Enter</kbd></td><td>Terminal</td></tr>
+    <tr><td><kbd>Super</kbd> + <kbd>Space</kbd></td><td>Start menu</td></tr>
+    <tr><td><kbd>Super</kbd> + <kbd>T</kbd></td><td>Security tools menu</td></tr>
+    <tr><td><kbd>Super</kbd> + <kbd>N</kbd></td><td>Wi‑Fi and network</td></tr>
+    <tr><td><kbd>Super</kbd> + <kbd>Q</kbd></td><td>Close window</td></tr>
+    <tr><td><kbd>Super</kbd> + <kbd>V</kbd></td><td>Float or tile a window</td></tr>
+    <tr><td><kbd>Super</kbd> + <kbd>1</kbd>…<kbd>9</kbd></td><td>Switch workspace</td></tr>
+    <tr><td><kbd>F12</kbd></td><td>Dropdown terminal</td></tr>
+   </table>
+  </div>
+  <div>
+   <h2>Commands that feel like home</h2>
+   <p class="sub">Standard tools are all there, plus a few of ours.</p>
+   <table class="keys">
+    <tr><td><code>ns</code></td><td>Browse the security tools</td></tr>
+    <tr><td><code>ns-pack add nuclei</code></td><td>Install a heavier tool on demand</td></tr>
+    <tr><td><code>target 10.10.10.5</code></td><td>Start a workspace folder and show it in your prompt</td></tr>
+    <tr><td><code>ns-theme green</code></td><td>Change the accent colour</td></tr>
+    <tr><td><code>ns-wallpaper</code></td><td>Pick a wallpaper</td></tr>
+    <tr><td><code>ns-mode floating</code></td><td>Switch to title‑bar windows</td></tr>
+    <tr><td><code>neofetch</code>, <code>fastfetch</code></td><td>System info with the NullØS logo</td></tr>
+   </table>
+  </div>
+ </div></section>
+
+ <section id="tools"><div class="wrap">
+  <h2>Tools</h2>
+  <p class="sub">Installed and ready on the ISO:</p>
+  <ul class="tools">
+   <li>nmap</li><li>masscan</li><li>ffuf</li><li>gobuster</li><li>whatweb</li><li>sqlmap</li><li>hydra</li><li>john</li><li>aircrack‑ng</li><li>hcxdumptool</li><li>bettercap</li><li>tcpdump</li><li>socat</li><li>impacket</li><li>pwntools</li><li>radare2</li><li>gdb</li><li>binwalk</li><li>foremost</li><li>exiftool</li><li>proxychains</li><li>WireGuard</li><li>OpenVPN</li><li>macchanger</li>
+  </ul>
+  <p class="sub" style="margin-top:28px">One command away with <code>ns-pack add</code>, because they are large or come from outside Ubuntu:</p>
+  <ul class="tools ondemand">
+   <li>Metasploit</li><li>nuclei</li><li>subfinder</li><li>httpx</li><li>amass</li><li>nikto</li><li>NetExec</li><li>evil‑winrm</li><li>BloodHound.py</li><li>Responder</li><li>Exploit‑DB</li><li>Ghidra</li><li>Volatility 3</li><li>SecLists</li><li>hashcat</li><li>Wireshark</li>
+  </ul>
+ </div></section>
+
+ <section id="download"><div class="wrap">
+  <h2>Download</h2>
+  <p class="sub">NullØS runs live from the ISO today. An installer is not included yet, so use it from a USB stick or a VM.</p>
+  <div class="dl">
+   <div><h3>x86_64</h3><p>Intel and AMD. Boots on BIOS and UEFI.</p></div>
+   <a class="btn solid" data-dl="amd64" href="https://github.com/YOURNAME/nullos/releases/latest">Get nullos-amd64.iso</a>
+  </div>
+  <div class="dl">
+   <div><h3>arm64</h3><p>Apple silicon through UTM, and other UEFI arm64 machines. Newer and less tested than x86_64.</p></div>
+   <a class="btn" data-dl="arm64" href="https://github.com/YOURNAME/nullos/releases/latest">Get nullos-arm64.iso</a>
+  </div>
+  <p class="sub" style="margin:28px 0 0">Check the download before you boot it, then compare the result with the checksum published next to the file:</p>
+  <pre class="cmd"><code>sha256sum nullos-amd64.iso</code><button type="button" data-copy="sha256sum nullos-amd64.iso">Copy</button></pre>
+  <p class="sub" style="margin:22px 0 0">Live login is <code>ns</code> with no password and passwordless sudo. In a VM, give it 4 GB of RAM and 2 or more cores.</p>
+ </div></section>
+
+ <section id="faq"><div class="wrap">
+  <h2>Questions</h2>
+  <p class="sub"></p>
+  <details><summary>Is NullØS based on Kali or Parrot?</summary><p>No. It is built on Ubuntu 24.04 and uses Ubuntu’s kernel. The tool selection is its own, and tools Ubuntu does not package install on demand with <code>ns-pack</code>.</p></details>
+  <details><summary>Why a tiling desktop and not Hyprland?</summary><p>Hyprland needs GPU‑accelerated Wayland, which most VMs do not have. NullØS uses i3 with automatic tiling, gaps and animations so it behaves the same on real hardware and in a VM.</p></details>
+  <details><summary>Does it work in a virtual machine?</summary><p>Yes. That is the main target. UTM, VirtualBox, VMware and QEMU are covered by the included guest tools.</p></details>
+  <details><summary>Can I install it to disk?</summary><p>Not yet. The ISO is a live system. Use it from USB or inside a VM.</p></details>
+  <details><summary>Is it legal to use?</summary><p>Using it is, but attacking systems you do not own is not. Test only systems you own or have written permission to test.</p></details>
+ </div></section>
+</main>
+
+<footer><div class="wrap">
+ <p>NullØS is a community project and is not affiliated with Canonical, Ubuntu, Kali or Offensive Security. Tools are provided for authorised security testing and education.</p>
+ <p>Ubuntu 24.04 base. Black on purpose.</p>
+</div></footer>
+
+<script>
+(function(){
+ var root=document.documentElement, dots=[].slice.call(document.querySelectorAll(".dot"));
+ var mask=["       W       ","       W       ","       W       ","     W W W     ","    WW   WW    ","   WW   A WW   ","   W    A  W   ","   W   A   W   ","   W  AA   W   ","   WW A   WW   ","    WW   WW    ","     W W W     ","       W       ","       W       ","       W       "];
+ var logo=mask.map(function(r){return r.split("").map(function(c){return c==="W"?"██":c==="A"?"<i>██</i>":"  "}).join("")}).join("\n");
+ document.getElementById("logo").innerHTML=logo;
+ var info=document.getElementById("info"), reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+ var lines=["<em>ns@nullos</em>","-----------","<em>OS</em>        NullOS x86_64","<em>Kernel</em>    Linux 6.8 (Ubuntu)","<em>WM</em>        i3 (tiling)","<em>Shell</em>     zsh","<em>Terminal</em>  xfce4-terminal","<em>Firewall</em>  inbound blocked","<em>Network</em>   MAC randomised","<em>Tools</em>     30+ core, rest on demand"];
+ var tail='\n\n<span id="cmd"></span><span class="cur"></span>';
+ function show(n){info.innerHTML=lines.slice(0,n).join("\n")+tail}
+ function say(t){var c=document.getElementById("cmd");if(c)c.textContent="$ "+t}
+ if(reduce){show(lines.length)}else{var i=0;show(0);var iv=setInterval(function(){show(++i);if(i>=lines.length)clearInterval(iv)},170)}
+ function setTheme(t,fromUser){
+  if(t==="red")root.removeAttribute("data-theme");else root.setAttribute("data-theme",t);
+  dots.forEach(function(d){d.setAttribute("aria-checked",String(d.dataset.t===t))});
+  try{localStorage.setItem("nullos-theme",t)}catch(e){}
+  if(fromUser){show(lines.length);say("ns-theme "+t)}
+ }
+ dots.forEach(function(d){d.addEventListener("click",function(){setTheme(d.dataset.t,true)})});
+ try{var s=localStorage.getItem("nullos-theme");if(s&&/^(red|blue|green)$/.test(s))setTheme(s,false)}catch(e){}
+ document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){
+  var t=b.dataset.copy,done=function(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy"},1400)};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){})}
+ })});
+})();
+</script>
+</body>
+</html>
